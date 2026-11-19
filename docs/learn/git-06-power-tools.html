@@ -12,13 +12,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/learn.css">
 </head>
-<body>
+<body data-page="git-06-power-tools">
 <a class="skip" href="#content">Skip to content</a>
 <header class="bar">
   <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
   <nav aria-label="Site">
     <a href="index.html">Lessons</a>
-    <a href="../#check">Check a profile</a>
+    <a href="../sandbox/">Sandbox</a>
+    <a href="cheat-sheet.html">Cheat sheet</a>
     <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
   </nav>
 </header>
@@ -35,7 +36,7 @@
         <li><a href="#tags-mark-releases">Tags: mark releases</a></li>
         <li><a href="#gitignore-keep-junk-out">.gitignore: keep junk out</a></li>
         <li><a href="#aliases-make-your-own-shortcuts">Aliases: make your own shortcuts</a></li>
-        <li><a href="#you39ve-finished-git-fundamentals">You&#39;ve finished Git fundamentals</a></li>
+        <li><a href="#youve-finished-git-fundamentals">You&#39;ve finished Git fundamentals</a></li>
       </ul>
     </nav>
     <article class="prose">
@@ -63,6 +64,7 @@ git stash pop                                  # bring your changes back
 git cherry-pick 9a8b7c6
 </code></pre>
 <p>Git applies that single commit&#39;s changes as a new commit on <code>main</code>. Add <code>-x</code> to note where it came from in the message, which is handy for release branches.</p>
+<p>Try it in the <a href="https://cptnope.github.io/github-achievements-academy/sandbox/?level=cherry-pick" rel="noopener">cherry-pick sandbox challenge</a>.</p>
 <h2 id="bisect-find-the-commit-that-broke-it">Bisect: find the commit that broke it</h2>
 <p>Something worked last week and is broken now, with 80 commits in between. <code>git bisect</code> finds the culprit with a binary search, in about 7 steps instead of 80:</p>
 <pre><code class="language-bash">git bisect start
@@ -119,12 +121,45 @@ git config --global alias.undo &quot;reset --soft HEAD~1&quot;
 git config --global alias.amend &quot;commit --amend --no-edit&quot;
 </code></pre>
 <p>Now <code>git st</code>, <code>git lg</code>, <code>git undo</code> and <code>git amend</code> work everywhere.</p>
-<h2 id="you39ve-finished-git-fundamentals">You&#39;ve finished Git fundamentals</h2>
+<h2 id="youve-finished-git-fundamentals">You&#39;ve finished Git fundamentals</h2>
 <p>You now know more Git than most working developers use day to day. Keep the <a href="oh-no.html">&quot;Oh no&quot; guide</a> bookmarked. Mistakes happen to everyone, and now you know how to undo them.</p>
 <p><strong>Learners Wall:</strong> add a line to your page saying you finished the Git track, and which power tool you liked most.</p>
 <p>Next: the GitHub skills track starts with <a href="github-01-profile.html">GitHub 1: Your profile as a portfolio</a></p>
 
     </article>
+    <section class="quiz" aria-labelledby="quiz-h">
+    <h2 id="quiz-h">Check what you learned</h2>
+    <form id="quiz-form">
+      <fieldset data-answer="1">
+        <legend><span class="qn">1.</span> Which command finds the commit that introduced a bug, using binary search?</legend>
+        <label><input type="radio" name="q0" value="0"> <span>git blame</span></label>
+        <label><input type="radio" name="q0" value="1"> <span>git bisect</span></label>
+        <label><input type="radio" name="q0" value="2"> <span>git stash</span></label>
+        <label><input type="radio" name="q0" value="3"> <span>git tag</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> Bisect halves the range each step, so 80 commits take about 7 tests.</p>
+      </fieldset>
+      <fieldset data-answer="1">
+        <legend><span class="qn">2.</span> You committed .env before adding it to .gitignore. What's still true?</legend>
+        <label><input type="radio" name="q1" value="0"> <span>Ignoring it removes it from history</span></label>
+        <label><input type="radio" name="q1" value="1"> <span>The secret is still in your history</span></label>
+        <label><input type="radio" name="q1" value="2"> <span>Git deletes it automatically</span></label>
+        <label><input type="radio" name="q1" value="3"> <span>GitHub hides it</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> Stop tracking it with git rm --cached, and rotate the secret.</p>
+      </fieldset>
+      <fieldset data-answer="0">
+        <legend><span class="qn">3.</span> How do you copy one commit from another branch onto yours?</legend>
+        <label><input type="radio" name="q2" value="0"> <span>git cherry-pick &lt;id&gt;</span></label>
+        <label><input type="radio" name="q2" value="1"> <span>git merge --one</span></label>
+        <label><input type="radio" name="q2" value="2"> <span>git copy &lt;id&gt;</span></label>
+        <label><input type="radio" name="q2" value="3"> <span>git rebase -i</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> Cherry-pick applies that single commit's changes as a new commit.</p>
+      </fieldset>
+      <div class="quiz-actions"><button type="submit" class="mark-btn">Check my answers</button><button type="reset" class="link-btn">Start over</button></div>
+      <p id="quiz-result" class="quiz-result" tabindex="-1" aria-live="polite"></p>
+    </form>
+    <details class="quiz-answers"><summary>Show the answers</summary><ol><li>git bisect: Bisect halves the range each step, so 80 commits take about 7 tests.</li><li>The secret is still in your history: Stop tracking it with git rm --cached, and rotate the secret.</li><li>git cherry-pick &lt;id&gt;: Cherry-pick applies that single commit's changes as a new commit.</li></ol></details>
+  </section>
+    <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
     <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/06-power-tools.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="git-05-remotes.html"><span>Previous</span>Git 5: Remotes, fetch, pull and push</a>
@@ -134,40 +169,41 @@ git config --global alias.amend &quot;commit --amend --no-edit&quot;
   <aside class="toc" aria-label="All lessons">
     <h2>Badges</h2>
     <ol>
-        <li><a href="00-setup.html"><span class="n">0</span>Setup</a></li>
-        <li><a href="01-quickdraw.html"><span class="n">1</span>Quickdraw</a></li>
-        <li><a href="02-yolo.html"><span class="n">2</span>YOLO</a></li>
-        <li><a href="03-pull-shark.html"><span class="n">3</span>Pull Shark</a></li>
-        <li><a href="04-pair-extraordinaire.html"><span class="n">4</span>Pair Extraordinaire</a></li>
-        <li><a href="05-galaxy-brain.html"><span class="n">5</span>Galaxy Brain</a></li>
-        <li><a href="06-starstruck.html"><span class="n">6</span>Starstruck</a></li>
-        <li><a href="07-public-sponsor.html"><span class="n">7</span>Public Sponsor</a></li>
-        <li><a href="08-highlights-and-retired.html"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+        <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html" data-page="02-yolo"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html" data-page="03-pull-shark"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html" data-page="04-pair-extraordinaire"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html" data-page="05-galaxy-brain"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
     </ol>
     <h2>Git fundamentals</h2>
     <ol>
-        <li><a href="git-01-how-git-works.html"><span class="n">1</span>How Git actually works</a></li>
-        <li><a href="git-02-everyday-loop.html"><span class="n">2</span>The everyday loop</a></li>
-        <li><a href="git-03-branching-and-merging.html"><span class="n">3</span>Branching and merging</a></li>
-        <li><a href="git-04-rebase.html"><span class="n">4</span>Rebase without fear</a></li>
-        <li><a href="git-05-remotes.html"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
-        <li><a href="git-06-power-tools.html" aria-current="page"><span class="n">6</span>Power tools</a></li>
+        <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html" data-page="git-03-branching-and-merging"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html" data-page="git-06-power-tools" aria-current="page"><span class="n">6</span>Power tools</a></li>
     </ol>
     <h2>GitHub skills</h2>
     <ol>
-        <li><a href="github-01-profile.html"><span class="n">1</span>Your profile as a portfolio</a></li>
-        <li><a href="github-02-issues-and-projects.html"><span class="n">2</span>Issues and Projects</a></li>
-        <li><a href="github-03-code-review.html"><span class="n">3</span>Code review</a></li>
-        <li><a href="github-04-actions.html"><span class="n">4</span>Automate with Actions</a></li>
-        <li><a href="github-05-releases.html"><span class="n">5</span>Releases and versioning</a></li>
-        <li><a href="github-06-security.html"><span class="n">6</span>Security basics</a></li>
-        <li><a href="github-07-open-source.html"><span class="n">7</span>Contributing to open source</a></li>
+        <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
+        <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
+        <li><a href="github-03-code-review.html" data-page="github-03-code-review"><span class="n">3</span>Code review</a></li>
+        <li><a href="github-04-actions.html" data-page="github-04-actions"><span class="n">4</span>Automate with Actions</a></li>
+        <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
+        <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
+        <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
     </ol>
     <h2>Guides</h2>
     <ol>
-        <li><a href="oh-no.html">Oh no! Undo mistakes</a></li>
-        <li><a href="troubleshooting.html">Troubleshooting</a></li>
-        <li><a href="fair-play.html">Fair play</a></li>
+        <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
+        <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
+        <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
     </ol>
   </aside>
 </div>
@@ -176,5 +212,6 @@ git config --global alias.amend &quot;commit --amend --no-edit&quot;
   <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
 </footer>
 <!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+<script src="../assets/learn.js" defer></script>
 </body>
 </html>

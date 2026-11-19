@@ -12,13 +12,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/learn.css">
 </head>
-<body>
+<body data-page="git-01-how-git-works">
 <a class="skip" href="#content">Skip to content</a>
 <header class="bar">
   <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
   <nav aria-label="Site">
     <a href="index.html">Lessons</a>
-    <a href="../#check">Check a profile</a>
+    <a href="../sandbox/">Sandbox</a>
+    <a href="cheat-sheet.html">Cheat sheet</a>
     <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
   </nav>
 </header>
@@ -30,7 +31,7 @@
       <ul>
         <li><a href="#a-commit-is-a-snapshot">A commit is a snapshot</a></li>
         <li><a href="#a-branch-is-just-a-label">A branch is just a label</a></li>
-        <li><a href="#head-is-quotyou-are-herequot">HEAD is &quot;you are here&quot;</a></li>
+        <li><a href="#head-is-you-are-here">HEAD is &quot;you are here&quot;</a></li>
         <li><a href="#the-three-places-your-work-lives">The three places your work lives</a></li>
         <li><a href="#local-vs-remote">Local vs. remote</a></li>
         <li><a href="#try-it-see-the-model-for-yourself">Try it: see the model for yourself</a></li>
@@ -62,7 +63,7 @@
             ← feature
 </code></pre>
 <p>That&#39;s why making a branch is instant, even in a huge project.</p>
-<h2 id="head-is-quotyou-are-herequot">HEAD is &quot;you are here&quot;</h2>
+<h2 id="head-is-you-are-here">HEAD is &quot;you are here&quot;</h2>
 <p><code>HEAD</code> tells Git which branch you&#39;re currently on. When you run <code>git switch feature</code>, <code>HEAD</code> moves to point at <code>feature</code>, and your files change to match that branch&#39;s snapshot. New commits move whichever branch <code>HEAD</code> points at.</p>
 <p>If <code>HEAD</code> points straight at a commit instead of a branch, Git calls that a <strong>detached HEAD</strong>. It&#39;s safe to look around, but commits you make there aren&#39;t on any branch. See the <a href="oh-no.html#i-am-in-detached-head-state">&quot;Oh no&quot; guide</a> if you end up there.</p>
 <h2 id="the-three-places-your-work-lives">The three places your work lives</h2>
@@ -85,6 +86,7 @@
 git log --oneline --graph --all --decorate
 </code></pre>
 <p>Both labels sit on the same commit. Nothing was copied.</p>
+<p><strong>No repo handy?</strong> Try the <a href="https://cptnope.github.io/github-achievements-academy/sandbox/?level=commits" rel="noopener">first sandbox challenge</a> in your browser and watch commits and labels move as you type.</p>
 <blockquote>
 <p>This command is so useful that most people make a shortcut:
 <code>git config --global alias.lg &quot;log --oneline --graph --all --decorate&quot;</code>
@@ -100,6 +102,39 @@ Now <code>git lg</code> shows the graph.</p>
 <p>Next: <a href="git-02-everyday-loop.html">Git 2: The everyday loop</a></p>
 
     </article>
+    <section class="quiz" aria-labelledby="quiz-h">
+    <h2 id="quiz-h">Check what you learned</h2>
+    <form id="quiz-form">
+      <fieldset data-answer="1">
+        <legend><span class="qn">1.</span> What is a branch in Git?</legend>
+        <label><input type="radio" name="q0" value="0"> <span>A full copy of your code</span></label>
+        <label><input type="radio" name="q0" value="1"> <span>A movable label pointing at one commit</span></label>
+        <label><input type="radio" name="q0" value="2"> <span>A folder on GitHub</span></label>
+        <label><input type="radio" name="q0" value="3"> <span>A backup of main</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> That's why creating a branch is instant, even in huge projects.</p>
+      </fieldset>
+      <fieldset data-answer="1">
+        <legend><span class="qn">2.</span> What does HEAD tell Git?</legend>
+        <label><input type="radio" name="q1" value="0"> <span>The newest commit on GitHub</span></label>
+        <label><input type="radio" name="q1" value="1"> <span>Which branch or commit you're on right now</span></label>
+        <label><input type="radio" name="q1" value="2"> <span>The first commit ever made</span></label>
+        <label><input type="radio" name="q1" value="3"> <span>Who owns the repo</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> HEAD is &quot;you are here&quot;. New commits move whichever branch HEAD points at.</p>
+      </fieldset>
+      <fieldset data-answer="1">
+        <legend><span class="qn">3.</span> Which command moves changes into the staging area?</legend>
+        <label><input type="radio" name="q2" value="0"> <span>git commit</span></label>
+        <label><input type="radio" name="q2" value="1"> <span>git add</span></label>
+        <label><input type="radio" name="q2" value="2"> <span>git push</span></label>
+        <label><input type="radio" name="q2" value="3"> <span>git fetch</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> git add stages changes. git commit saves what's staged into history.</p>
+      </fieldset>
+      <div class="quiz-actions"><button type="submit" class="mark-btn">Check my answers</button><button type="reset" class="link-btn">Start over</button></div>
+      <p id="quiz-result" class="quiz-result" tabindex="-1" aria-live="polite"></p>
+    </form>
+    <details class="quiz-answers"><summary>Show the answers</summary><ol><li>A movable label pointing at one commit: That's why creating a branch is instant, even in huge projects.</li><li>Which branch or commit you're on right now: HEAD is &quot;you are here&quot;. New commits move whichever branch HEAD points at.</li><li>git add: git add stages changes. git commit saves what's staged into history.</li></ol></details>
+  </section>
+    <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
     <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/01-how-git-works.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="08-highlights-and-retired.html"><span>Previous</span>Lesson 8: Highlights &amp; retired badges</a>
@@ -109,40 +144,41 @@ Now <code>git lg</code> shows the graph.</p>
   <aside class="toc" aria-label="All lessons">
     <h2>Badges</h2>
     <ol>
-        <li><a href="00-setup.html"><span class="n">0</span>Setup</a></li>
-        <li><a href="01-quickdraw.html"><span class="n">1</span>Quickdraw</a></li>
-        <li><a href="02-yolo.html"><span class="n">2</span>YOLO</a></li>
-        <li><a href="03-pull-shark.html"><span class="n">3</span>Pull Shark</a></li>
-        <li><a href="04-pair-extraordinaire.html"><span class="n">4</span>Pair Extraordinaire</a></li>
-        <li><a href="05-galaxy-brain.html"><span class="n">5</span>Galaxy Brain</a></li>
-        <li><a href="06-starstruck.html"><span class="n">6</span>Starstruck</a></li>
-        <li><a href="07-public-sponsor.html"><span class="n">7</span>Public Sponsor</a></li>
-        <li><a href="08-highlights-and-retired.html"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+        <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html" data-page="02-yolo"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html" data-page="03-pull-shark"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html" data-page="04-pair-extraordinaire"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html" data-page="05-galaxy-brain"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
     </ol>
     <h2>Git fundamentals</h2>
     <ol>
-        <li><a href="git-01-how-git-works.html" aria-current="page"><span class="n">1</span>How Git actually works</a></li>
-        <li><a href="git-02-everyday-loop.html"><span class="n">2</span>The everyday loop</a></li>
-        <li><a href="git-03-branching-and-merging.html"><span class="n">3</span>Branching and merging</a></li>
-        <li><a href="git-04-rebase.html"><span class="n">4</span>Rebase without fear</a></li>
-        <li><a href="git-05-remotes.html"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
-        <li><a href="git-06-power-tools.html"><span class="n">6</span>Power tools</a></li>
+        <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works" aria-current="page"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html" data-page="git-03-branching-and-merging"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
     </ol>
     <h2>GitHub skills</h2>
     <ol>
-        <li><a href="github-01-profile.html"><span class="n">1</span>Your profile as a portfolio</a></li>
-        <li><a href="github-02-issues-and-projects.html"><span class="n">2</span>Issues and Projects</a></li>
-        <li><a href="github-03-code-review.html"><span class="n">3</span>Code review</a></li>
-        <li><a href="github-04-actions.html"><span class="n">4</span>Automate with Actions</a></li>
-        <li><a href="github-05-releases.html"><span class="n">5</span>Releases and versioning</a></li>
-        <li><a href="github-06-security.html"><span class="n">6</span>Security basics</a></li>
-        <li><a href="github-07-open-source.html"><span class="n">7</span>Contributing to open source</a></li>
+        <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
+        <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
+        <li><a href="github-03-code-review.html" data-page="github-03-code-review"><span class="n">3</span>Code review</a></li>
+        <li><a href="github-04-actions.html" data-page="github-04-actions"><span class="n">4</span>Automate with Actions</a></li>
+        <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
+        <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
+        <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
     </ol>
     <h2>Guides</h2>
     <ol>
-        <li><a href="oh-no.html">Oh no! Undo mistakes</a></li>
-        <li><a href="troubleshooting.html">Troubleshooting</a></li>
-        <li><a href="fair-play.html">Fair play</a></li>
+        <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
+        <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
+        <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
     </ol>
   </aside>
 </div>
@@ -151,5 +187,6 @@ Now <code>git lg</code> shows the graph.</p>
   <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
 </footer>
 <!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+<script src="../assets/learn.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,112 @@
+{
+  "00-setup": [
+    { "q": "Why might your commits not count toward achievements?", "options": ["Your repo has no README", "Your commit email isn't a verified email on your GitHub account", "You committed after midnight", "You used the command line instead of the website"], "answer": 1, "why": "GitHub links commits to you by matching the author email to a verified email (or your no-reply address)." },
+    { "q": "What's the privacy-friendly email to use for commits?", "options": ["Your personal Gmail", "Your GitHub no-reply address", "Leave it blank", "Your work email"], "answer": 1, "why": "The ID+username@users.noreply.github.com address keeps your real email private and still counts." },
+    { "q": "Where do lessons 1 and 2 happen?", "options": ["In this academy repo", "In a stranger's popular project", "In a sandbox repo you own", "Only on the GitHub mobile app"], "answer": 2, "why": "Practicing in your own repo means you never create noise in anyone else's project." }
+  ],
+  "01-quickdraw": [
+    { "q": "How fast do you need to close an issue or PR for Quickdraw?", "options": ["Within 1 minute", "Within 5 minutes", "Within 1 hour", "Within 24 hours"], "answer": 1, "why": "Quickdraw is for closing an issue or pull request within five minutes of opening it." },
+    { "q": "An issue turns out to be a mistake. Which close reason fits?", "options": ["Completed", "Not planned", "Merged", "Archived"], "answer": 1, "why": "\"Not planned\" covers won't-fix, invalid and out-of-scope reports. \"Completed\" means the work was done." },
+    { "q": "What should good triage always include?", "options": ["A comment explaining why", "A label called urgent", "A screenshot", "An @mention of GitHub staff"], "answer": 0, "why": "A short reason keeps the project's history understandable for everyone who finds the issue later." }
+  ],
+  "02-yolo": [
+    { "q": "What earns the YOLO badge?", "options": ["Force-pushing to main", "Merging a pull request without a code review", "Deleting a repository", "Committing directly to main"], "answer": 1, "why": "YOLO is awarded for merging a PR that nobody reviewed." },
+    { "q": "What's the right order?", "options": ["PR → branch → commit → merge", "Branch → commit → push → PR → merge", "Commit → merge → branch → PR", "Push → branch → PR → commit"], "answer": 1, "why": "You make a branch, commit to it, push it, open a PR, then merge." },
+    { "q": "What does a branch ruleset requiring 1 approval do?", "options": ["Deletes unreviewed branches", "Blocks merging until someone approves", "Approves PRs automatically", "Hides the merge button forever"], "answer": 1, "why": "It's how teams make sure nothing reaches main unreviewed." }
+  ],
+  "03-pull-shark": [
+    { "q": "How many merged PRs earn the base Pull Shark tier?", "options": ["1", "2", "16", "128"], "answer": 1, "why": "The tiers are 2, 16, 128 and 1024 merged pull requests." },
+    { "q": "You pushed commits to your fork but never opened a PR. Do they count?", "options": ["Yes, forks always count", "No, only PRs merged into the parent repo count", "Only on weekends", "Only if the fork is private"], "answer": 1, "why": "Work that stays in your fork doesn't count until it's merged upstream." },
+    { "q": "Which is the honest way toward higher tiers?", "options": ["A script that opens empty PRs", "Splitting one typo fix into 20 PRs", "Real fixes, docs and features in projects you use", "Asking friends to merge anything"], "answer": 2, "why": "Bulk or empty PRs are the spam GitHub's policies prohibit, and maintainers notice." }
+  ],
+  "04-pair-extraordinaire": [
+    { "q": "Where does the Co-authored-by trailer go?", "options": ["In the commit title", "At the very end of the commit message, after a blank line", "In the PR title", "In a file called AUTHORS"], "answer": 1, "why": "Trailers must sit at the end of the message, separated from the body by a blank line." },
+    { "q": "Which email should you use for a co-author?", "options": ["Any email you can think of", "One linked to their GitHub account, like their no-reply address", "Your own email", "None needed"], "answer": 1, "why": "GitHub can only credit them if the email belongs to their account." },
+    { "q": "Who should you list as a co-author?", "options": ["Anyone who starred the repo", "Only people who actually contributed to that change", "Your alt account", "Famous developers"], "answer": 1, "why": "Crediting people who didn't contribute falsifies authorship." }
+  ],
+  "05-galaxy-brain": [
+    { "q": "What earns Galaxy Brain?", "options": ["Asking lots of questions", "Your replies being marked as the answer in Discussions", "Starring repos", "Writing long issues"], "answer": 1, "why": "It counts accepted answers: 2, 8, 16 and 32 for the tiers." },
+    { "q": "What should a good answer lead with?", "options": ["A long backstory", "The fix, then why it works", "A link to your profile", "A request to mark it as the answer"], "answer": 1, "why": "Busy people want the solution first. The explanation helps them learn." },
+    { "q": "Which of these breaks the rules?", "options": ["Answering questions on GitHub's community forum", "Following up to ask if it worked", "Asking from one account and answering from another", "Linking the docs you used"], "answer": 2, "why": "Alternate accounts are fake, inauthentic interactions." }
+  ],
+  "06-starstruck": [
+    { "q": "How many stars on one repo earn the base Starstruck tier?", "options": ["1", "16", "100", "512"], "answer": 1, "why": "The tiers are 16, 128, 512 and 4096 stars on a single repository." },
+    { "q": "Which README element helps most in the first ten seconds?", "options": ["A long changelog", "A screenshot or GIF and a live demo link", "The license text", "A list of contributors"], "answer": 1, "why": "Visitors decide fast. Showing the thing working is the quickest way to earn interest." },
+    { "q": "What's wrong with star-for-star groups?", "options": ["Nothing", "They're rank abuse, which GitHub's policies prohibit", "They're too slow", "They only work for orgs"], "answer": 1, "why": "Trading or buying stars is inauthentic activity, and accounts involved can be removed." }
+  ],
+  "07-public-sponsor": [
+    { "q": "What earns Public Sponsor?", "options": ["Starring 10 repos", "Sponsoring someone through GitHub Sponsors", "Having a sponsor yourself", "Paying for GitHub Pro"], "answer": 1, "why": "Any sponsorship through GitHub Sponsors counts. Many maintainers accept $1." },
+    { "q": "Which file adds a Sponsor button to your repo?", "options": [".github/FUNDING.yml", "SPONSORS.md", "package.json", "README.md"], "answer": 0, "why": "FUNDING.yml lists where people can fund the project, and GitHub shows the button." },
+    { "q": "Can't afford to sponsor? What else helps maintainers?", "options": ["Nothing", "Good bug reports, docs and answering questions", "Opening lots of +1 issues", "Forking without contributing"], "answer": 1, "why": "Time and care are real support too." }
+  ],
+  "08-highlights-and-retired": [
+    { "q": "Can you still earn Arctic Code Vault Contributor?", "options": ["Yes, by pushing code in winter", "No, it's retired", "Only with GitHub Pro", "Only in organizations"], "answer": 1, "why": "It was tied to the 2020 GitHub Archive Program snapshot and can't be earned anymore." },
+    { "q": "What happens to the PRO highlight if your subscription ends?", "options": ["It stays forever", "It disappears", "It turns gold", "It becomes an achievement"], "answer": 1, "why": "Highlights reflect a current status, unlike achievements." },
+    { "q": "Someone sells a guaranteed method to get Open Sourcerer. What's true?", "options": ["Buy it quickly", "It was never released, so there's no method", "It only works on Fridays", "It needs 1,000 commits"], "answer": 1, "why": "It appears in GitHub's assets but was never released." }
+  ],
+  "git-01-how-git-works": [
+    { "q": "What is a branch in Git?", "options": ["A full copy of your code", "A movable label pointing at one commit", "A folder on GitHub", "A backup of main"], "answer": 1, "why": "That's why creating a branch is instant, even in huge projects." },
+    { "q": "What does HEAD tell Git?", "options": ["The newest commit on GitHub", "Which branch or commit you're on right now", "The first commit ever made", "Who owns the repo"], "answer": 1, "why": "HEAD is \"you are here\". New commits move whichever branch HEAD points at." },
+    { "q": "Which command moves changes into the staging area?", "options": ["git commit", "git add", "git push", "git fetch"], "answer": 1, "why": "git add stages changes. git commit saves what's staged into history." }
+  ],
+  "git-02-everyday-loop": [
+    { "q": "Which shows exactly what will go into your next commit?", "options": ["git diff", "git diff --staged", "git log", "git status -v"], "answer": 1, "why": "Plain git diff shows unstaged changes. --staged shows what's queued for the commit." },
+    { "q": "Which is the best commit subject?", "options": ["fixed stuff", "Fix crash when the cart is empty", "Fixes: various bugs in many files.", "update"], "answer": 1, "why": "Short, imperative, and specific about what the commit does." },
+    { "q": "What does git add -p let you do?", "options": ["Push faster", "Stage changes piece by piece", "Pull with rebase", "Print your config"], "answer": 1, "why": "Interactive staging builds focused commits and catches stray debug lines." }
+  ],
+  "git-03-branching-and-merging": [
+    { "q": "When does a fast-forward merge happen?", "options": ["When both branches have new commits", "When the target branch hasn't moved since you branched", "Only with --no-ff", "When there's a conflict"], "answer": 1, "why": "Git just slides the label forward, so no merge commit is needed." },
+    { "q": "In a conflict, what's between <<<<<<< HEAD and =======?", "options": ["The incoming branch's version", "Your current branch's version", "Git's suggested fix", "A comment from GitHub"], "answer": 1, "why": "The top half is yours (HEAD). The bottom half, before >>>>>>>, is incoming." },
+    { "q": "How do you back out of a merge in progress?", "options": ["git merge --abort", "git delete merge", "Close your terminal", "git push --force"], "answer": 0, "why": "It puts everything back exactly as it was before the merge." }
+  ],
+  "git-04-rebase": [
+    { "q": "What does rebase do to your commits?", "options": ["Deletes them", "Replays them on a new base as new commits with new IDs", "Merges them into one", "Uploads them"], "answer": 1, "why": "Same changes, new parents, so new IDs. That's why the golden rule exists." },
+    { "q": "What's the golden rule of rebasing?", "options": ["Always rebase main", "Never rebase commits others have already based work on", "Rebase only on Fridays", "Never rebase locally"], "answer": 1, "why": "Rewriting shared history breaks your teammates' copies." },
+    { "q": "After rebasing your own PR branch, how should you push?", "options": ["git push --force", "git push --force-with-lease", "git push --delete", "You can't push"], "answer": 1, "why": "--force-with-lease refuses to overwrite commits you haven't seen." }
+  ],
+  "git-05-remotes": [
+    { "q": "What's the difference between fetch and pull?", "options": ["None", "Fetch downloads without changing your files. Pull also merges or rebases", "Pull uploads, fetch downloads", "Fetch deletes branches"], "answer": 1, "why": "Fetch is always safe. Pull updates your current branch too." },
+    { "q": "Your push is rejected because GitHub has commits you don't. What do you do?", "options": ["git push --force", "git pull, then git push", "Delete the repo", "Rename the branch"], "answer": 1, "why": "Bring their commits down first. Forcing would throw them away." },
+    { "q": "What does git push -u origin my-feature do?", "options": ["Undoes a push", "Pushes and links your branch to origin/my-feature", "Updates Git", "Pushes to every remote"], "answer": 1, "why": "After that, plain git push and git pull know where to go." }
+  ],
+  "git-06-power-tools": [
+    { "q": "Which command finds the commit that introduced a bug, using binary search?", "options": ["git blame", "git bisect", "git stash", "git tag"], "answer": 1, "why": "Bisect halves the range each step, so 80 commits take about 7 tests." },
+    { "q": "You committed .env before adding it to .gitignore. What's still true?", "options": ["Ignoring it removes it from history", "The secret is still in your history", "Git deletes it automatically", "GitHub hides it"], "answer": 1, "why": "Stop tracking it with git rm --cached, and rotate the secret." },
+    { "q": "How do you copy one commit from another branch onto yours?", "options": ["git cherry-pick <id>", "git merge --one", "git copy <id>", "git rebase -i"], "answer": 0, "why": "Cherry-pick applies that single commit's changes as a new commit." }
+  ],
+  "github-01-profile": [
+    { "q": "What's the repo name for a profile README?", "options": ["profile", "README", "Exactly your username", ".github"], "answer": 2, "why": "A public repo named exactly like your username shows its README on your profile." },
+    { "q": "How many repos can you pin to your profile?", "options": ["3", "6", "10", "Unlimited"], "answer": 1, "why": "Up to six repositories or gists." },
+    { "q": "What does the contribution graph measure?", "options": ["Skill", "Activity", "Salary", "Code quality"], "answer": 1, "why": "It shows activity, not skill. Nobody serious judges you by green squares." }
+  ],
+  "github-02-issues-and-projects": [
+    { "q": "What does \"Fixes #42\" in a PR description do when the PR merges into the default branch?", "options": ["Nothing", "Closes issue #42 automatically", "Deletes issue #42", "Assigns #42 to you"], "answer": 1, "why": "Closing keywords link the PR and issue, and close the issue on merge." },
+    { "q": "Which labels does GitHub use to suggest your issues to newcomers?", "options": ["urgent and bug", "good first issue and help wanted", "easy and new", "todo and done"], "answer": 1, "why": "These two labels are special and surface your issues to new contributors." },
+    { "q": "What do sub-issues let you do?", "options": ["Hide issues", "Break a big issue into smaller tracked ones", "Merge issues", "Move issues between repos"], "answer": 1, "why": "The parent shows progress as its sub-issues close." }
+  ],
+  "github-03-code-review": [
+    { "q": "Which PR is easiest to review well?", "options": ["A 2,000-line PR touching everything", "A small, focused PR with a clear description", "A PR with no description", "A PR that fixes three unrelated things"], "answer": 1, "why": "Small, focused PRs get faster and more thorough reviews." },
+    { "q": "How do you propose an exact code change a reviewer can apply in one click?", "options": ["A suggestion block in a review comment", "Email the author", "Open a new issue", "Edit their branch directly"], "answer": 0, "why": "A ```suggestion block shows an Apply button to the author." },
+    { "q": "What does a CODEOWNERS file do?", "options": ["Lists who owns the copyright", "Requests reviews from the right people automatically", "Blocks all merges", "Assigns issues"], "answer": 1, "why": "Matching paths automatically request reviews from their owners." }
+  ],
+  "github-04-actions": [
+    { "q": "Where do workflow files live?", "options": [".github/workflows/", "workflows/", ".actions/", "the repo root"], "answer": 0, "why": "GitHub only runs YAML files in .github/workflows/." },
+    { "q": "Where should an API key used by a workflow go?", "options": ["Directly in the YAML", "In Settings → Secrets and variables → Actions", "In the README", "In a commit message"], "answer": 1, "why": "Secrets are encrypted and masked in logs. Never put them in the YAML." },
+    { "q": "Why pass an issue title through env: instead of writing it straight into run:?", "options": ["It's faster", "The title could contain shell commands that would run", "GitHub requires it", "It looks nicer"], "answer": 1, "why": "Untrusted text placed directly into a script is a classic injection risk." }
+  ],
+  "github-05-releases": [
+    { "q": "You add a new feature without breaking anything. 2.4.1 becomes…", "options": ["2.4.2", "2.5.0", "3.0.0", "2.4.1-new"], "answer": 1, "why": "New compatible features bump MINOR and reset PATCH." },
+    { "q": "What does \"Generate release notes\" list?", "options": ["Every file in the repo", "Merged PRs and new contributors since the last release", "Your commit graph", "Open issues"], "answer": 1, "why": "Add a human-written highlights section on top." },
+    { "q": "What must good release notes always call out?", "options": ["Who wrote each line", "Breaking changes and how to upgrade", "The weather", "Every commit ID"], "answer": 1, "why": "Users need to know what might break for them." }
+  ],
+  "github-06-security": [
+    { "q": "What's the safest second factor?", "options": ["SMS codes", "A passkey or security key", "Email codes", "Security questions"], "answer": 1, "why": "Passkeys and security keys resist phishing. SMS can be intercepted." },
+    { "q": "What does push protection do?", "options": ["Blocks pushes that contain known secret formats", "Blocks all pushes to main", "Encrypts your repo", "Slows down pushes"], "answer": 0, "why": "It stops a leaked key before it ever reaches GitHub." },
+    { "q": "A token was leaked. What's the FIRST thing to do?", "options": ["Delete the commit", "Revoke or rotate it", "Make the repo private", "Rename the file"], "answer": 1, "why": "Assume it's already been copied. Deleting the commit doesn't un-leak it." }
+  ],
+  "github-07-open-source": [
+    { "q": "Before working on a bigger change, what should you do?", "options": ["Open a huge PR right away", "Comment on the issue with your plan and wait for agreement", "Fork and never tell anyone", "Email the maintainer daily"], "answer": 1, "why": "This one step prevents most rejected PRs." },
+    { "q": "No reply to your PR after a week. What's reasonable?", "options": ["Open three more copies", "Be patient, and nudge politely after about two weeks", "Post angry comments", "Delete your fork"], "answer": 1, "why": "Many maintainers are volunteers. A week of silence is normal." },
+    { "q": "Which contribution is NOT welcome?", "options": ["A clear bug report", "Docs fixes", "Unread AI-generated PRs sent to many repos", "Testing a beta"], "answer": 2, "why": "Unreviewed automated PRs burn out maintainers." }
+  ]
+}

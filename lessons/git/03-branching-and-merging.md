@@ -73,6 +73,8 @@ Welcome to the Green Cafe!
 
 Changed your mind halfway? `git merge --abort` puts everything back the way it was before the merge.
 
+🎮 **See it happen:** the sandbox has challenges for [branching](https://cptnope.github.io/github-achievements-academy/sandbox/?level=branch), [fast-forward merges](https://cptnope.github.io/github-achievements-academy/sandbox/?level=fast-forward) and [merge commits](https://cptnope.github.io/github-achievements-academy/sandbox/?level=merge-commit), with a live graph.
+
 > 💡 VS Code shows **Accept Current / Accept Incoming / Accept Both** buttons above each conflict,
 > and a 3-way merge editor. Use them, but always read the result before committing.
 

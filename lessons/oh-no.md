@@ -8,6 +8,8 @@ Everyone breaks something in Git eventually. The good news: **Git almost never t
 
 **Has it been pushed?** Many fixes depend on this. If a commit is only on your computer, you can rewrite it freely. If it's on GitHub and others might have pulled it, prefer fixes that **add** a new commit (like `git revert`) over ones that rewrite history.
 
+🎮 **Practice before you need it:** the sandbox has safe challenges for [undoing a local commit](https://cptnope.github.io/github-achievements-academy/sandbox/?level=undo-local), [reverting a pushed one](https://cptnope.github.io/github-achievements-academy/sandbox/?level=revert), [rescuing a deleted branch](https://cptnope.github.io/github-achievements-academy/sandbox/?level=rescue-branch) and [escaping detached HEAD](https://cptnope.github.io/github-achievements-academy/sandbox/?level=detached).
+
 ## I made a typo in my last commit message
 
 Not pushed yet:

@@ -12,13 +12,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/learn.css">
 </head>
-<body>
+<body data-page="01-quickdraw">
 <a class="skip" href="#content">Skip to content</a>
 <header class="bar">
   <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
   <nav aria-label="Site">
     <a href="index.html">Lessons</a>
-    <a href="../#check">Check a profile</a>
+    <a href="../sandbox/">Sandbox</a>
+    <a href="cheat-sheet.html">Cheat sheet</a>
     <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
   </nav>
 </header>
@@ -66,6 +67,39 @@ gh issue close 1 --reason &quot;not planned&quot; --comment &quot;Already fixed 
 <p>Next: <a href="02-yolo.html">Lesson 2: YOLO</a></p>
 
     </article>
+    <section class="quiz" aria-labelledby="quiz-h">
+    <h2 id="quiz-h">Check what you learned</h2>
+    <form id="quiz-form">
+      <fieldset data-answer="1">
+        <legend><span class="qn">1.</span> How fast do you need to close an issue or PR for Quickdraw?</legend>
+        <label><input type="radio" name="q0" value="0"> <span>Within 1 minute</span></label>
+        <label><input type="radio" name="q0" value="1"> <span>Within 5 minutes</span></label>
+        <label><input type="radio" name="q0" value="2"> <span>Within 1 hour</span></label>
+        <label><input type="radio" name="q0" value="3"> <span>Within 24 hours</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> Quickdraw is for closing an issue or pull request within five minutes of opening it.</p>
+      </fieldset>
+      <fieldset data-answer="1">
+        <legend><span class="qn">2.</span> An issue turns out to be a mistake. Which close reason fits?</legend>
+        <label><input type="radio" name="q1" value="0"> <span>Completed</span></label>
+        <label><input type="radio" name="q1" value="1"> <span>Not planned</span></label>
+        <label><input type="radio" name="q1" value="2"> <span>Merged</span></label>
+        <label><input type="radio" name="q1" value="3"> <span>Archived</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> &quot;Not planned&quot; covers won't-fix, invalid and out-of-scope reports. &quot;Completed&quot; means the work was done.</p>
+      </fieldset>
+      <fieldset data-answer="0">
+        <legend><span class="qn">3.</span> What should good triage always include?</legend>
+        <label><input type="radio" name="q2" value="0"> <span>A comment explaining why</span></label>
+        <label><input type="radio" name="q2" value="1"> <span>A label called urgent</span></label>
+        <label><input type="radio" name="q2" value="2"> <span>A screenshot</span></label>
+        <label><input type="radio" name="q2" value="3"> <span>An @mention of GitHub staff</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> A short reason keeps the project's history understandable for everyone who finds the issue later.</p>
+      </fieldset>
+      <div class="quiz-actions"><button type="submit" class="mark-btn">Check my answers</button><button type="reset" class="link-btn">Start over</button></div>
+      <p id="quiz-result" class="quiz-result" tabindex="-1" aria-live="polite"></p>
+    </form>
+    <details class="quiz-answers"><summary>Show the answers</summary><ol><li>Within 5 minutes: Quickdraw is for closing an issue or pull request within five minutes of opening it.</li><li>Not planned: &quot;Not planned&quot; covers won't-fix, invalid and out-of-scope reports. &quot;Completed&quot; means the work was done.</li><li>A comment explaining why: A short reason keeps the project's history understandable for everyone who finds the issue later.</li></ol></details>
+  </section>
+    <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
     <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/01-quickdraw.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="00-setup.html"><span>Previous</span>Lesson 0: Setup</a>
@@ -75,40 +109,41 @@ gh issue close 1 --reason &quot;not planned&quot; --comment &quot;Already fixed 
   <aside class="toc" aria-label="All lessons">
     <h2>Badges</h2>
     <ol>
-        <li><a href="00-setup.html"><span class="n">0</span>Setup</a></li>
-        <li><a href="01-quickdraw.html" aria-current="page"><span class="n">1</span>Quickdraw</a></li>
-        <li><a href="02-yolo.html"><span class="n">2</span>YOLO</a></li>
-        <li><a href="03-pull-shark.html"><span class="n">3</span>Pull Shark</a></li>
-        <li><a href="04-pair-extraordinaire.html"><span class="n">4</span>Pair Extraordinaire</a></li>
-        <li><a href="05-galaxy-brain.html"><span class="n">5</span>Galaxy Brain</a></li>
-        <li><a href="06-starstruck.html"><span class="n">6</span>Starstruck</a></li>
-        <li><a href="07-public-sponsor.html"><span class="n">7</span>Public Sponsor</a></li>
-        <li><a href="08-highlights-and-retired.html"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+        <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html" data-page="01-quickdraw" aria-current="page"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html" data-page="02-yolo"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html" data-page="03-pull-shark"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html" data-page="04-pair-extraordinaire"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html" data-page="05-galaxy-brain"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
     </ol>
     <h2>Git fundamentals</h2>
     <ol>
-        <li><a href="git-01-how-git-works.html"><span class="n">1</span>How Git actually works</a></li>
-        <li><a href="git-02-everyday-loop.html"><span class="n">2</span>The everyday loop</a></li>
-        <li><a href="git-03-branching-and-merging.html"><span class="n">3</span>Branching and merging</a></li>
-        <li><a href="git-04-rebase.html"><span class="n">4</span>Rebase without fear</a></li>
-        <li><a href="git-05-remotes.html"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
-        <li><a href="git-06-power-tools.html"><span class="n">6</span>Power tools</a></li>
+        <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html" data-page="git-03-branching-and-merging"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
     </ol>
     <h2>GitHub skills</h2>
     <ol>
-        <li><a href="github-01-profile.html"><span class="n">1</span>Your profile as a portfolio</a></li>
-        <li><a href="github-02-issues-and-projects.html"><span class="n">2</span>Issues and Projects</a></li>
-        <li><a href="github-03-code-review.html"><span class="n">3</span>Code review</a></li>
-        <li><a href="github-04-actions.html"><span class="n">4</span>Automate with Actions</a></li>
-        <li><a href="github-05-releases.html"><span class="n">5</span>Releases and versioning</a></li>
-        <li><a href="github-06-security.html"><span class="n">6</span>Security basics</a></li>
-        <li><a href="github-07-open-source.html"><span class="n">7</span>Contributing to open source</a></li>
+        <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
+        <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
+        <li><a href="github-03-code-review.html" data-page="github-03-code-review"><span class="n">3</span>Code review</a></li>
+        <li><a href="github-04-actions.html" data-page="github-04-actions"><span class="n">4</span>Automate with Actions</a></li>
+        <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
+        <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
+        <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
     </ol>
     <h2>Guides</h2>
     <ol>
-        <li><a href="oh-no.html">Oh no! Undo mistakes</a></li>
-        <li><a href="troubleshooting.html">Troubleshooting</a></li>
-        <li><a href="fair-play.html">Fair play</a></li>
+        <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
+        <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
+        <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
     </ol>
   </aside>
 </div>
@@ -117,5 +152,6 @@ gh issue close 1 --reason &quot;not planned&quot; --comment &quot;Already fixed 
   <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
 </footer>
 <!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+<script src="../assets/learn.js" defer></script>
 </body>
 </html>

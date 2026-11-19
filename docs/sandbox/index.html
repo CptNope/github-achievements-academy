@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Git sandbox · GitHub Achievements Academy</title>
+<meta name="description" content="Practice Git in your browser. Type real commands and watch the branch graph change, with ten guided challenges from first commit to rescuing a deleted branch.">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+<link rel="stylesheet" href="../assets/sandbox.css">
+</head>
+<body>
+<a class="skip" href="#cmd">Skip to the command line</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="../learn/">Lessons</a>
+    <a href="./" aria-current="page">Sandbox</a>
+    <a href="../learn/cheat-sheet.html">Cheat sheet</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+
+<main class="sb" id="content">
+  <section class="sb-level" aria-labelledby="level-title">
+    <div class="sb-pick">
+      <label for="level-select">Challenge</label>
+      <select id="level-select"></select>
+    </div>
+    <h1 id="level-title">Git sandbox</h1>
+    <p id="level-intro" class="sb-intro">Practice Git in your browser. Type real commands and watch the branch graph change.</p>
+    <div class="sb-actions">
+      <button type="button" class="sb-btn" id="btn-hint">Show a hint</button>
+      <button type="button" class="sb-btn" id="btn-solution">Show the answer</button>
+      <button type="button" class="sb-btn" id="btn-restart">Restart</button>
+    </div>
+    <p id="level-help" class="sb-help" aria-live="polite"></p>
+    <div id="level-done" class="sb-done" hidden>
+      <p><strong>Level complete.</strong> <span id="done-text"></span></p>
+      <button type="button" class="btn" id="btn-next">Next challenge</button>
+    </div>
+    <p class="sb-lesson"><a id="level-lesson" href="../learn/">Read the lesson behind this challenge</a></p>
+    <p class="sb-note">The sandbox simulates Git's commit graph: commits, branches, tags, HEAD and the reflog. There are no files, so merges never conflict here. For real conflicts, use the practice script in <a href="../learn/git-03-branching-and-merging.html#practice-a-conflict-made-just-for-you">Git 3</a>.</p>
+  </section>
+
+  <section class="sb-work" aria-label="Graph and command line">
+    <figure class="sb-graph-wrap">
+      <div class="sb-graph" id="graph" role="img" aria-label="Commit graph"></div>
+      <figcaption class="sb-legend">
+        <span><i class="dot"></i>Commit</span>
+        <span><i class="dot head"></i>Where HEAD is</span>
+        <span><i class="dot faded"></i>Not on any branch (still in the reflog)</span>
+      </figcaption>
+    </figure>
+    <div class="sb-term">
+      <div class="sb-out" id="out" aria-live="polite"></div>
+      <form class="sb-in" id="form" autocomplete="off">
+        <label for="cmd" class="sb-prompt"><span class="vh">Git command</span><span aria-hidden="true" id="prompt">main $</span></label>
+        <input id="cmd" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" placeholder='git commit -m "message"' aria-describedby="cmd-tip">
+        <button type="submit" class="sb-run">Run</button>
+      </form>
+      <p class="sb-tip" id="cmd-tip">Type <code>help</code> for every command. <code>undo</code> steps back one command. Use the up and down arrows for history.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<noscript><p class="wrap">The sandbox needs JavaScript. The <a href="../learn/">lessons</a> work without it.</p></noscript>
+<script type="module" src="../assets/sandbox.js"></script>
+</body>
+</html>

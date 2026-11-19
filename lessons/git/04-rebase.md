@@ -25,6 +25,8 @@ A ← B ← C ← D          ← main
 
 E' and F' have the same changes as E and F, but they're **new commits with new IDs**, because their parent changed. Remember that, because it's why the golden rule exists.
 
+🎮 **Watch it:** in the [rebase sandbox challenge](https://cptnope.github.io/github-achievements-academy/sandbox/?level=rebase) your old commits fade out and new ones appear on top of `main`.
+
 ## Merge or rebase?
 
 | | `git merge main` | `git rebase main` |

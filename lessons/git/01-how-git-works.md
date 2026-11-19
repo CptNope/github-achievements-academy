@@ -77,6 +77,8 @@ git log --oneline --graph --all --decorate
 
 Both labels sit on the same commit. Nothing was copied.
 
+🎮 **No repo handy?** Try the [first sandbox challenge](https://cptnope.github.io/github-achievements-academy/sandbox/?level=commits) in your browser and watch commits and labels move as you type.
+
 > 💡 This command is so useful that most people make a shortcut:
 > `git config --global alias.lg "log --oneline --graph --all --decorate"`
 > Now `git lg` shows the graph.

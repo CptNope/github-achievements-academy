@@ -36,6 +36,8 @@ git cherry-pick 9a8b7c6
 
 Git applies that single commit's changes as a new commit on `main`. Add `-x` to note where it came from in the message, which is handy for release branches.
 
+🎮 Try it in the [cherry-pick sandbox challenge](https://cptnope.github.io/github-achievements-academy/sandbox/?level=cherry-pick).
+
 ## Bisect: find the commit that broke it
 
 Something worked last week and is broken now, with 80 commits in between. `git bisect` finds the culprit with a binary search, in about 7 steps instead of 80:

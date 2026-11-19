@@ -61,6 +61,13 @@ Each badge here is treated as a **lesson**. You'll learn the real-world skill be
 
 ---
 
+## 🧰 Tools
+
+- 🎮 **[Git sandbox](https://cptnope.github.io/github-achievements-academy/sandbox/)**: type real Git commands in your browser and watch the branch graph change. Ten guided challenges, from your first commit to rescuing a deleted branch.
+- ✅ **Quizzes and progress tracking**: every lesson ends with a short quiz. Your progress is saved in your browser only.
+- 🖨️ **[Cheat sheet](lessons/cheat-sheet.md)**: every command from the course on two printable pages.
+- 📦 **[Starter templates](templates/)**: copy-ready files for your own repos.
+
 ## 🚀 Start here
 
 1. Star ⭐ this repo *only if you find it useful* (seriously, that's the whole philosophy).
