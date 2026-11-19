@@ -1,0 +1,54 @@
+name: Validate learner page
+
+# `pull_request` (not `pull_request_target`): fork PRs get a read-only token and no secrets.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # Trusted copy of the validator, taken from the base branch, so a PR can't rewrite its own checks.
+      - name: Check out base (trusted scripts)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          persist-credentials: false
+
+      - name: Check out PR (content only, never executed)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: pr
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Fetch base commit into PR checkout
+        run: git -C pr fetch --no-tags origin "$BASE_SHA"
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          MAINTAINER: ${{ github.repository_owner }}
+        run: >
+          node base/scripts/validate-learner-pr.mjs
+          --repo pr --base "$BASE_SHA" --head "$HEAD_SHA"
+          --author "$PR_AUTHOR" --maintainer "$MAINTAINER"

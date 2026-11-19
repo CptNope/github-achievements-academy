@@ -1,0 +1,22 @@
+name: 📅 Outdated or incorrect achievement info
+description: A badge rule, tier or step has changed
+labels: ["docs", "accuracy"]
+body:
+  - type: input
+    id: lesson
+    attributes:
+      label: Which lesson or badge?
+      placeholder: e.g. lessons/04-pair-extraordinaire.md
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What's wrong, and what's correct now?
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source link
+      description: GitHub docs, changelog or a community discussion

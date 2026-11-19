@@ -1,0 +1,10 @@
+name: 💡 Lesson feedback or idea
+description: Something confusing, or an idea for a new lesson
+labels: ["feedback"]
+body:
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Your feedback
+    validations:
+      required: true
