@@ -42,7 +42,7 @@
     <article class="prose">
 <p>Creating a repo takes an afternoon. Keeping it healthy takes a little time, regularly. This lesson is a maintenance routine you can actually stick to, and a kind way to step back when it&#39;s time.</p>
 <h2 id="a-routine-that-fits-in-your-week">A routine that fits in your week</h2>
-<div class="table"><table><thead><tr><th>How often</th><th>What to do</th><th>Time</th></tr></thead><tbody><tr><td><strong>Weekly</strong></td><td>Triage new issues and PRs: label, answer, close duplicates (<a href="01-quickdraw.html">Lesson 1</a>). Merge Dependabot PRs whose checks pass</td><td>15–30 min</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: A routine that fits in your week"><table><thead><tr><th>How often</th><th>What to do</th><th>Time</th></tr></thead><tbody><tr><td><strong>Weekly</strong></td><td>Triage new issues and PRs: label, answer, close duplicates (<a href="01-quickdraw.html">Lesson 1</a>). Merge Dependabot PRs whose checks pass</td><td>15–30 min</td></tr>
 <tr><td><strong>Monthly</strong></td><td>Cut a release if anything merged. Read Dependabot and code scanning alerts. Close stale branches</td><td>30–60 min</td></tr>
 <tr><td><strong>Every few months</strong></td><td>Update docs and screenshots, review who has access, check that CI action versions and runtimes are still supported</td><td>1–2 hours</td></tr>
 <tr><td><strong>Yearly</strong></td><td>Ask whether the project still has a purpose. Update the license year if you like, and refresh the roadmap</td><td>1 hour</td></tr></tbody></table></div>
@@ -55,7 +55,7 @@
 <li><strong>Close kindly and clearly.</strong> &quot;Closing because X. Happy to reopen if Y&quot; is better than leaving things open forever.</li>
 </ul>
 <h3 id="automate-the-boring-parts">Automate the boring parts</h3>
-<pre><code class="language-yaml"># .github/workflows/stale.yml: nudges, then closes, inactive issues that are waiting on the reporter
+<pre tabindex="0"><code class="language-yaml"># .github/workflows/stale.yml: nudges, then closes, inactive issues that are waiting on the reporter
 name: Stale
 on:
   schedule:
@@ -72,8 +72,7 @@ jobs:
           only-labels: &quot;needs info&quot;
           days-before-stale: 14
           days-before-close: 7
-          stale-issue-message: &quot;Is this still happening? Without more information we&#39;ll close this in a week. Reply any time to keep it open.&quot;
-</code></pre>
+          stale-issue-message: &quot;Is this still happening? Without more information we'll close this in a week. Reply any time to keep it open.&quot;</code></pre>
 <p>Limiting it to <code>needs info</code> avoids the bad pattern of auto-closing real bugs that nobody has had time to look at. Dependabot will keep the action version current.</p>
 <h2 id="keep-dependencies-and-ci-healthy">Keep dependencies and CI healthy</h2>
 <ul>
@@ -93,7 +92,7 @@ jobs:
 </ul>
 <h2 id="stepping-back-kindly">Stepping back, kindly</h2>
 <p>Projects end, and that&#39;s healthy. Choose the clearest option:</p>
-<div class="table"><table><thead><tr><th>Situation</th><th>What to do</th></tr></thead><tbody><tr><td>You&#39;ll check in rarely</td><td>Add a <strong>maintenance status</strong> at the top of the README (&quot;Maintained, slowly&quot;, or &quot;Security fixes only&quot;)</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Stepping back, kindly"><table><thead><tr><th>Situation</th><th>What to do</th></tr></thead><tbody><tr><td>You&#39;ll check in rarely</td><td>Add a <strong>maintenance status</strong> at the top of the README (&quot;Maintained, slowly&quot;, or &quot;Security fixes only&quot;)</td></tr>
 <tr><td>Someone wants to take over</td><td>Add them as a maintainer, or <strong>transfer</strong> the repo to them or to an org. Say so in the README</td></tr>
 <tr><td>It&#39;s done, or replaced by something better</td><td><strong>Archive</strong> it (<strong>Settings → General → Archive this repository</strong>). It becomes read-only and clearly labeled, and links keep working. Point to any successor in the README</td></tr>
 <tr><td>It must disappear</td><td><strong>Delete</strong> it only if necessary. It breaks every link and anything that depends on it</td></tr></tbody></table></div>
@@ -142,14 +141,15 @@ jobs:
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>Archive it and point to any successor in the README: Archiving keeps links and history while clearly marking the project as finished.</li><li>So real bugs nobody has looked at yet don't get auto-closed: Auto-closing unreviewed bugs frustrates users. Only close issues waiting on the reporter.</li><li>Small safe updates turn into a big, scary batch: Merging green updates weekly keeps each change small and easy to review.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/repos/08-maintaining.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/repos/08-maintaining.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="repo-07-courses-and-templates.html"><span>Previous</span>Repo 7: Courses, workshops and templates</a>
     <a class="next" href="oh-no.html"><span>Next</span>Oh no! Undoing Git mistakes</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group"><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -160,8 +160,8 @@ jobs:
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -169,8 +169,8 @@ jobs:
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -179,8 +179,8 @@ jobs:
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group" open><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -190,14 +190,15 @@ jobs:
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining" aria-current="page"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

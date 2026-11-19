@@ -17,7 +17,26 @@ In Lesson 2 you merged into your own repo. Most open source work goes through a 
 
 ## Exercise: join the Learners Wall (earns the base tier)
 
-### PR #1: create your page
+You'll open two pull requests to this repo: one to create your page, and one to update it after your next lesson. Use whichever route you chose in [Lesson 0](00-setup.md#2-choose-how-youll-work).
+
+### On github.com
+
+**PR #1: create your page**
+1. Open [the academy repo](https://github.com/CptNope/github-achievements-academy) and click **Fork → Create fork**. You now have your own copy.
+2. In **your fork**, open the `learners` folder and click **Add file → Create new file**.
+3. Name it `<your-username>.md`, all lowercase (for example `janedoe.md`).
+4. Copy the contents of [`_TEMPLATE.md`](../learners/_TEMPLATE.md) into it, change the first line to `# @YourUsername`, and fill in **About me**.
+5. Click **Commit changes…** and commit directly to your fork's `main` branch.
+6. Back on your fork's main page, click **Contribute → Open pull request**, then **Create pull request**.
+
+**PR #2: after your next lesson** (wait until PR #1 is merged, or your edits will join PR #1)
+1. On your fork's main page, click **Sync fork → Update branch** to pick up changes from the academy.
+2. Open your file, click the pencil icon, tick the lesson you finished, and add a line under **What I learned**.
+3. Commit, then **Contribute → Open pull request** again.
+
+### With the command line
+
+**PR #1: create your page**
 ```bash
 gh repo fork CptNope/github-achievements-academy --clone
 cd github-achievements-academy
@@ -32,7 +51,7 @@ gh pr create --fill
 
 An automated check verifies your PR. Then a maintainer reviews and merges it. 🎉
 
-### PR #2: after your next lesson
+**PR #2: after your next lesson**
 ```bash
 git switch main
 git pull upstream main          # gh sets up "upstream" when you fork with --clone

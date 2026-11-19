@@ -41,7 +41,7 @@
     <article class="prose">
 <p>GitHub Pages hosts static websites for free, straight from a repository: portfolios, project sites, documentation, landing pages. This very site is one. This lesson covers the setups that work and the one security step most people miss.</p>
 <h2 id="three-ways-to-publish">Three ways to publish</h2>
-<div class="table"><table><thead><tr><th>Setup</th><th>Use it when</th><th>Settings → Pages</th></tr></thead><tbody><tr><td><strong>Branch + folder</strong></td><td>Plain HTML/CSS/JS with no build step</td><td>Source: <em>Deploy from a branch</em>, then <code>main</code> and <code>/</code> (root) or <code>/docs</code></td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Three ways to publish"><table><thead><tr><th>Setup</th><th>Use it when</th><th>Settings → Pages</th></tr></thead><tbody><tr><td><strong>Branch + folder</strong></td><td>Plain HTML/CSS/JS with no build step</td><td>Source: <em>Deploy from a branch</em>, then <code>main</code> and <code>/</code> (root) or <code>/docs</code></td></tr>
 <tr><td><strong>GitHub Actions</strong></td><td>The site needs building (Astro, Vite, Next.js static export, Hugo, a docs generator)</td><td>Source: <em>GitHub Actions</em>, then pick or write a workflow</td></tr>
 <tr><td><strong>Jekyll</strong> (built in)</td><td>Markdown blogs, without your own build</td><td>Branch-based. Pages runs Jekyll automatically</td></tr></tbody></table></div>
 <blockquote>
@@ -49,12 +49,12 @@
 folder. It stops Pages from processing your files, which can otherwise hide folders starting with <code>_</code>.</p>
 </blockquote>
 <h3 id="repo-name-decides-the-address">Repo name decides the address</h3>
-<div class="table"><table><thead><tr><th>Repo name</th><th>URL</th></tr></thead><tbody><tr><td><code>yourname.github.io</code></td><td><code>https://yourname.github.io/</code> (your main site, only one per account)</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Repo name decides the address"><table><thead><tr><th>Repo name</th><th>URL</th></tr></thead><tbody><tr><td><code>yourname.github.io</code></td><td><code>https://yourname.github.io/</code> (your main site, only one per account)</td></tr>
 <tr><td>anything else, e.g. <code>portfolio</code></td><td><code>https://yourname.github.io/portfolio/</code></td></tr></tbody></table></div>
 <p>Because project sites live in a subfolder, use <strong>relative links</strong> (<code>assets/style.css</code>, not <code>/assets/style.css</code>), or set your build tool&#39;s base path.</p>
 <h2 id="a-build-and-deploy-workflow">A build-and-deploy workflow</h2>
 <p>For sites with a build step, choose <strong>Source: GitHub Actions</strong>:</p>
-<pre><code class="language-yaml">name: Deploy site
+<pre tabindex="0"><code class="language-yaml">name: Deploy site
 on:
   push:
     branches: [main]
@@ -90,8 +90,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v5
-</code></pre>
+        uses: actions/deploy-pages@v5</code></pre>
 <p>Action versions change, and Dependabot will keep them current (<a href="github-06-security.html#dependabot">GitHub 6</a>). GitHub&#39;s <strong>Pages → GitHub Actions</strong> setup screen also suggests ready-made workflows for popular tools.</p>
 <h2 id="custom-domains-safely">Custom domains, safely</h2>
 <ol>
@@ -163,14 +162,15 @@ jobs:
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>https://yourname.github.io/portfolio/: Project sites live in a subfolder of your github.io address, so use relative links.</li><li>Verify the domain and add it in the repo's Pages settings: Doing it in this order prevents someone else from claiming your domain or subdomains.</li><li>GitHub Actions: An Actions workflow builds the site and deploys the output.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/repos/04-websites-and-docs.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/repos/04-websites-and-docs.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="repo-03-open-source-packages.html"><span>Previous</span>Repo 3: Open source libraries and packages</a>
     <a class="next" href="repo-05-team-and-client-projects.html"><span>Next</span>Repo 5: Team and client projects</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group"><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -181,8 +181,8 @@ jobs:
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -190,8 +190,8 @@ jobs:
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -200,8 +200,8 @@ jobs:
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group" open><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -211,14 +211,15 @@ jobs:
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

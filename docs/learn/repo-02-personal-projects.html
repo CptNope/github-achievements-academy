@@ -42,14 +42,14 @@
 <h2 id="goal-someone-understands-it-in-60-seconds">Goal: someone understands it in 60 seconds</h2>
 <p>A visitor should be able to see <strong>what it is</strong>, <strong>that it works</strong>, and <strong>how it&#39;s built</strong>, without cloning anything.</p>
 <h2 id="the-setup">The setup</h2>
-<div class="table"><table><thead><tr><th>Item</th><th>Why</th></tr></thead><tbody><tr><td><strong>A demo link</strong> in the <em>About</em> website field and at the top of the README</td><td>Proof it works. Use GitHub Pages for anything that runs in a browser (<a href="repo-04-websites-and-docs.html">Repo 4</a>)</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: The setup"><table><thead><tr><th>Item</th><th>Why</th></tr></thead><tbody><tr><td><strong>A demo link</strong> in the <em>About</em> website field and at the top of the README</td><td>Proof it works. Use GitHub Pages for anything that runs in a browser (<a href="repo-04-websites-and-docs.html">Repo 4</a>)</td></tr>
 <tr><td><strong>A screenshot or short GIF</strong> in the README</td><td>Most visitors never click through. Show them</td></tr>
 <tr><td><strong>A &quot;How it&#39;s built&quot; section</strong></td><td>Lists the stack and one or two interesting decisions. This is what hiring managers look for</td></tr>
 <tr><td><strong>A license</strong></td><td>MIT is a common choice for personal projects. Without one, nobody can reuse your code</td></tr>
 <tr><td><strong>Topics</strong></td><td><code>threejs</code>, <code>game</code>, <code>pwa</code>… These help people find it</td></tr>
 <tr><td><strong>A short roadmap</strong> or a few open issues</td><td>Shows the project is alive and you think ahead</td></tr></tbody></table></div>
 <h3 id="a-readme-that-works-as-a-portfolio-piece">A README that works as a portfolio piece</h3>
-<pre><code class="language-markdown"># Hearthdeep
+<pre tabindex="0"><code class="language-markdown"># Hearthdeep
 
 A cozy browser dungeon crawler built with three.js. **[Play it →](https://example.github.io/hearthdeep/)**
 
@@ -60,7 +60,7 @@ A cozy browser dungeon crawler built with three.js. **[Play it →](https://exam
 - Saves progress in your browser
 - Plays with keyboard, mouse or touch
 
-## How it&#39;s built
+## How it's built
 - three.js for rendering, with a custom grid-based dungeon generator
 - No framework: plain ES modules, under 60 KB gzipped
 - Deployed to GitHub Pages by an Actions workflow on every push to main
@@ -70,8 +70,7 @@ A cozy browser dungeon crawler built with three.js. **[Play it →](https://exam
     npm run dev
 
 ## License
-MIT
-</code></pre>
+MIT</code></pre>
 <h2 id="habits-that-help-even-solo">Habits that help (even solo)</h2>
 <ul>
 <li><strong>Use branches and pull requests anyway.</strong> A PR per feature gives you a readable history and a place for notes. Every merged one counts toward <a href="03-pull-shark.html">Pull Shark</a>.</li>
@@ -131,14 +130,15 @@ MIT
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>A one-sentence description with a demo link and screenshot: Most visitors decide in seconds. Show what it is and that it works.</li><li>Archive it, or add a maintenance note to the README: Archived repos are read-only, clearly labeled and still count as portfolio pieces. Deleting breaks links.</li><li>They give you a readable history and a place for notes, and merged PRs count toward Pull Shark: PRs document decisions, even when you're the only reviewer.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/repos/02-personal-projects.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/repos/02-personal-projects.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="repo-01-foundations.html"><span>Previous</span>Repo 1: Foundations every repo needs</a>
     <a class="next" href="repo-03-open-source-packages.html"><span>Next</span>Repo 3: Open source libraries and packages</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group"><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -149,8 +149,8 @@ MIT
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -158,8 +158,8 @@ MIT
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -168,8 +168,8 @@ MIT
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group" open><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects" aria-current="page"><span class="n">2</span>Personal projects</a></li>
@@ -179,14 +179,15 @@ MIT
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

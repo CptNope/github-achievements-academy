@@ -43,12 +43,11 @@
 <p>These commands aren&#39;t needed every day, but each one saves you hours on the day you need it.</p>
 <h2 id="stash-park-work-for-later">Stash: park work for later</h2>
 <p>You&#39;re halfway through something and need to switch branches <em>now</em>:</p>
-<pre><code class="language-bash">git stash push -m &quot;half-done search filter&quot;   # park your changes
+<pre tabindex="0"><code class="language-bash">git stash push -m &quot;half-done search filter&quot;   # park your changes
 git switch hotfix                              # do the urgent thing...
 git switch -                                   # back to where you were
-git stash pop                                  # bring your changes back
-</code></pre>
-<div class="table"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>git stash list</code></td><td>see everything you&#39;ve parked</td></tr>
+git stash pop                                  # bring your changes back</code></pre>
+<div class="table" tabindex="0" role="region" aria-label="Table: Stash: park work for later"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>git stash list</code></td><td>see everything you&#39;ve parked</td></tr>
 <tr><td><code>git stash show -p stash@{1}</code></td><td>see what&#39;s in a specific stash</td></tr>
 <tr><td><code>git stash apply</code></td><td>bring changes back but <strong>keep</strong> them in the stash list</td></tr>
 <tr><td><code>git stash pop</code></td><td>bring changes back and <strong>remove</strong> them from the list</td></tr>
@@ -60,39 +59,34 @@ git stash pop                                  # bring your changes back
 </blockquote>
 <h2 id="cherry-pick-copy-one-commit">Cherry-pick: copy one commit</h2>
 <p>You fixed a bug on a feature branch, and <code>main</code> needs that one fix today:</p>
-<pre><code class="language-bash">git switch main
-git cherry-pick 9a8b7c6
-</code></pre>
+<pre tabindex="0"><code class="language-bash">git switch main
+git cherry-pick 9a8b7c6</code></pre>
 <p>Git applies that single commit&#39;s changes as a new commit on <code>main</code>. Add <code>-x</code> to note where it came from in the message, which is handy for release branches.</p>
 <p>Try it in the <a href="https://cptnope.github.io/github-achievements-academy/sandbox/?level=cherry-pick" rel="noopener">cherry-pick sandbox challenge</a>.</p>
 <h2 id="bisect-find-the-commit-that-broke-it">Bisect: find the commit that broke it</h2>
 <p>Something worked last week and is broken now, with 80 commits in between. <code>git bisect</code> finds the culprit with a binary search, in about 7 steps instead of 80:</p>
-<pre><code class="language-bash">git bisect start
+<pre tabindex="0"><code class="language-bash">git bisect start
 git bisect bad                 # the current commit is broken
 git bisect good v1.2.0         # this tag (or commit ID) was fine
 # Git checks out a commit in the middle. Test it, then tell Git:
 git bisect good                # or: git bisect bad
 # ...repeat until Git prints &quot;&lt;id&gt; is the first bad commit&quot;
-git bisect reset               # go back to where you started
-</code></pre>
+git bisect reset               # go back to where you started</code></pre>
 <p>Have a test command that fails when the bug is present? Let Git do all the steps:</p>
-<pre><code class="language-bash">git bisect run npm test
-</code></pre>
+<pre tabindex="0"><code class="language-bash">git bisect run npm test</code></pre>
 <h2 id="blame-and-pickaxe-why-is-this-line-like-this">Blame and pickaxe: why is this line like this?</h2>
-<pre><code class="language-bash">git blame -L 40,60 src/cart.js       # who last changed lines 40–60, and in which commit
+<pre tabindex="0"><code class="language-bash">git blame -L 40,60 src/cart.js       # who last changed lines 40–60, and in which commit
 git log -S &quot;applyDiscount&quot; --oneline  # every commit that added or removed this text
-git log -p --follow src/cart.js       # the full history of one file, even across renames
-</code></pre>
+git log -p --follow src/cart.js       # the full history of one file, even across renames</code></pre>
 <p><code>blame</code> isn&#39;t for blaming people. It finds the commit, so you can read the message and the PR that explain <em>why</em>. On GitHub, open a file and click <strong>Blame</strong> for the same view.</p>
 <h2 id="tags-mark-releases">Tags: mark releases</h2>
-<pre><code class="language-bash">git tag -a v1.0.0 -m &quot;First public release&quot;   # an annotated tag, with author, date and message
-git push origin v1.0.0                         # tags aren&#39;t pushed automatically
-git tag                                        # list tags
-</code></pre>
+<pre tabindex="0"><code class="language-bash">git tag -a v1.0.0 -m &quot;First public release&quot;   # an annotated tag, with author, date and message
+git push origin v1.0.0                         # tags aren't pushed automatically
+git tag                                        # list tags</code></pre>
 <p>Use <a href="https://semver.org/" rel="noopener">semantic versioning</a>: <code>MAJOR.MINOR.PATCH</code>. Bump MAJOR for breaking changes, MINOR for new features and PATCH for fixes. On GitHub, <strong>Releases → Draft a new release</strong> turns a tag into a release page with notes and downloads.</p>
 <h2 id="gitignore-keep-junk-out">.gitignore: keep junk out</h2>
 <p>Create a <code>.gitignore</code> file in your repo&#39;s root folder:</p>
-<pre><code class="language-gitignore"># dependencies and build output
+<pre tabindex="0"><code class="language-gitignore"># dependencies and build output
 node_modules/
 dist/
 
@@ -102,24 +96,21 @@ dist/
 
 # OS and editor clutter
 .DS_Store
-.vscode/
-</code></pre>
-<div class="table"><table><thead><tr><th>Pattern</th><th>Matches</th></tr></thead><tbody><tr><td><code>*.log</code></td><td>any <code>.log</code> file, anywhere</td></tr>
+.vscode/</code></pre>
+<div class="table" tabindex="0" role="region" aria-label="Table: .gitignore: keep junk out"><table><thead><tr><th>Pattern</th><th>Matches</th></tr></thead><tbody><tr><td><code>*.log</code></td><td>any <code>.log</code> file, anywhere</td></tr>
 <tr><td><code>build/</code></td><td>any folder named <code>build</code></td></tr>
 <tr><td><code>/config.local.js</code></td><td>only that file in the root</td></tr>
 <tr><td><code>!keep.log</code></td><td>un-ignore something matched earlier</td></tr></tbody></table></div>
 <p>Already committed a file you meant to ignore? Ignoring it doesn&#39;t remove it. Stop tracking it, but keep it on your disk:</p>
-<pre><code class="language-bash">git rm --cached .env
-git commit -m &quot;Stop tracking .env&quot;
-</code></pre>
+<pre tabindex="0"><code class="language-bash">git rm --cached .env
+git commit -m &quot;Stop tracking .env&quot;</code></pre>
 <p>If that file held a secret, <strong>the secret is still in your history</strong>. Follow the <a href="oh-no.html#i-committed-a-password-or-api-key">leaked secret steps</a>.</p>
 <p>GitHub has ready-made templates for most languages at <a href="https://github.com/github/gitignore" rel="noopener">github/gitignore</a>.</p>
 <h2 id="aliases-make-your-own-shortcuts">Aliases: make your own shortcuts</h2>
-<pre><code class="language-bash">git config --global alias.st status
+<pre tabindex="0"><code class="language-bash">git config --global alias.st status
 git config --global alias.lg &quot;log --oneline --graph --all --decorate&quot;
 git config --global alias.undo &quot;reset --soft HEAD~1&quot;
-git config --global alias.amend &quot;commit --amend --no-edit&quot;
-</code></pre>
+git config --global alias.amend &quot;commit --amend --no-edit&quot;</code></pre>
 <p>Now <code>git st</code>, <code>git lg</code>, <code>git undo</code> and <code>git amend</code> work everywhere.</p>
 <h2 id="youve-finished-git-fundamentals">You&#39;ve finished Git fundamentals</h2>
 <p>You now know more Git than most working developers use day to day. Keep the <a href="oh-no.html">&quot;Oh no&quot; guide</a> bookmarked. Mistakes happen to everyone, and now you know how to undo them.</p>
@@ -160,14 +151,15 @@ git config --global alias.amend &quot;commit --amend --no-edit&quot;
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>git bisect: Bisect halves the range each step, so 80 commits take about 7 tests.</li><li>The secret is still in your history: Stop tracking it with git rm --cached, and rotate the secret.</li><li>git cherry-pick &lt;id&gt;: Cherry-pick applies that single commit's changes as a new commit.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/06-power-tools.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/06-power-tools.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="git-05-remotes.html"><span>Previous</span>Git 5: Remotes, fetch, pull and push</a>
     <a class="next" href="github-01-profile.html"><span>Next</span>GitHub 1: Your profile as a portfolio</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group"><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -178,8 +170,8 @@ git config --global alias.amend &quot;commit --amend --no-edit&quot;
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group" open><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -187,8 +179,8 @@ git config --global alias.amend &quot;commit --amend --no-edit&quot;
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools" aria-current="page"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -197,8 +189,8 @@ git config --global alias.amend &quot;commit --amend --no-edit&quot;
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -208,14 +200,15 @@ git config --global alias.amend &quot;commit --amend --no-edit&quot;
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

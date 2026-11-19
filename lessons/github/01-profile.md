@@ -34,7 +34,7 @@ A few polished projects beat forty half-finished ones. You can archive old exper
 The green squares show days you contributed: commits to default branches, issues, pull requests, reviews and discussions. A few honest points:
 
 - It measures **activity, not skill**. Nobody serious judges you by an unbroken green streak.
-- Private work counts if you turn on **Include private contributions on my profile** (see [Lesson 0](../00-setup.md#3-decide-about-private-contributions)).
+- Private work counts if you turn on **Include private contributions on my profile** (see [Lesson 0](../00-setup.md#5-decide-about-private-contributions)).
 - Scripts that make fake commits to paint patterns are the same kind of inauthentic activity [FAIR-PLAY.md](../../FAIR-PLAY.md) warns about. Don't.
 
 ## Fill in the basics

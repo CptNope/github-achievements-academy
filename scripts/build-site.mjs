@@ -14,14 +14,17 @@ const REPO = "https://github.com/CptNope/github-achievements-academy";
 
 // Pages, in reading order. `src` is relative to the repo root.
 const numbered = (dir) => readdirSync(join(ROOT, dir)).filter((f) => /^\d\d-.+\.md$/.test(f)).sort();
-const GROUPS = ["Badges", "Git fundamentals", "GitHub skills", "Repo recipes", "Guides"];
+const GROUPS = ["Start here", "Badges", "Git fundamentals", "GitHub skills", "Repo recipes", "Guides"];
+const REVIEWED = "November 2026";
 const pages = [
+  { src: "lessons/start-here.md", out: "start-here.html", group: "Start here", detail: "Pick your path" },
   ...numbered("lessons").map((f) => ({ src: `lessons/${f}`, out: f.replace(/\.md$/, ".html"), group: "Badges", label: "Lesson" })),
   ...numbered("lessons/git").map((f) => ({ src: `lessons/git/${f}`, out: "git-" + f.replace(/\.md$/, ".html"), group: "Git fundamentals", label: "Git" })),
   ...numbered("lessons/github").map((f) => ({ src: `lessons/github/${f}`, out: "github-" + f.replace(/\.md$/, ".html"), group: "GitHub skills", label: "GitHub" })),
   ...numbered("lessons/repos").map((f) => ({ src: `lessons/repos/${f}`, out: "repo-" + f.replace(/\.md$/, ".html"), group: "Repo recipes", label: "Repo" })),
   { src: "lessons/oh-no.md", out: "oh-no.html", group: "Guides", detail: "Undo any Git mistake" },
   { src: "lessons/cheat-sheet.md", out: "cheat-sheet.html", group: "Guides", detail: "Print it, pin it", cls: "cheat" },
+  { src: "lessons/markdown.md", out: "markdown.html", group: "Guides", detail: "Format READMEs and issues" },
   { src: "lessons/troubleshooting.md", out: "troubleshooting.html", group: "Guides", detail: "When a badge won't show" },
   { src: "FAIR-PLAY.md", out: "fair-play.html", group: "Guides", detail: "Read before you start" },
 ];
@@ -85,17 +88,34 @@ function render(p) {
         const ext = /^https?:/.test(out) ? ' rel="noopener"' : "";
         return `<a href="${esc(out)}"${title ? ` title="${esc(title)}"` : ""}${ext}>${this.parser.parseInline(tokens)}</a>`;
       },
+      code({ text, lang }) {
+        // focusable so keyboard users can scroll long lines (WCAG 2.1.1)
+        const l = (lang || "").split(/\s/)[0];
+        return `<pre tabindex="0"><code${l ? ` class="language-${esc(l)}"` : ""}>${esc(text)}</code></pre>\n`;
+      },
       table(token) {
         // wrap tables so they scroll on small screens instead of widening the page
         const head = token.header.map((c) => `<th${c.align ? ` style="text-align:${c.align}"` : ""}>${this.parser.parseInline(c.tokens)}</th>`).join("");
         const rows = token.rows
           .map((r) => "<tr>" + r.map((c) => `<td${c.align ? ` style="text-align:${c.align}"` : ""}>${this.parser.parseInline(c.tokens)}</td>`).join("") + "</tr>")
           .join("\n");
-        return `<div class="table"><table><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table></div>\n`;
+        const name = token.header.map((c) => c.text).filter(Boolean).slice(0, 2).join(" and ").replace(/[`*]/g, "");
+        return `<div class="table" tabindex="0" role="region" aria-label="Table: ${esc(name || "details")}"><table><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table></div>\n`;
       },
     },
   });
-  return marked.parse(p.md);
+  // Give every scrollable table a unique name from the section it sits in (WCAG landmark names must differ)
+  const named = (html) => {
+    let section = p.title, seen = {};
+    return html.replace(/<h[23] id="[^"]*">([\s\S]*?)<\/h[23]>|aria-label="Table: [^"]*"/g, (m, head) => {
+      if (head !== undefined) { section = head.replace(/<[^>]+>/g, "").replace(/&#?\w+;/g, "'"); return m; }
+      seen[section] = (seen[section] || 0) + 1;
+      return `aria-label="Table: ${esc(section)}${seen[section] > 1 ? ` (${seen[section]})` : ""}"`;
+    });
+  };
+  // Task-list checkboxes: wrap each in a label so it has an accessible name, and let readers tick them
+  return named(marked.parse(p.md)).replace(/<li><input (checked="" )?disabled="" type="checkbox">\s*([\s\S]*?)<\/li>/g,
+    (_, checked, body) => `<li class="task"><label><input type="checkbox"${checked ? " checked" : ""}> <span>${body.trim()}</span></label></li>`);
 }
 
 const nav = (current) =>
@@ -107,7 +127,13 @@ const nav = (current) =>
         return `<li><a href="${p.out}" data-page="${stem(p)}"${p === current ? ' aria-current="page"' : ""}>${label}</a></li>`;
       })
       .join("\n        ");
-    return `<h2>${esc(g)}</h2>\n    <ol>\n        ${items}\n    </ol>`;
+    const only = pages.filter((p) => p.group === g);
+    if (only.length === 1 && only[0].short === g) {
+      const p = only[0];
+      return `<p class="toc-start"><a href="${p.out}" data-page="${stem(p)}"${p === current ? ' aria-current="page"' : ""}>${esc(p.short)}</a></p>`;
+    }
+    const open = current && current.group === g ? " open" : "";
+    return `<details class="toc-group"${open}><summary><h2>${esc(g)}</h2></summary>\n    <ol>\n        ${items}\n    </ol></details>`;
   }).join("\n    ");
 
 function layout({ title, description, body, current, pageId = "", bodyClass = "" }) {
@@ -207,7 +233,7 @@ ${html}
     </article>
     ${quizHtml(p)}
     ${p.num !== null ? `<div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>` : ""}
-    <p class="edit"><a href="${REPO}/blob/main/${p.src}">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed ${REVIEWED}. <a href="${REPO}/blob/main/${p.src}">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     ${pager}
   </main>
   <aside class="toc" aria-label="All lessons">
@@ -219,6 +245,7 @@ ${html}
 
 // Index of all lessons
 const INTRO = {
+  "Start here": "New here? Pick a path that matches where you are, from total beginner to team lead.",
   "Badges": "Earn every obtainable GitHub achievement, and learn the real skill behind each one.",
   "Git fundamentals": "Master Git itself: how it works, branching, rebasing, remotes and the power tools.",
   "GitHub skills": "Work the way professional teams do: profiles, Issues and Projects, code review, Actions, releases, security and open source.",
@@ -247,7 +274,7 @@ writeFileSync(
     current: "index",
     body: `<main id="content" class="index">
   <h1>All lessons</h1>
-  <p class="lead">Four tracks and four guides. Start with the badges, master Git itself, learn to work like a professional team on GitHub, then set up and maintain repos for any purpose. Each track runs in order, top to bottom. Practice anything in the <a href="../sandbox/">Git sandbox</a>.</p>
+  <p class="lead">New? Begin with <a href="start-here.html">Start here</a>. Four tracks and five guides. Start with the badges, master Git itself, learn to work like a professional team on GitHub, then set up and maintain repos for any purpose. Each track runs in order, top to bottom. Practice anything in the <a href="../sandbox/">Git sandbox</a>.</p>
   ${list}
   <p class="reset-row">Your progress is saved in this browser only. <button type="button" id="reset-progress" class="link-btn">Reset my progress</button></p>
 </main>`,

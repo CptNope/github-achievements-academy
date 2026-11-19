@@ -33,7 +33,17 @@
 <p>A pull request (PR) says: &quot;here&#39;s a set of changes on a branch, please merge them into <code>main</code>.&quot; On a team, someone reviews the PR first. In a solo project, you&#39;re often the only one, so you merge your own work. That&#39;s YOLO.</p>
 <p>The badge&#39;s name is a wink: <strong>on a team, skipping review is risky.</strong> This lesson teaches the flow <em>and</em> how to protect yourself from YOLO-ing by accident later.</p>
 <h2 id="exercise-in-your-sandbox-repo">Exercise (in your sandbox repo)</h2>
-<pre><code class="language-bash">cd my-github-sandbox
+<h3 id="on-githubcom">On github.com</h3>
+<ol>
+<li>Open your sandbox repo and click <strong>README.md</strong>, then the pencil icon (<strong>Edit this file</strong>).</li>
+<li>Add a line at the end, such as <code>## About</code> and a sentence about your sandbox.</li>
+<li>Click <strong>Commit changes…</strong>, choose <strong>Create a new branch for this commit and start a pull request</strong>, name the branch <code>add-about-section</code>, and click <strong>Propose changes</strong>.</li>
+<li>On the next screen, click <strong>Create pull request</strong>.</li>
+<li>Without asking anyone to review it, click <strong>Merge pull request → Confirm merge</strong>, then <strong>Delete branch</strong>.</li>
+</ol>
+<p>That merge, with no review, is what earns YOLO.</p>
+<h3 id="with-the-command-line">With the command line</h3>
+<pre tabindex="0"><code class="language-bash">cd my-github-sandbox
 git switch -c add-about-section          # 1. create a branch
 printf &quot;\n## About\nThis is my sandbox for learning GitHub.\n&quot; &gt;&gt; README.md
 git add README.md
@@ -41,8 +51,7 @@ git commit -m &quot;docs: add About section&quot;  # 2. commit
 git push -u origin add-about-section     # 3. push the branch
 gh pr create --fill                      # 4. open the PR
 gh pr merge --squash --delete-branch     # 5. merge it yourself, with no review
-git switch main &amp;&amp; git pull              # 6. sync your local main
-</code></pre>
+git switch main &amp;&amp; git pull              # 6. sync your local main</code></pre>
 <p>Or run <code>./scripts/coach.sh yolo</code> for a guided version that explains each step.</p>
 <h2 id="bonus-lesson-turn-on-protection">Bonus lesson: turn on protection</h2>
 <p>Now do what real teams do: <strong>Settings → Rules → Rulesets → New branch ruleset</strong></p>
@@ -95,14 +104,15 @@ git switch main &amp;&amp; git pull              # 6. sync your local main
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>Merging a pull request without a code review: YOLO is awarded for merging a PR that nobody reviewed.</li><li>Branch → commit → push → PR → merge: You make a branch, commit to it, push it, open a PR, then merge.</li><li>Blocks merging until someone approves: It's how teams make sure nothing reaches main unreviewed.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/02-yolo.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/02-yolo.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="01-quickdraw.html"><span>Previous</span>Lesson 1: Quickdraw</a>
     <a class="next" href="03-pull-shark.html"><span>Next</span>Lesson 3: Pull Shark</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group" open><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -113,8 +123,8 @@ git switch main &amp;&amp; git pull              # 6. sync your local main
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -122,8 +132,8 @@ git switch main &amp;&amp; git pull              # 6. sync your local main
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -132,8 +142,8 @@ git switch main &amp;&amp; git pull              # 6. sync your local main
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -143,14 +153,15 @@ git switch main &amp;&amp; git pull              # 6. sync your local main
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

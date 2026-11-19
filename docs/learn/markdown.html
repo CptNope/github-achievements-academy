@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Writing Markdown on GitHub · GitHub Achievements Academy</title>
+<meta name="description" content="Markdown is the simple formatting language behind READMEs, issues, pull requests, comments, Discussions and wikis on GitHub. You type plain text with a few">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body data-page="markdown">
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../sandbox/">Sandbox</a>
+    <a href="cheat-sheet.html">Cheat sheet</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Writing Markdown on GitHub</h1>
+    <nav class="jump" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#text">Text</a></li>
+        <li><a href="#headings">Headings</a></li>
+        <li><a href="#lists">Lists</a></li>
+        <li><a href="#code">Code</a></li>
+        <li><a href="#images">Images</a></li>
+        <li><a href="#tables">Tables</a></li>
+        <li><a href="#github-extras">GitHub extras</a></li>
+        <li><a href="#writing-that-helps-people">Writing that helps people</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+        <li><a href="#what-you-learned">What you learned</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+<p>Markdown is the simple formatting language behind READMEs, issues, pull requests, comments, Discussions and wikis on GitHub. You type plain text with a few symbols, and GitHub turns it into formatted text. Ten minutes with this page covers almost everything you&#39;ll need.</p>
+<blockquote>
+<p>Every comment box on GitHub has a <strong>Preview</strong> tab. Use it to check your formatting before you post.</p>
+</blockquote>
+<h2 id="text">Text</h2>
+<div class="table" tabindex="0" role="region" aria-label="Table: Text"><table><thead><tr><th>You type</th><th>You get</th></tr></thead><tbody><tr><td><code>**bold**</code></td><td><strong>bold</strong></td></tr>
+<tr><td><code>*italic*</code></td><td><em>italic</em></td></tr>
+<tr><td><code>~~struck through~~</code></td><td><del>struck through</del></td></tr>
+<tr><td><code>`inline code`</code></td><td><code>inline code</code></td></tr>
+<tr><td><code>[link text](https://example.com)</code></td><td><a href="https://example.com" rel="noopener">link text</a></td></tr></tbody></table></div>
+<p>Leave a <strong>blank line</strong> between paragraphs. A single line break is ignored in files like README.md.</p>
+<h2 id="headings">Headings</h2>
+<pre tabindex="0"><code class="language-markdown"># Page title (use once, at the top)
+## Section
+### Sub-section</code></pre>
+<p>Use headings in order, without skipping levels. Screen-reader users navigate by them, and GitHub builds a table of contents from them (the list icon at the top of a README).</p>
+<h2 id="lists">Lists</h2>
+<pre tabindex="0"><code class="language-markdown">- An item
+- Another item
+  - Indent two spaces for a nested item
+
+1. First step
+2. Second step
+
+- [ ] A task to do
+- [x] A finished task</code></pre>
+<p>Task lists in issues and pull requests can be ticked by clicking, and GitHub shows progress (&quot;2 of 5 tasks&quot;).</p>
+<h2 id="code">Code</h2>
+<p>Wrap code in three backticks, and name the language for syntax highlighting:</p>
+<pre tabindex="0"><code class="language-markdown">```js
+const total = items.reduce((sum, i) =&gt; sum + i.price, 0);
+```</code></pre>
+<p>Use <code>bash</code> for commands, <code>diff</code> to show changes, and <code>suggestion</code> in a review comment to propose an exact change (<a href="github-03-code-review.html#suggested-changes">GitHub 3</a>).</p>
+<h2 id="images">Images</h2>
+<pre tabindex="0"><code class="language-markdown">![Screenshot of the checkout page with the total highlighted](docs/checkout.png)</code></pre>
+<p><strong>Always write alt text</strong> (the words in square brackets) that describes what the image shows. It&#39;s what screen-reader users hear, and what everyone sees if the image fails to load. To add an image to an issue or PR, paste or drag it into the comment box, then edit the alt text GitHub inserts.</p>
+<h2 id="tables">Tables</h2>
+<pre tabindex="0"><code class="language-markdown">| Command      | What it does           |
+|--------------|------------------------|
+| `git status` | Shows what changed     |
+| `git log`    | Shows commit history   |</code></pre>
+<p>Keep tables small and give every column a header. For long content, a list is often easier to read, especially on phones.</p>
+<h2 id="github-extras">GitHub extras</h2>
+<div class="table" tabindex="0" role="region" aria-label="Table: GitHub extras"><table><thead><tr><th>You type</th><th>What it does</th></tr></thead><tbody><tr><td><code>#42</code></td><td>Links to issue or PR 42 in this repo</td></tr>
+<tr><td><code>owner/repo#42</code></td><td>Links to an issue in another repo</td></tr>
+<tr><td><code>@username</code></td><td>Mentions someone, and notifies them</td></tr>
+<tr><td><code>@org/team</code></td><td>Mentions a team</td></tr>
+<tr><td>A commit ID like <code>a1b2c3d</code></td><td>Links to that commit</td></tr>
+<tr><td><code>Fixes #42</code> in a PR</td><td>Closes issue 42 when the PR merges (<a href="github-02-issues-and-projects.html#link-pull-requests-to-issues">GitHub 2</a>)</td></tr></tbody></table></div>
+<p>Only mention people who need to see something. Every <code>@</code> sends a notification.</p>
+<h3 id="alerts">Alerts</h3>
+<pre tabindex="0"><code class="language-markdown">&gt; [!NOTE]
+&gt; Useful information people should know.
+
+&gt; [!WARNING]
+&gt; Something that could cause problems.</code></pre>
+<p>The other alert types are <code>[!TIP]</code>, <code>[!IMPORTANT]</code> and <code>[!CAUTION]</code>. Use them sparingly, or they lose their effect.</p>
+<h3 id="collapsed-sections">Collapsed sections</h3>
+<pre tabindex="0"><code class="language-markdown">&lt;details&gt;
+&lt;summary&gt;Full error log&lt;/summary&gt;
+
+Paste long logs here so they don't swamp the conversation.
+
+&lt;/details&gt;</code></pre>
+<h2 id="writing-that-helps-people">Writing that helps people</h2>
+<ul>
+<li><strong>Lead with the point.</strong> The first sentence of a README, issue or PR should say what it&#39;s about.</li>
+<li><strong>Use descriptive link text.</strong> &quot;Read the <a href="#">install guide</a>&quot; rather than &quot;click <a href="#">here</a>&quot;. Screen readers often list links out of context.</li>
+<li><strong>Don&#39;t rely on color or emoji alone</strong> to carry meaning. Say it in words too.</li>
+<li><strong>Keep lines of code in code blocks</strong>, not screenshots, so people can copy them and screen readers can read them.</li>
+</ul>
+<h2 id="exercise">Exercise</h2>
+<ol>
+<li>In your sandbox repo, edit <code>README.md</code>. Add a heading, a short list, a code block and a link.</li>
+<li>Open a new issue that uses a task list and an alert, and check it with <strong>Preview</strong> first.</li>
+<li>Add an image with good alt text.</li>
+</ol>
+<h2 id="what-you-learned">What you learned</h2>
+<ul>
+<li>Text, headings, lists, code, images and tables in Markdown</li>
+<li>GitHub extras: references, mentions, alerts and collapsed sections</li>
+<li>Writing habits that make your text clearer and more accessible</li>
+</ul>
+
+    </article>
+    
+    
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/markdown.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="cheat-sheet.html"><span>Previous</span>Git and GitHub cheat sheet</a>
+    <a class="next" href="troubleshooting.html"><span>Next</span>Troubleshooting</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group"><summary><h2>Badges</h2></summary>
+    <ol>
+        <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html" data-page="02-yolo"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html" data-page="03-pull-shark"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html" data-page="04-pair-extraordinaire"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html" data-page="05-galaxy-brain"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Git fundamentals</h2></summary>
+    <ol>
+        <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html" data-page="git-03-branching-and-merging"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
+    <ol>
+        <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
+        <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
+        <li><a href="github-03-code-review.html" data-page="github-03-code-review"><span class="n">3</span>Code review</a></li>
+        <li><a href="github-04-actions.html" data-page="github-04-actions"><span class="n">4</span>Automate with Actions</a></li>
+        <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
+        <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
+        <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Repo recipes</h2></summary>
+    <ol>
+        <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
+        <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
+        <li><a href="repo-03-open-source-packages.html" data-page="repo-03-open-source-packages"><span class="n">3</span>Packages</a></li>
+        <li><a href="repo-04-websites-and-docs.html" data-page="repo-04-websites-and-docs"><span class="n">4</span>Websites and docs</a></li>
+        <li><a href="repo-05-team-and-client-projects.html" data-page="repo-05-team-and-client-projects"><span class="n">5</span>Team and client</a></li>
+        <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
+        <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
+        <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
+    </ol></details>
+    <details class="toc-group" open><summary><h2>Guides</h2></summary>
+    <ol>
+        <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
+        <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown" aria-current="page">Writing Markdown on GitHub</a></li>
+        <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
+        <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
+    </ol></details>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+<script src="../assets/learn.js" defer></script>
+</body>
+</html>

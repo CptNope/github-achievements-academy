@@ -40,11 +40,10 @@
     <article class="prose">
 <p>Branches let you try things without risking <code>main</code>. Merging brings the work back. Merge conflicts are the part that scares people, so this lesson includes a safe practice conflict you can solve on your own machine.</p>
 <h2 id="make-switch-list-delete">Make, switch, list, delete</h2>
-<pre><code class="language-bash">git switch -c add-search     # create a branch and switch to it
+<pre tabindex="0"><code class="language-bash">git switch -c add-search     # create a branch and switch to it
 git switch main              # go back to main
 git branch                   # list local branches (* marks where you are)
-git branch -d add-search     # delete a branch that&#39;s been merged
-</code></pre>
+git branch -d add-search     # delete a branch that's been merged</code></pre>
 <blockquote>
 <p>Older tutorials use <code>git checkout</code> for this. <code>git switch</code> (for branches) and <code>git restore</code>
 (for files) do the same jobs with clearer names. Both have existed since Git 2.23.</p>
@@ -52,33 +51,30 @@ git branch -d add-search     # delete a branch that&#39;s been merged
 <p>Got uncommitted changes? <code>git switch</code> brings them with you if they don&#39;t clash. If they would be overwritten, Git refuses and asks you to commit or <a href="git-06-power-tools.html#stash-park-work-for-later">stash</a> first. It never throws away your work silently.</p>
 <h2 id="two-kinds-of-merge">Two kinds of merge</h2>
 <p><strong>Fast-forward.</strong> If <code>main</code> hasn&#39;t moved since you branched, Git just slides the <code>main</code> label forward to your latest commit. No new commit is needed:</p>
-<pre><code>before:  A ← B ← C  ← main
+<pre tabindex="0"><code>before:  A ← B ← C  ← main
 D ← E  ← feature
 
-after:   A ← B ← C ← D ← E  ← main, feature
-</code></pre>
+after:   A ← B ← C ← D ← E  ← main, feature</code></pre>
 <p><strong>Merge commit.</strong> If both branches have new commits, Git creates a new commit with <strong>two parents</strong> that joins them:</p>
-<pre><code>A ← B ← C ← F ← M   ← main
+<pre tabindex="0"><code>A ← B ← C ← F ← M   ← main
 D ← E ```
 
 ```bash
 git switch main
 git merge feature            # fast-forward if possible, merge commit if not
-git merge --no-ff feature    # always make a merge commit (keeps a visible &quot;feature&quot; bump)
-</code></pre>
+git merge --no-ff feature    # always make a merge commit (keeps a visible &quot;feature&quot; bump)</code></pre>
 <p>On GitHub, the <strong>Merge pull request</strong> button gives you three choices:</p>
-<div class="table"><table><thead><tr><th>Option</th><th>Result</th></tr></thead><tbody><tr><td>Create a merge commit</td><td>Keeps every commit, plus a merge commit</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Two kinds of merge"><table><thead><tr><th>Option</th><th>Result</th></tr></thead><tbody><tr><td>Create a merge commit</td><td>Keeps every commit, plus a merge commit</td></tr>
 <tr><td>Squash and merge</td><td>All the PR&#39;s commits become <strong>one</strong> commit on main</td></tr>
 <tr><td>Rebase and merge</td><td>Replays each commit on top of main, with no merge commit</td></tr></tbody></table></div>
 <h2 id="merge-conflicts-demystified">Merge conflicts, demystified</h2>
 <p>A conflict happens when both branches changed <strong>the same lines</strong> of the same file. Git can&#39;t guess which version is right, so it stops and asks you. Nothing is broken or lost.</p>
 <p>The file will contain markers like this:</p>
-<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+<pre tabindex="0"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 Welcome to the Blue Cafe!
 =======
 Welcome to the Green Cafe!
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; rename-cafe
-</code></pre>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; rename-cafe</code></pre>
 <ul>
 <li>Between <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> and <code>=======</code> is <strong>your current branch&#39;s</strong> version</li>
 <li>Between <code>=======</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; rename-cafe</code> is the <strong>incoming</strong> version</li>
@@ -97,10 +93,9 @@ and a 3-way merge editor. Use them, but always read the result before committing
 </blockquote>
 <h2 id="practice-a-conflict-made-just-for-you">Practice: a conflict made just for you</h2>
 <p>This repo includes a <a href="https://github.com/CptNope/github-achievements-academy/blob/main/scripts/practice-conflict.sh" rel="noopener">script</a> that builds a tiny throwaway repo with a conflict waiting in it. It runs entirely on your computer and never touches GitHub. Run it from your clone of this repo (you made one in <a href="03-pull-shark.html">Lesson 3</a>). On Windows, use Git Bash:</p>
-<pre><code class="language-bash">./scripts/practice-conflict.sh
+<pre tabindex="0"><code class="language-bash">./scripts/practice-conflict.sh
 cd /tmp/git-conflict-practice     # the script prints the exact path
-git merge rename-cafe             # → CONFLICT!
-</code></pre>
+git merge rename-cafe             # → CONFLICT!</code></pre>
 <p>Now resolve it using the steps above. Check your work with <code>git log --oneline --graph</code>. You should see the two branches joined by a merge commit. Delete the folder when you&#39;re done.</p>
 <h2 id="keep-branches-short-lived">Keep branches short-lived</h2>
 <p>The longer a branch lives, the more <code>main</code> moves underneath it, and the bigger your conflicts get. Good habits:</p>
@@ -151,14 +146,15 @@ git merge rename-cafe             # → CONFLICT!
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>When the target branch hasn't moved since you branched: Git just slides the label forward, so no merge commit is needed.</li><li>Your current branch's version: The top half is yours (HEAD). The bottom half, before &gt;&gt;&gt;&gt;&gt;&gt;&gt;, is incoming.</li><li>git merge --abort: It puts everything back exactly as it was before the merge.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/03-branching-and-merging.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/03-branching-and-merging.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="git-02-everyday-loop.html"><span>Previous</span>Git 2: The everyday loop</a>
     <a class="next" href="git-04-rebase.html"><span>Next</span>Git 4: Rebase without fear</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group"><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -169,8 +165,8 @@ git merge rename-cafe             # → CONFLICT!
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group" open><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -178,8 +174,8 @@ git merge rename-cafe             # → CONFLICT!
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -188,8 +184,8 @@ git merge rename-cafe             # → CONFLICT!
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -199,14 +195,15 @@ git merge rename-cafe             # → CONFLICT!
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

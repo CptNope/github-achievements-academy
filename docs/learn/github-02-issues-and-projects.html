@@ -42,7 +42,7 @@
 <p>Issues are GitHub&#39;s to-do list, bug tracker and discussion thread rolled into one. Projects turn them into a board or a spreadsheet you can plan with. Used well, they&#39;re how solo developers stay organized and how teams avoid duplicate work.</p>
 <h2 id="writing-an-issue-people-can-act-on">Writing an issue people can act on</h2>
 <p><strong>A good bug report:</strong></p>
-<pre><code class="language-markdown">**What happened**
+<pre tabindex="0"><code class="language-markdown">**What happened**
 The cart total shows NaN after removing the last item.
 
 **Steps to reproduce**
@@ -53,11 +53,10 @@ The cart total shows NaN after removing the last item.
 **Expected:** $0.00
 **Environment:** Chrome 131, macOS 15
 
-Screenshot attached.
-</code></pre>
+Screenshot attached.</code></pre>
 <p><strong>A good feature request</strong> explains the <em>problem</em> before the solution: &quot;Customers can&#39;t find past orders&quot; is more useful than &quot;Add an orders page&quot;.</p>
 <h2 id="organizing-issues">Organizing issues</h2>
-<div class="table"><table><thead><tr><th>Tool</th><th>Use it for</th></tr></thead><tbody><tr><td><strong>Labels</strong></td><td>Categories like <code>bug</code>, <code>docs</code>, <code>good first issue</code> and <code>help wanted</code>. Use a small, consistent set</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Organizing issues"><table><thead><tr><th>Tool</th><th>Use it for</th></tr></thead><tbody><tr><td><strong>Labels</strong></td><td>Categories like <code>bug</code>, <code>docs</code>, <code>good first issue</code> and <code>help wanted</code>. Use a small, consistent set</td></tr>
 <tr><td><strong>Assignees</strong></td><td>Who&#39;s working on it right now. Prevents two people doing the same thing</td></tr>
 <tr><td><strong>Milestones</strong></td><td>Group issues into a release or deadline (&quot;v1.2&quot;, &quot;Launch&quot;), with a progress bar</td></tr>
 <tr><td><strong>Sub-issues</strong></td><td>Break a big issue into smaller ones. The parent shows progress as they close</td></tr>
@@ -68,13 +67,12 @@ your issues to new contributors.</p>
 </blockquote>
 <h2 id="link-pull-requests-to-issues">Link pull requests to issues</h2>
 <p>Write a closing keyword followed by the issue number in a PR description (or a commit message):</p>
-<pre><code>Fixes #42
-</code></pre>
+<pre tabindex="0"><code>Fixes #42</code></pre>
 <p>When the PR merges into the default branch, issue #42 closes automatically, and each one links to the other. The keywords are <code>close</code>, <code>closes</code>, <code>closed</code>, <code>fix</code>, <code>fixes</code>, <code>fixed</code>, <code>resolve</code>, <code>resolves</code> and <code>resolved</code>.</p>
 <h2 id="issue-templates-and-forms">Issue templates and forms</h2>
 <p>Templates make people give you the information you need up front. Put <strong>issue forms</strong> (YAML files) in <code>.github/ISSUE_TEMPLATE/</code>:</p>
-<pre><code class="language-yaml">name: Bug report
-description: Something isn&#39;t working
+<pre tabindex="0"><code class="language-yaml">name: Bug report
+description: Something isn't working
 labels: [&quot;bug&quot;]
 body:
   - type: textarea
@@ -86,8 +84,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: Which version?
-</code></pre>
+      label: Which version?</code></pre>
 <p>A <code>config.yml</code> in the same folder can turn off blank issues and point questions to Discussions. This repo does both. See <a href="https://github.com/CptNope/github-achievements-academy/tree/main/.github/ISSUE_TEMPLATE" rel="noopener">its templates</a> and the copy-ready version in <a href="https://github.com/CptNope/github-achievements-academy/tree/main/templates" rel="noopener">templates/</a>.</p>
 <h2 id="projects-boards-and-tables">Projects: boards and tables</h2>
 <p>A <strong>Project</strong> pulls issues and PRs from one or more repos into a single view. Create one from your profile or org: <strong>Projects → New project</strong>.</p>
@@ -146,14 +143,15 @@ body:
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>Closes issue #42 automatically: Closing keywords link the PR and issue, and close the issue on merge.</li><li>good first issue and help wanted: These two labels are special and surface your issues to new contributors.</li><li>Break a big issue into smaller tracked ones: The parent shows progress as its sub-issues close.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/github/02-issues-and-projects.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/github/02-issues-and-projects.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="github-01-profile.html"><span>Previous</span>GitHub 1: Your profile as a portfolio</a>
     <a class="next" href="github-03-code-review.html"><span>Next</span>GitHub 3: Code review</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group"><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -164,8 +162,8 @@ body:
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -173,8 +171,8 @@ body:
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group" open><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects" aria-current="page"><span class="n">2</span>Issues and Projects</a></li>
@@ -183,8 +181,8 @@ body:
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -194,14 +192,15 @@ body:
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

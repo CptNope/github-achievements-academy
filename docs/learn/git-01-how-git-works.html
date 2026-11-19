@@ -49,25 +49,22 @@
 </ul>
 <p>Every commit gets an ID, a long hash like <code>3f9c2a1e…</code>. You&#39;ll usually see the first 7 characters. The hash comes from the commit&#39;s contents, so if anything changes, the ID changes. That&#39;s why Git history is so hard to tamper with silently.</p>
 <p>Because each commit points to its parent, your history forms a chain:</p>
-<pre><code>A ← B ← C
-</code></pre>
+<pre tabindex="0"><code>A ← B ← C</code></pre>
 <blockquote>
 <p>Git doesn&#39;t waste space storing the same file twice. If a file didn&#39;t change between snapshots, both commits point to the same stored copy.</p>
 </blockquote>
 <h2 id="a-branch-is-just-a-label">A branch is just a label</h2>
 <p>This is the big one. A branch is <strong>not</strong> a copy of your code. It&#39;s a tiny file containing one commit ID, a movable label that says &quot;this commit is the tip of <code>main</code>&quot;.</p>
-<pre><code>A ← B ← C   ← main
-</code></pre>
+<pre tabindex="0"><code>A ← B ← C   ← main</code></pre>
 <p>When you commit on <code>main</code>, Git makes commit D and moves the <code>main</code> label forward to it. Creating a branch just adds a second label:</p>
-<pre><code>A ← B ← C   ← main
-            ← feature
-</code></pre>
+<pre tabindex="0"><code>A ← B ← C   ← main
+            ← feature</code></pre>
 <p>That&#39;s why making a branch is instant, even in a huge project.</p>
 <h2 id="head-is-you-are-here">HEAD is &quot;you are here&quot;</h2>
 <p><code>HEAD</code> tells Git which branch you&#39;re currently on. When you run <code>git switch feature</code>, <code>HEAD</code> moves to point at <code>feature</code>, and your files change to match that branch&#39;s snapshot. New commits move whichever branch <code>HEAD</code> points at.</p>
 <p>If <code>HEAD</code> points straight at a commit instead of a branch, Git calls that a <strong>detached HEAD</strong>. It&#39;s safe to look around, but commits you make there aren&#39;t on any branch. See the <a href="oh-no.html#i-am-in-detached-head-state">&quot;Oh no&quot; guide</a> if you end up there.</p>
 <h2 id="the-three-places-your-work-lives">The three places your work lives</h2>
-<div class="table"><table><thead><tr><th>Place</th><th>What it is</th><th>Commands that move work here</th></tr></thead><tbody><tr><td><strong>Working tree</strong></td><td>The files you see and edit</td><td>(you, editing)</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: The three places your work lives"><table><thead><tr><th>Place</th><th>What it is</th><th>Commands that move work here</th></tr></thead><tbody><tr><td><strong>Working tree</strong></td><td>The files you see and edit</td><td>(you, editing)</td></tr>
 <tr><td><strong>Staging area</strong> (also called the index)</td><td>What will go into your next commit</td><td><code>git add</code></td></tr>
 <tr><td><strong>Repository</strong></td><td>The saved history of commits</td><td><code>git commit</code></td></tr></tbody></table></div>
 <p>The staging area is what lets you commit <em>part</em> of your work. You can fix a bug and a typo in the same session, then commit them separately with clear messages.</p>
@@ -79,12 +76,10 @@
 </ul>
 <p>Git also keeps read-only labels like <code>origin/main</code>. They record where <code>main</code> was on GitHub the last time you fetched.</p>
 <h2 id="try-it-see-the-model-for-yourself">Try it: see the model for yourself</h2>
-<pre><code class="language-bash">git log --oneline --graph --all --decorate
-</code></pre>
+<pre tabindex="0"><code class="language-bash">git log --oneline --graph --all --decorate</code></pre>
 <p>You&#39;ll see commits as a graph, with branch labels (<code>main</code>, <code>origin/main</code>, <code>HEAD -&gt; main</code>) attached to commits. Make a branch and look again:</p>
-<pre><code class="language-bash">git switch -c try-labels
-git log --oneline --graph --all --decorate
-</code></pre>
+<pre tabindex="0"><code class="language-bash">git switch -c try-labels
+git log --oneline --graph --all --decorate</code></pre>
 <p>Both labels sit on the same commit. Nothing was copied.</p>
 <p><strong>No repo handy?</strong> Try the <a href="https://cptnope.github.io/github-achievements-academy/sandbox/?level=commits" rel="noopener">first sandbox challenge</a> in your browser and watch commits and labels move as you type.</p>
 <blockquote>
@@ -135,14 +130,15 @@ Now <code>git lg</code> shows the graph.</p>
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>A movable label pointing at one commit: That's why creating a branch is instant, even in huge projects.</li><li>Which branch or commit you're on right now: HEAD is &quot;you are here&quot;. New commits move whichever branch HEAD points at.</li><li>git add: git add stages changes. git commit saves what's staged into history.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/01-how-git-works.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/01-how-git-works.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="08-highlights-and-retired.html"><span>Previous</span>Lesson 8: Highlights &amp; retired badges</a>
     <a class="next" href="git-02-everyday-loop.html"><span>Next</span>Git 2: The everyday loop</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group"><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -153,8 +149,8 @@ Now <code>git lg</code> shows the graph.</p>
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group" open><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works" aria-current="page"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -162,8 +158,8 @@ Now <code>git lg</code> shows the graph.</p>
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -172,8 +168,8 @@ Now <code>git lg</code> shows the graph.</p>
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -183,14 +179,15 @@ Now <code>git lg</code> shows the graph.</p>
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

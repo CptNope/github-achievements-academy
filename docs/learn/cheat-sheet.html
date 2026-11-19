@@ -30,19 +30,19 @@
     <article class="prose">
 <p>Every command from the course on one page. Print it (it fits two sides of a page), or keep it open in a tab. <code>&lt;thing&gt;</code> means &quot;put your own value here&quot;.</p>
 <h2 id="set-up-once">Set up once</h2>
-<div class="table"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>git config --global user.name &quot;Name&quot;</code></td><td>Name on your commits</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Set up once"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>git config --global user.name &quot;Name&quot;</code></td><td>Name on your commits</td></tr>
 <tr><td><code>git config --global user.email you@example.com</code></td><td>Must be a verified email on GitHub</td></tr>
 <tr><td><code>git config --global pull.rebase true</code></td><td>Pull rebases instead of making merge commits</td></tr>
 <tr><td><code>git config --global fetch.prune true</code></td><td>Clean up deleted remote branches on fetch</td></tr>
 <tr><td><code>git config --global alias.lg &quot;log --oneline --graph --all --decorate&quot;</code></td><td>Adds a <code>git lg</code> shortcut</td></tr>
 <tr><td><code>gh auth login</code></td><td>Sign in the GitHub CLI</td></tr></tbody></table></div>
 <h2 id="start-a-project">Start a project</h2>
-<div class="table"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>git init</code></td><td>Make the current folder a repo</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Start a project"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>git init</code></td><td>Make the current folder a repo</td></tr>
 <tr><td><code>git clone &lt;url&gt;</code></td><td>Copy a repo from GitHub</td></tr>
 <tr><td><code>gh repo create &lt;name&gt; --public --clone</code></td><td>New GitHub repo, cloned locally</td></tr>
 <tr><td><code>gh repo fork &lt;owner/repo&gt; --clone</code></td><td>Fork and clone in one step</td></tr></tbody></table></div>
 <h2 id="the-everyday-loop">The everyday loop</h2>
-<div class="table"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>git status</code></td><td>What changed, and what&#39;s staged</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: The everyday loop"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>git status</code></td><td>What changed, and what&#39;s staged</td></tr>
 <tr><td><code>git diff</code></td><td>Unstaged changes, line by line</td></tr>
 <tr><td><code>git diff --staged</code></td><td>What the next commit will contain</td></tr>
 <tr><td><code>git add &lt;file&gt;</code> · <code>git add -p</code></td><td>Stage a file · stage piece by piece</td></tr>
@@ -51,7 +51,7 @@
 <tr><td><code>git log --oneline -10</code></td><td>The last 10 commits</td></tr>
 <tr><td><code>git show &lt;ref&gt;</code></td><td>One commit in full</td></tr></tbody></table></div>
 <h2 id="branches">Branches</h2>
-<div class="table"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>git switch -c &lt;name&gt;</code></td><td>Create a branch and move to it</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Branches"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>git switch -c &lt;name&gt;</code></td><td>Create a branch and move to it</td></tr>
 <tr><td><code>git switch &lt;name&gt;</code> · <code>git switch -</code></td><td>Move to a branch · back to the last one</td></tr>
 <tr><td><code>git branch</code> · <code>git branch -vv</code></td><td>List branches · with tracking info</td></tr>
 <tr><td><code>git branch -d &lt;name&gt;</code></td><td>Delete a merged branch (<code>-D</code> to force)</td></tr>
@@ -61,7 +61,7 @@
 <tr><td><code>git rebase -i main</code></td><td>Tidy commits: reword, squash, fixup, drop</td></tr>
 <tr><td><code>git rebase --continue</code> · <code>--abort</code></td><td>Carry on after fixing a conflict · cancel</td></tr></tbody></table></div>
 <h2 id="remotes">Remotes</h2>
-<div class="table"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>git remote -v</code></td><td>List remotes</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Remotes"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>git remote -v</code></td><td>List remotes</td></tr>
 <tr><td><code>git remote add upstream &lt;url&gt;</code></td><td>Track the project you forked from</td></tr>
 <tr><td><code>git fetch</code></td><td>Download new commits, change nothing locally</td></tr>
 <tr><td><code>git pull</code></td><td>Fetch, then update your branch</td></tr>
@@ -69,7 +69,7 @@
 <tr><td><code>git push --force-with-lease</code></td><td>Safe force-push after a rebase, on your own branch only</td></tr>
 <tr><td><code>gh repo sync</code></td><td>Update your fork from the original</td></tr></tbody></table></div>
 <h2 id="undo">Undo</h2>
-<div class="table"><table><thead><tr><th>Situation</th><th>Command</th></tr></thead><tbody><tr><td>Fix the last commit&#39;s message</td><td><code>git commit --amend -m &quot;New message&quot;</code></td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Undo"><table><thead><tr><th>Situation</th><th>Command</th></tr></thead><tbody><tr><td>Fix the last commit&#39;s message</td><td><code>git commit --amend -m &quot;New message&quot;</code></td></tr>
 <tr><td>Add a forgotten file to the last commit</td><td><code>git add &lt;file&gt;</code> then <code>git commit --amend --no-edit</code></td></tr>
 <tr><td>Throw away changes to a file</td><td><code>git restore &lt;file&gt;</code> (can&#39;t be undone)</td></tr>
 <tr><td>Undo the last commit, keep the changes</td><td><code>git reset --soft HEAD~1</code></td></tr>
@@ -80,7 +80,7 @@
 <tr><td>Keep work made in detached HEAD</td><td><code>git switch -c &lt;name&gt;</code></td></tr></tbody></table></div>
 <p>Full explanations are in the <a href="oh-no.html">Oh no! guide</a>.</p>
 <h2 id="power-tools">Power tools</h2>
-<div class="table"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>git stash push -m &quot;note&quot;</code> · <code>git stash pop</code></td><td>Park work · bring it back</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Power tools"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>git stash push -m &quot;note&quot;</code> · <code>git stash pop</code></td><td>Park work · bring it back</td></tr>
 <tr><td><code>git stash list</code></td><td>See parked work</td></tr>
 <tr><td><code>git cherry-pick &lt;commit&gt;</code></td><td>Copy one commit onto your branch</td></tr>
 <tr><td><code>git bisect start</code> · <code>bad</code> · <code>good &lt;ref&gt;</code> · <code>reset</code></td><td>Binary-search for the commit that broke something</td></tr>
@@ -89,39 +89,55 @@
 <tr><td><code>git tag -a v1.0.0 -m &quot;msg&quot;</code> · <code>git push origin v1.0.0</code></td><td>Tag a release · push the tag</td></tr>
 <tr><td><code>git rm --cached &lt;file&gt;</code></td><td>Stop tracking a file, keep it on disk</td></tr></tbody></table></div>
 <h2 id="refs-ways-to-name-a-commit">Refs: ways to name a commit</h2>
-<div class="table"><table><thead><tr><th>Ref</th><th>Means</th></tr></thead><tbody><tr><td><code>HEAD</code></td><td>Where you are now</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Refs: ways to name a commit"><table><thead><tr><th>Ref</th><th>Means</th></tr></thead><tbody><tr><td><code>HEAD</code></td><td>Where you are now</td></tr>
 <tr><td><code>HEAD~1</code> · <code>HEAD~3</code></td><td>One or three commits back</td></tr>
 <tr><td><code>main^2</code></td><td>The second parent of a merge commit</td></tr>
 <tr><td><code>origin/main</code></td><td>Where main was on GitHub when you last fetched</td></tr>
 <tr><td><code>HEAD@{2}</code></td><td>Where HEAD was two moves ago (from the reflog)</td></tr>
 <tr><td><code>a1b2c3d</code></td><td>Any commit, by the start of its ID</td></tr></tbody></table></div>
 <h2 id="github-cli">GitHub CLI</h2>
-<div class="table"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>gh pr create --fill</code></td><td>Open a PR from the current branch</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: GitHub CLI"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>gh pr create --fill</code></td><td>Open a PR from the current branch</td></tr>
 <tr><td><code>gh pr checkout 123</code></td><td>Check out PR #123 locally</td></tr>
 <tr><td><code>gh pr merge --squash --delete-branch</code></td><td>Merge and tidy up</td></tr>
 <tr><td><code>gh issue create</code> · <code>gh issue list</code></td><td>Create · list issues</td></tr>
 <tr><td><code>gh release create v1.2.0 --generate-notes</code></td><td>Publish a release</td></tr>
 <tr><td><code>gh run watch</code></td><td>Follow an Actions run live</td></tr></tbody></table></div>
-<h2 id="words-that-trip-people-up">Words that trip people up</h2>
-<div class="table"><table><thead><tr><th>Word</th><th>Meaning</th></tr></thead><tbody><tr><td>Working tree</td><td>The files you see and edit</td></tr>
+<h2 id="glossary">Glossary</h2>
+<div class="table" tabindex="0" role="region" aria-label="Table: Glossary"><table><thead><tr><th>Word</th><th>Meaning</th></tr></thead><tbody><tr><td>Repository (repo)</td><td>A project&#39;s folder plus its full history</td></tr>
+<tr><td>Commit</td><td>A saved snapshot, with a message and a pointer to its parent</td></tr>
+<tr><td>Branch</td><td>A movable label pointing at one commit</td></tr>
+<tr><td>HEAD</td><td>Where you are now: usually a branch, sometimes a commit</td></tr>
+<tr><td>Working tree</td><td>The files you see and edit</td></tr>
 <tr><td>Staging area (index)</td><td>What goes into the next commit</td></tr>
-<tr><td>Fast-forward</td><td>Merge by moving the label, with no merge commit</td></tr>
+<tr><td>Clone</td><td>A full copy of a repo on your computer</td></tr>
+<tr><td>Fork</td><td>Your own copy of someone else&#39;s repo, on GitHub</td></tr>
+<tr><td>Remote</td><td>Another copy of the repo, such as <code>origin</code> on GitHub</td></tr>
 <tr><td>Upstream</td><td>The branch or repo yours tracks or came from</td></tr>
+<tr><td>Pull request (PR)</td><td>A request to merge one branch into another, with review</td></tr>
+<tr><td>Merge</td><td>Combine the work of two branches</td></tr>
+<tr><td>Fast-forward</td><td>Merge by moving the label, with no merge commit</td></tr>
+<tr><td>Rebase</td><td>Replay commits on top of another branch, as new commits</td></tr>
+<tr><td>Merge conflict</td><td>Both sides changed the same lines, so Git asks you to choose</td></tr>
+<tr><td>Squash</td><td>Combine several commits into one</td></tr>
 <tr><td>Detached HEAD</td><td>You&#39;re on a commit, not a branch</td></tr>
-<tr><td>Squash</td><td>Combine several commits into one</td></tr></tbody></table></div>
+<tr><td>Reflog</td><td>Git&#39;s local diary of everywhere HEAD has been</td></tr>
+<tr><td>Tag</td><td>A fixed label on a commit, usually a version</td></tr>
+<tr><td>Release</td><td>GitHub&#39;s page for a tag, with notes and downloads</td></tr>
+<tr><td>Action / workflow</td><td>Automation that runs on GitHub when something happens</td></tr></tbody></table></div>
 <p>Practice any of this safely in the <a href="https://cptnope.github.io/github-achievements-academy/sandbox/" rel="noopener">Git sandbox</a>.</p>
 
     </article>
     
     
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/cheat-sheet.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/cheat-sheet.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="oh-no.html"><span>Previous</span>Oh no! Undoing Git mistakes</a>
-    <a class="next" href="troubleshooting.html"><span>Next</span>Troubleshooting</a>
+    <a class="next" href="markdown.html"><span>Next</span>Writing Markdown on GitHub</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group"><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -132,8 +148,8 @@
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -141,8 +157,8 @@
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -151,8 +167,8 @@
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -162,14 +178,15 @@
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group" open><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet" aria-current="page">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

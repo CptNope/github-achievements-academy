@@ -112,15 +112,30 @@ Full explanations are in the [Oh no! guide](oh-no.md).
 | `gh release create v1.2.0 --generate-notes` | Publish a release |
 | `gh run watch` | Follow an Actions run live |
 
-## Words that trip people up
+## Glossary
 
 | Word | Meaning |
 |------|---------|
+| Repository (repo) | A project's folder plus its full history |
+| Commit | A saved snapshot, with a message and a pointer to its parent |
+| Branch | A movable label pointing at one commit |
+| HEAD | Where you are now: usually a branch, sometimes a commit |
 | Working tree | The files you see and edit |
 | Staging area (index) | What goes into the next commit |
-| Fast-forward | Merge by moving the label, with no merge commit |
+| Clone | A full copy of a repo on your computer |
+| Fork | Your own copy of someone else's repo, on GitHub |
+| Remote | Another copy of the repo, such as `origin` on GitHub |
 | Upstream | The branch or repo yours tracks or came from |
-| Detached HEAD | You're on a commit, not a branch |
+| Pull request (PR) | A request to merge one branch into another, with review |
+| Merge | Combine the work of two branches |
+| Fast-forward | Merge by moving the label, with no merge commit |
+| Rebase | Replay commits on top of another branch, as new commits |
+| Merge conflict | Both sides changed the same lines, so Git asks you to choose |
 | Squash | Combine several commits into one |
+| Detached HEAD | You're on a commit, not a branch |
+| Reflog | Git's local diary of everywhere HEAD has been |
+| Tag | A fixed label on a commit, usually a version |
+| Release | GitHub's page for a tag, with notes and downloads |
+| Action / workflow | Automation that runs on GitHub when something happens |
 
 Practice any of this safely in the [Git sandbox](https://cptnope.github.io/github-achievements-academy/sandbox/).

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lesson 0: Setup · GitHub Achievements Academy</title>
-<meta name="description" content="Most &quot;I did it but got no badge&quot; problems come down to setup. Get this right once and everything else just works.">
+<meta name="description" content="This lesson gets you from nothing to ready in about 20 minutes. If you already use Git and GitHub, skim the checklist at the end. Most &quot;I did it but got no">
 <meta name="theme-color" content="#0c0a08">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,48 +26,98 @@
 <div class="page">
   <main id="content" class="lesson">
     <h1>Lesson 0: Setup</h1>
-    
+    <nav class="jump" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#1-git-and-github-are-two-different-things">1. Git and GitHub are two different things</a></li>
+        <li><a href="#2-choose-how-youll-work">2. Choose how you&#39;ll work</a></li>
+        <li><a href="#3-create-your-account-and-link-your-commits-to-it">3. Create your account and link your commits to it</a></li>
+        <li><a href="#4-command-line-route-install-git-and-the-github-cli">4. Command-line route: install Git and the GitHub CLI</a></li>
+        <li><a href="#5-decide-about-private-contributions">5. Decide about private contributions</a></li>
+        <li><a href="#6-make-a-sandbox-repo">6. Make a sandbox repo</a></li>
+        <li><a href="#7-make-sure-achievements-are-visible">7. Make sure achievements are visible</a></li>
+        <li><a href="#checklist">Checklist</a></li>
+      </ul>
+    </nav>
     <article class="prose">
-<p>Most &quot;I did it but got no badge&quot; problems come down to setup. Get this right once and everything else just works.</p>
-<h2 id="1-make-sure-your-commits-are-linked-to-your-account">1. Make sure your commits are linked to your account</h2>
-<p>GitHub credits a commit to you by matching its <strong>author email</strong> to a <strong>verified email</strong> on your account. Unverified or unknown emails don&#39;t count.</p>
-<pre><code class="language-bash">git config --global user.name  &quot;Your Name&quot;
-git config --global user.email &quot;you@example.com&quot;
-git config --global user.email          # print it to double-check
-</code></pre>
-<p>Then go to <strong>Settings → Emails</strong> on GitHub and confirm that this address is listed and <strong>verified</strong>.</p>
+<p>This lesson gets you from nothing to ready in about 20 minutes. If you already use Git and GitHub, skim the checklist at the end. Most &quot;I did it but got no badge&quot; problems come down to step 3.</p>
+<h2 id="1-git-and-github-are-two-different-things">1. Git and GitHub are two different things</h2>
+<div class="table" tabindex="0" role="region" aria-label="Table: 1. Git and GitHub are two different things"><table><thead><tr><th>Compared</th><th>Git</th><th>GitHub</th></tr></thead><tbody><tr><td><strong>What it is</strong></td><td>A program on your computer that tracks changes to files</td><td>A website that hosts Git repositories online</td></tr>
+<tr><td><strong>What it does</strong></td><td>Saves snapshots (commits), branches, merges</td><td>Shares your work, and adds pull requests, issues, reviews, Actions and Pages</td></tr>
+<tr><td><strong>Works offline?</strong></td><td>Yes</td><td>No</td></tr></tbody></table></div>
+<p>You use <strong>Git</strong> to record your work, and <strong>GitHub</strong> to share it and collaborate. A <strong>repository</strong> (repo) is one project&#39;s folder plus its full history. <a href="git-01-how-git-works.html">Git 1</a> explains how Git works inside.</p>
+<h2 id="2-choose-how-youll-work">2. Choose how you&#39;ll work</h2>
+<p>You can do every badge lesson in this course in <strong>any</strong> of these. Pick the one that feels comfortable. You can switch later.</p>
+<div class="table" tabindex="0" role="region" aria-label="Table: 2. Choose how you'll work"><table><thead><tr><th>Option</th><th>Good for</th><th>Get it</th></tr></thead><tbody><tr><td><strong>The github.com website only</strong></td><td>Total beginners, Chromebooks, locked-down work laptops</td><td>Nothing to install. Every lesson has &quot;on github.com&quot; steps</td></tr>
+<tr><td><strong>GitHub Desktop</strong></td><td>People who prefer buttons to commands</td><td><a href="https://desktop.github.com/" rel="noopener">desktop.github.com</a></td></tr>
+<tr><td><strong>VS Code</strong> with its built-in Git panel</td><td>People who already write code in an editor</td><td><a href="https://code.visualstudio.com/" rel="noopener">code.visualstudio.com</a></td></tr>
+<tr><td><strong>The command line</strong> (<code>git</code> and <code>gh</code>)</td><td>Learning Git properly. The Git fundamentals track uses it</td><td>See step 4</td></tr></tbody></table></div>
 <blockquote>
-<p><strong>Privacy tip:</strong> turn on <em>Keep my email addresses private</em>. Then use your no-reply address,
-<code>ID+username@users.noreply.github.com</code> (you&#39;ll find it on that same settings page), as your
-<code>user.email</code>. It still counts toward achievements.</p>
+<p>On any repo page on github.com, press the <strong>.</strong> (full stop) key to open it in a browser
+version of VS Code (github.dev). No install is needed, which is handy for quick edits.</p>
 </blockquote>
-<h2 id="2-install-the-github-cli-optional-but-handy">2. Install the GitHub CLI (optional, but handy)</h2>
-<pre><code class="language-bash"># macOS
+<h2 id="3-create-your-account-and-link-your-commits-to-it">3. Create your account and link your commits to it</h2>
+<ol>
+<li>Sign up at <a href="https://github.com/signup" rel="noopener">github.com</a> if you haven&#39;t, and <strong>turn on two-factor authentication</strong> (<strong>Settings → Password and authentication</strong>). <a href="github-06-security.html">GitHub 6</a> explains why.</li>
+<li>Go to <strong>Settings → Emails</strong> and tick <strong>Keep my email addresses private</strong>. GitHub shows you a private no-reply address like <code>ID+username@users.noreply.github.com</code>.</li>
+</ol>
+<p>GitHub credits a commit to you by matching its <strong>author email</strong> to a <strong>verified email</strong> on your account. If you use the command line, Desktop or VS Code, tell Git who you are (use your no-reply address to keep your real email private):</p>
+<pre tabindex="0"><code class="language-bash">git config --global user.name  &quot;Your Name&quot;
+git config --global user.email &quot;ID+username@users.noreply.github.com&quot;
+git config --global user.email          # print it to double-check</code></pre>
+<p>GitHub Desktop does this for you when you sign in (<strong>Settings → Git</strong>). Commits you make on github.com are always linked correctly.</p>
+<h2 id="4-command-line-route-install-git-and-the-github-cli">4. Command-line route: install Git and the GitHub CLI</h2>
+<p>Skip this step if you&#39;re using only the website or GitHub Desktop.</p>
+<p><strong>Install Git</strong></p>
+<div class="table" tabindex="0" role="region" aria-label="Table: 4. Command-line route: install Git and the GitHub CLI"><table><thead><tr><th>System</th><th>How</th></tr></thead><tbody><tr><td><strong>Windows</strong></td><td>Install <a href="https://git-scm.com/download/win" rel="noopener">Git for Windows</a>. It includes <strong>Git Bash</strong>, a terminal where every command in this course works</td></tr>
+<tr><td><strong>macOS</strong></td><td>Open Terminal and run <code>git --version</code>. If Git isn&#39;t installed, macOS offers to install it. Or use <a href="https://brew.sh/" rel="noopener">Homebrew</a>: <code>brew install git</code></td></tr>
+<tr><td><strong>Linux</strong></td><td>Use your package manager, for example <code>sudo apt install git</code> (Debian/Ubuntu) or <code>sudo dnf install git</code> (Fedora)</td></tr></tbody></table></div>
+<p>Check it worked with <code>git --version</code>.</p>
+<p><strong>Install the GitHub CLI and sign in</strong></p>
+<pre tabindex="0"><code class="language-bash"># macOS
 brew install gh
 # Windows
 winget install --id GitHub.cli
 # Linux: see https://github.com/cli/cli#installation
 
-gh auth login
-</code></pre>
-<h2 id="3-decide-about-private-contributions">3. Decide about private contributions</h2>
-<p>By default, only <strong>public</strong> activity counts toward what&#39;s visible on your profile. If much of your work is in private repos:</p>
+gh auth login        # choose GitHub.com, then HTTPS, then log in with a web browser</code></pre>
+<p><code>gh auth login</code> also sets up Git to push to GitHub without asking for passwords.</p>
+<h3 id="terminal-basics-in-one-minute">Terminal basics in one minute</h3>
+<div class="table" tabindex="0" role="region" aria-label="Table: Terminal basics in one minute"><table><thead><tr><th>Command</th><th>What it does</th></tr></thead><tbody><tr><td><code>pwd</code></td><td>Shows which folder you&#39;re in</td></tr>
+<tr><td><code>ls</code> (or <code>dir</code> in Windows Command Prompt)</td><td>Lists the files here</td></tr>
+<tr><td><code>cd folder-name</code></td><td>Moves into a folder</td></tr>
+<tr><td><code>cd ..</code></td><td>Moves up one folder</td></tr>
+<tr><td><code>mkdir name</code></td><td>Makes a new folder</td></tr>
+<tr><td>Up arrow</td><td>Brings back your last command</td></tr>
+<tr><td><code>Tab</code></td><td>Completes file and folder names</td></tr></tbody></table></div>
+<p>Commands in this course are typed one line at a time. Lines starting with <code>#</code> are comments: you don&#39;t type them.</p>
+<h2 id="5-decide-about-private-contributions">5. Decide about private contributions</h2>
+<p>By default, only <strong>public</strong> activity shows on your profile. If much of your work is in private repos:</p>
 <p><strong>Settings → Public profile → Contributions &amp; activity</strong></p>
 <ul>
 <li><em>Include private contributions on my profile</em></li>
 <li><em>Show private contributions &amp; achievements</em> (wording may vary)</li>
 </ul>
-<p>Private activity shows as anonymized counts. Nobody sees the private repo names.</p>
-<h2 id="4-make-a-sandbox-repo">4. Make a sandbox repo</h2>
+<p>Private activity shows as anonymous counts. Nobody sees the private repo names.</p>
+<h2 id="6-make-a-sandbox-repo">6. Make a sandbox repo</h2>
 <p>Lessons 1 and 2 happen in <strong>your own</strong> repo, so you never create noise in anyone else&#39;s project.</p>
-<pre><code class="language-bash">gh repo create my-github-sandbox --public --add-readme --clone
-cd my-github-sandbox
-</code></pre>
-<p>Or click <strong>New repository</strong> on github.com and tick <em>Add a README file</em>.</p>
-<h2 id="5-make-sure-achievements-are-visible">5. Make sure achievements are visible</h2>
+<p><strong>On github.com:</strong> click <strong>+ → New repository</strong>, name it <code>my-github-sandbox</code>, choose <strong>Public</strong>, tick <strong>Add a README file</strong>, and click <strong>Create repository</strong>.</p>
+<p><strong>With the CLI:</strong></p>
+<pre tabindex="0"><code class="language-bash">gh repo create my-github-sandbox --public --add-readme --clone
+cd my-github-sandbox</code></pre>
+<h2 id="7-make-sure-achievements-are-visible">7. Make sure achievements are visible</h2>
 <p><strong>Settings → Public profile → Achievements</strong>: make sure they aren&#39;t hidden.</p>
-<p><strong>Done?</strong> Move on to <a href="01-quickdraw.html">Lesson 1: Quickdraw</a>.</p>
-<p>You can also run <code>./scripts/coach.sh doctor</code> to check steps 1 and 2 automatically.</p>
+<h2 id="checklist">Checklist</h2>
+<ul>
+<li class="task"><label><input type="checkbox"> <span>I know the difference between Git and GitHub</span></label></li>
+<li class="task"><label><input type="checkbox"> <span>I&#39;ve chosen a way to work: website, Desktop, VS Code or command line</span></label></li>
+<li class="task"><label><input type="checkbox"> <span>Two-factor authentication is on</span></label></li>
+<li class="task"><label><input type="checkbox"> <span>My commit email is my verified email or my no-reply address</span></label></li>
+<li class="task"><label><input type="checkbox"> <span>I have a sandbox repo</span></label></li>
+<li class="task"><label><input type="checkbox"> <span>Achievements are visible on my profile</span></label></li>
+</ul>
+<p>Using the command line? Run <code>./scripts/coach.sh doctor</code> from a clone of this repo to check your Git identity and GitHub login automatically.</p>
+<p>Next: <a href="01-quickdraw.html">Lesson 1: Quickdraw</a>. Brand new to Git? Do <a href="git-01-how-git-works.html">Git 1</a> and <a href="git-02-everyday-loop.html">Git 2</a> first. They&#39;re short and make everything else easier.</p>
 
     </article>
     <section class="quiz" aria-labelledby="quiz-h">
@@ -103,14 +153,15 @@ cd my-github-sandbox
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>Your commit email isn't a verified email on your GitHub account: GitHub links commits to you by matching the author email to a verified email (or your no-reply address).</li><li>Your GitHub no-reply address: The ID+username@users.noreply.github.com address keeps your real email private and still counts.</li><li>In a sandbox repo you own: Practicing in your own repo means you never create noise in anyone else's project.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/00-setup.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/00-setup.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
-    <span></span>
+    <a class="prev" href="start-here.html"><span>Previous</span>Start here</a>
     <a class="next" href="01-quickdraw.html"><span>Next</span>Lesson 1: Quickdraw</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group" open><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup" aria-current="page"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -121,8 +172,8 @@ cd my-github-sandbox
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -130,8 +181,8 @@ cd my-github-sandbox
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -140,8 +191,8 @@ cd my-github-sandbox
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -151,14 +202,15 @@ cd my-github-sandbox
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

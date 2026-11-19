@@ -15,6 +15,12 @@
 - [ ] 6 · Starstruck
 - [ ] 7 · Public Sponsor
 
+Optional tracks:
+
+- [ ] Git fundamentals
+- [ ] GitHub skills
+- [ ] Repo recipes
+
 ## What I learned
 
 <!-- Add one line each time you finish a lesson. For example:

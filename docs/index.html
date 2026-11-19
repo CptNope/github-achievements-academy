@@ -31,6 +31,8 @@ body{margin:0;font-size:var(--step-body);line-height:1.45;letter-spacing:-0.01em
 a{color:inherit}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 ::selection{background:var(--accent);color:var(--accent-ink)}
+.skip{position:absolute;left:var(--m);top:-60px;background:var(--accent);color:var(--accent-ink);padding:10px 16px;font-weight:700;z-index:10;text-decoration:none}
+.skip:focus{top:12px}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .wrap{padding-inline:var(--m)}
 .grid{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px}
@@ -203,6 +205,10 @@ p{margin:0}
 }
 /* PHONE */
 @media (max-width:600px){
+  .grid,.fragments{grid-template-columns:minmax(0,1fr);column-gap:0}
+  .grid > *,.fragments > *{grid-column:1/-1 !important}
+  .ui{overflow-wrap:anywhere}
+  .git li a{flex-wrap:wrap;gap:4px 16px;font-size:clamp(1.25rem,6.4vw,1.75rem)}
   .hero{grid-template-rows:auto auto auto 1fr}
   .hero-top{flex-direction:column-reverse;gap:28px}
   .hero{min-height:auto;row-gap:32px}
@@ -230,12 +236,13 @@ p{margin:0}
 </style>
 </head>
 <body>
+<a class="skip" href="#about">Skip to content</a>
 
 <header class="hero" id="top">
   <div class="hero-top">
     <div>
       <p>Learn real Git and GitHub skills. Earn every badge honestly.</p>
-      <a class="btn" href="learn/00-setup.html">Start with lesson 0</a>
+      <a class="btn" href="learn/start-here.html">Start here</a>
     </div>
     <nav class="corner-links" aria-label="Main">
       <a class="link" href="learn/">Lessons</a>

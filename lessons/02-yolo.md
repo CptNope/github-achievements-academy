@@ -10,6 +10,18 @@ The badge's name is a wink: **on a team, skipping review is risky.** This lesson
 
 ## Exercise (in your sandbox repo)
 
+### On github.com
+
+1. Open your sandbox repo and click **README.md**, then the pencil icon (**Edit this file**).
+2. Add a line at the end, such as `## About` and a sentence about your sandbox.
+3. Click **Commit changes…**, choose **Create a new branch for this commit and start a pull request**, name the branch `add-about-section`, and click **Propose changes**.
+4. On the next screen, click **Create pull request**.
+5. Without asking anyone to review it, click **Merge pull request → Confirm merge**, then **Delete branch**.
+
+That merge, with no review, is what earns YOLO.
+
+### With the command line
+
 ```bash
 cd my-github-sandbox
 git switch -c add-about-section          # 1. create a branch

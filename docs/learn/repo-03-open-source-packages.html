@@ -42,14 +42,14 @@
     <article class="prose">
 <p>A library is code other people install and build on: an npm package, a Python module, a PHP library. Your users depend on it not breaking, so the setup focuses on <strong>stability, clear releases and safe publishing</strong>.</p>
 <h2 id="whats-different-from-a-personal-project">What&#39;s different from a personal project</h2>
-<div class="table"><table><thead><tr><th>Concern</th><th>What to set up</th></tr></thead><tbody><tr><td>People depend on your API</td><td>Semantic versioning, a changelog, and loud warnings about breaking changes (<a href="github-05-releases.html">GitHub 5</a>)</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: What's different from a personal project"><table><thead><tr><th>Concern</th><th>What to set up</th></tr></thead><tbody><tr><td>People depend on your API</td><td>Semantic versioning, a changelog, and loud warnings about breaking changes (<a href="github-05-releases.html">GitHub 5</a>)</td></tr>
 <tr><td>Contributors you&#39;ve never met</td><td>CONTRIBUTING.md, CODE_OF_CONDUCT.md, issue forms, a PR template</td></tr>
 <tr><td>It must work everywhere users run it</td><td>CI that tests several versions of your language and runtime</td></tr>
 <tr><td>Publishing is a target for attackers</td><td>Publish from CI with <strong>trusted publishing</strong>, not a token on your laptop</td></tr>
 <tr><td>Support questions</td><td>Discussions for Q&amp;A, so issues stay for bugs</td></tr></tbody></table></div>
 <h2 id="test-against-what-your-users-run">Test against what your users run</h2>
 <p>Use a <strong>matrix</strong> in your CI workflow to test several versions in parallel:</p>
-<pre><code class="language-yaml">jobs:
+<pre tabindex="0"><code class="language-yaml">jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -62,8 +62,7 @@
         with:
           node-version: ${{ matrix.node }}
       - run: npm ci
-      - run: npm test
-</code></pre>
+      - run: npm test</code></pre>
 <p>Then make the tests a <strong>required status check</strong> in your ruleset, so nothing merges red.</p>
 <h2 id="publish-from-ci-with-trusted-publishing">Publish from CI with trusted publishing</h2>
 <p>The old way was to store a long-lived registry token as a secret. If it leaks, anyone can publish a malicious version of your package. <strong>Trusted publishing</strong> replaces the token: the registry trusts one specific workflow in one specific repo, using short-lived OIDC credentials.</p>
@@ -72,7 +71,7 @@
 <li>On npmjs.com, open your package → <strong>Settings → Trusted publishing</strong>, and add your GitHub user or org, repo and workflow file name.</li>
 <li>Publish from a workflow like this, triggered when you publish a GitHub release:</li>
 </ol>
-<pre><code class="language-yaml">name: Publish
+<pre tabindex="0"><code class="language-yaml">name: Publish
 on:
   release:
     types: [published]
@@ -92,11 +91,10 @@ jobs:
           node-version: 24   # trusted publishing needs npm 11.5.1+ (Node 22.14+)
       - run: npm ci
       - run: npm test
-      - run: npm publish
-</code></pre>
+      - run: npm publish</code></pre>
 <p>Check the registry&#39;s current docs when you set this up (<a href="https://docs.npmjs.com/trusted-publishers" rel="noopener">npm</a>, <a href="https://docs.pypi.org/trusted-publishers/" rel="noopener">PyPI</a>), because details like minimum versions change. Packages published this way also get <strong>provenance</strong>, a public record that links each version to the exact commit and workflow that built it.</p>
 <h2 id="files-a-library-needs-on-top-of-the-foundations">Files a library needs on top of the foundations</h2>
-<div class="table"><table><thead><tr><th>File</th><th>Purpose</th></tr></thead><tbody><tr><td><code>CHANGELOG.md</code></td><td>Every version, newest first, with breaking changes called out</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Files a library needs on top of the foundations"><table><thead><tr><th>File</th><th>Purpose</th></tr></thead><tbody><tr><td><code>CHANGELOG.md</code></td><td>Every version, newest first, with breaking changes called out</td></tr>
 <tr><td><code>CONTRIBUTING.md</code></td><td>How to set up the dev environment, run tests, and what PRs you want</td></tr>
 <tr><td><code>CODE_OF_CONDUCT.md</code></td><td>Expected behavior, and how to report problems</td></tr>
 <tr><td><code>SECURITY.md</code> + private vulnerability reporting</td><td>So vulnerabilities aren&#39;t disclosed in public issues</td></tr>
@@ -166,14 +164,15 @@ jobs:
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>A long-lived registry token stored as a secret: The registry trusts one specific workflow using short-lived OIDC credentials, so there's no token to leak.</li><li>id-token: write: id-token: write lets GitHub Actions issue the OIDC token the registry verifies.</li><li>Runs tests across several versions or operating systems in parallel: Your users run different versions, so test the ones you support.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/repos/03-open-source-packages.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/repos/03-open-source-packages.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="repo-02-personal-projects.html"><span>Previous</span>Repo 2: Personal projects and portfolio pieces</a>
     <a class="next" href="repo-04-websites-and-docs.html"><span>Next</span>Repo 4: Websites and documentation sites</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group"><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -184,8 +183,8 @@ jobs:
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -193,8 +192,8 @@ jobs:
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -203,8 +202,8 @@ jobs:
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group" open><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -214,14 +213,15 @@ jobs:
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

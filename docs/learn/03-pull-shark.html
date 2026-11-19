@@ -29,7 +29,7 @@
     
     <article class="prose">
 <p><strong>Badge:</strong> have pull requests <strong>merged</strong>.</p>
-<div class="table"><table><thead><tr><th>Tier</th><th style="text-align:right">Merged PRs</th></tr></thead><tbody><tr><td>Base</td><td style="text-align:right">2</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Lesson 3: Pull Shark"><table><thead><tr><th>Tier</th><th style="text-align:right">Merged PRs</th></tr></thead><tbody><tr><td>Base</td><td style="text-align:right">2</td></tr>
 <tr><td>Bronze</td><td style="text-align:right">16</td></tr>
 <tr><td>Silver</td><td style="text-align:right">128</td></tr>
 <tr><td>Gold</td><td style="text-align:right">1024</td></tr></tbody></table></div>
@@ -39,26 +39,42 @@
 <p>Only PRs <strong>merged into the parent repo</strong> count. Commits that stay in your fork don&#39;t.</p>
 </blockquote>
 <h2 id="exercise-join-the-learners-wall-earns-the-base-tier">Exercise: join the Learners Wall (earns the base tier)</h2>
-<h3 id="pr-1-create-your-page">PR #1: create your page</h3>
-<pre><code class="language-bash">gh repo fork CptNope/github-achievements-academy --clone
+<p>You&#39;ll open two pull requests to this repo: one to create your page, and one to update it after your next lesson. Use whichever route you chose in <a href="00-setup.html#2-choose-how-youll-work">Lesson 0</a>.</p>
+<h3 id="on-githubcom">On github.com</h3>
+<p><strong>PR #1: create your page</strong></p>
+<ol>
+<li>Open <a href="https://github.com/CptNope/github-achievements-academy" rel="noopener">the academy repo</a> and click <strong>Fork → Create fork</strong>. You now have your own copy.</li>
+<li>In <strong>your fork</strong>, open the <code>learners</code> folder and click <strong>Add file → Create new file</strong>.</li>
+<li>Name it <code>&lt;your-username&gt;.md</code>, all lowercase (for example <code>janedoe.md</code>).</li>
+<li>Copy the contents of <a href="https://github.com/CptNope/github-achievements-academy/blob/main/learners/_TEMPLATE.md" rel="noopener"><code>_TEMPLATE.md</code></a> into it, change the first line to <code># @YourUsername</code>, and fill in <strong>About me</strong>.</li>
+<li>Click <strong>Commit changes…</strong> and commit directly to your fork&#39;s <code>main</code> branch.</li>
+<li>Back on your fork&#39;s main page, click <strong>Contribute → Open pull request</strong>, then <strong>Create pull request</strong>.</li>
+</ol>
+<p><strong>PR #2: after your next lesson</strong> (wait until PR #1 is merged, or your edits will join PR #1)</p>
+<ol>
+<li>On your fork&#39;s main page, click <strong>Sync fork → Update branch</strong> to pick up changes from the academy.</li>
+<li>Open your file, click the pencil icon, tick the lesson you finished, and add a line under <strong>What I learned</strong>.</li>
+<li>Commit, then <strong>Contribute → Open pull request</strong> again.</li>
+</ol>
+<h3 id="with-the-command-line">With the command line</h3>
+<p><strong>PR #1: create your page</strong></p>
+<pre tabindex="0"><code class="language-bash">gh repo fork CptNope/github-achievements-academy --clone
 cd github-achievements-academy
 git switch -c add-&lt;your-username&gt;
 cp learners/_TEMPLATE.md learners/&lt;your-username&gt;.md    # use your exact GitHub username, lowercase
-# edit the file: tell us about yourself and tick the lessons you&#39;ve done
+# edit the file: tell us about yourself and tick the lessons you've done
 git add learners/&lt;your-username&gt;.md
 git commit -m &quot;learners: add &lt;your-username&gt;&quot;
 git push -u origin add-&lt;your-username&gt;
-gh pr create --fill
-</code></pre>
-<p>An automated check verifies your PR. Then a maintainer reviews and merges it. ### PR #2: after your next lesson</p>
-<pre><code class="language-bash">git switch main
+gh pr create --fill</code></pre>
+<p>An automated check verifies your PR. Then a maintainer reviews and merges it. <strong>PR #2: after your next lesson</strong></p>
+<pre tabindex="0"><code class="language-bash">git switch main
 git pull upstream main          # gh sets up &quot;upstream&quot; when you fork with --clone
 git switch -c update-&lt;your-username&gt;
 # tick the new lesson and write one sentence about what you learned
 git commit -am &quot;learners: update &lt;your-username&gt; progress&quot;
 git push -u origin update-&lt;your-username&gt;
-gh pr create --fill
-</code></pre>
+gh pr create --fill</code></pre>
 <p>Once two of your PRs are merged, you&#39;ll get the base badge.</p>
 <h2 id="going-further-honestly-bronze-and-beyond">Going further, honestly (Bronze and beyond)</h2>
 <p>Higher tiers come from being a <strong>real contributor</strong>. Good places to start:</p>
@@ -111,14 +127,15 @@ gh pr create --fill
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>2: The tiers are 2, 16, 128 and 1024 merged pull requests.</li><li>No, only PRs merged into the parent repo count: Work that stays in your fork doesn't count until it's merged upstream.</li><li>Real fixes, docs and features in projects you use: Bulk or empty PRs are the spam GitHub's policies prohibit, and maintainers notice.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/03-pull-shark.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/03-pull-shark.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="02-yolo.html"><span>Previous</span>Lesson 2: YOLO</a>
     <a class="next" href="04-pair-extraordinaire.html"><span>Next</span>Lesson 4: Pair Extraordinaire</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group" open><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -129,8 +146,8 @@ gh pr create --fill
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -138,8 +155,8 @@ gh pr create --fill
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -148,8 +165,8 @@ gh pr create --fill
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -159,14 +176,15 @@ gh pr create --fill
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

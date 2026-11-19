@@ -84,7 +84,7 @@ Each badge here is treated as a **lesson**. You'll learn the real-world skill be
 ## 🚀 Start here
 
 1. Star ⭐ this repo *only if you find it useful* (seriously, that's the whole philosophy).
-2. Work through [Lesson 0: Setup](lessons/00-setup.md).
+2. Read [Start here](lessons/start-here.md) to pick a path, then work through [Lesson 0: Setup](lessons/00-setup.md).
 3. Optional: use the guided coach script, which explains every command before it runs:
    ```bash
    ./scripts/coach.sh help

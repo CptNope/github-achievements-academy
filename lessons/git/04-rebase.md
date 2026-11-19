@@ -29,7 +29,7 @@ E' and F' have the same changes as E and F, but they're **new commits with new I
 
 ## Merge or rebase?
 
-| | `git merge main` | `git rebase main` |
+| Compared | `git merge main` | `git rebase main` |
 |---|---|---|
 | History | Keeps exactly what happened, plus a merge commit | Straight line, as if you started today |
 | Rewrites commits? | No | Yes, so your commits get new IDs |

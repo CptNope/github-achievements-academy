@@ -43,20 +43,17 @@
 <p>Rebasing has a scary reputation, but it does one simple thing: <strong>it replays your commits on top of a different starting point.</strong> Learn the one rule below and it becomes one of your favorite tools.</p>
 <h2 id="what-rebase-does">What rebase does</h2>
 <p>Your branch started from commit B, but <code>main</code> has moved on:</p>
-<pre><code>A ← B ← C ← D          ← main
-E ← F           ← my-feature
-</code></pre>
-<pre><code class="language-bash">git switch my-feature
-git rebase main
-</code></pre>
+<pre tabindex="0"><code>A ← B ← C ← D          ← main
+E ← F           ← my-feature</code></pre>
+<pre tabindex="0"><code class="language-bash">git switch my-feature
+git rebase main</code></pre>
 <p>Git takes your commits E and F, sets them aside, moves your branch to the tip of <code>main</code>, then replays them one by one:</p>
-<pre><code>A ← B ← C ← D          ← main
-E&#39; ← F&#39; ← my-feature
-</code></pre>
+<pre tabindex="0"><code>A ← B ← C ← D          ← main
+E' ← F' ← my-feature</code></pre>
 <p>E&#39; and F&#39; have the same changes as E and F, but they&#39;re <strong>new commits with new IDs</strong>, because their parent changed. Remember that, because it&#39;s why the golden rule exists.</p>
 <p><strong>Watch it:</strong> in the <a href="https://cptnope.github.io/github-achievements-academy/sandbox/?level=rebase" rel="noopener">rebase sandbox challenge</a> your old commits fade out and new ones appear on top of <code>main</code>.</p>
 <h2 id="merge-or-rebase">Merge or rebase?</h2>
-<div class="table"><table><thead><tr><th></th><th><code>git merge main</code></th><th><code>git rebase main</code></th></tr></thead><tbody><tr><td>History</td><td>Keeps exactly what happened, plus a merge commit</td><td>Straight line, as if you started today</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Merge or rebase?"><table><thead><tr><th>Compared</th><th><code>git merge main</code></th><th><code>git rebase main</code></th></tr></thead><tbody><tr><td>History</td><td>Keeps exactly what happened, plus a merge commit</td><td>Straight line, as if you started today</td></tr>
 <tr><td>Rewrites commits?</td><td>No</td><td>Yes, so your commits get new IDs</td></tr>
 <tr><td>Conflicts</td><td>Resolved once</td><td>Resolved per commit, which can mean several times</td></tr>
 <tr><td>Safe on shared branches?</td><td>Yes</td><td><strong>Only if nobody else uses the branch</strong></td></tr></tbody></table></div>
@@ -66,30 +63,25 @@ E&#39; ← F&#39; ← my-feature
 <p><strong>Never rebase commits that other people have already based work on.</strong></p>
 </blockquote>
 <p>Rebasing creates new commits. If a teammate built on the old ones, their history and yours no longer match, and everyone has a bad afternoon. Rebasing your <em>own</em> feature branch, even after pushing it for a PR, is normal. Just update the remote safely:</p>
-<pre><code class="language-bash">git push --force-with-lease
-</code></pre>
+<pre tabindex="0"><code class="language-bash">git push --force-with-lease</code></pre>
 <p><code>--force-with-lease</code> refuses to overwrite the remote if someone else pushed in the meantime. <strong>Never use plain <code>--force</code> on shared branches.</strong></p>
 <h2 id="conflicts-during-a-rebase">Conflicts during a rebase</h2>
 <p>Conflicts appear one commit at a time. For each one:</p>
-<pre><code class="language-bash"># fix the file(s), then:
+<pre tabindex="0"><code class="language-bash"># fix the file(s), then:
 git add &lt;file&gt;
-git rebase --continue
-</code></pre>
+git rebase --continue</code></pre>
 <p>Other options:</p>
-<pre><code class="language-bash">git rebase --skip     # drop this commit entirely (rarely what you want)
-git rebase --abort    # cancel and go back to exactly where you started
-</code></pre>
+<pre tabindex="0"><code class="language-bash">git rebase --skip     # drop this commit entirely (rarely what you want)
+git rebase --abort    # cancel and go back to exactly where you started</code></pre>
 <h2 id="interactive-rebase-tidy-up-before-you-share">Interactive rebase: tidy up before you share</h2>
 <p>Before opening a PR, you can clean up messy local history (&quot;wip&quot;, &quot;fix typo&quot;, &quot;actually fix it&quot;):</p>
-<pre><code class="language-bash">git rebase -i main
-</code></pre>
+<pre tabindex="0"><code class="language-bash">git rebase -i main</code></pre>
 <p>Git opens a list of your commits, oldest first:</p>
-<pre><code>pick 1a2b3c4 Add search box
+<pre tabindex="0"><code>pick 1a2b3c4 Add search box
 pick 5d6e7f8 wip
-pick 9a8b7c6 fix typo in search
-</code></pre>
+pick 9a8b7c6 fix typo in search</code></pre>
 <p>Change the word at the start of each line:</p>
-<div class="table"><table><thead><tr><th>Command</th><th>Effect</th></tr></thead><tbody><tr><td><code>pick</code></td><td>keep the commit as is</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Interactive rebase: tidy up before you share"><table><thead><tr><th>Command</th><th>Effect</th></tr></thead><tbody><tr><td><code>pick</code></td><td>keep the commit as is</td></tr>
 <tr><td><code>reword</code></td><td>keep it, but edit the message</td></tr>
 <tr><td><code>squash</code></td><td>combine with the commit above, and edit the combined message</td></tr>
 <tr><td><code>fixup</code></td><td>combine with the commit above, keeping the message above</td></tr>
@@ -97,13 +89,11 @@ pick 9a8b7c6 fix typo in search
 <p>You can also reorder lines to reorder commits. Save and close, and Git does the rest. Mistake? <code>git rebase --abort</code>, or see the <a href="oh-no.html#i-messed-up-a-rebase">&quot;Oh no&quot; guide</a>.</p>
 <h3 id="the-pro-shortcut-fixup-commits">The pro shortcut: fixup commits</h3>
 <p>Noticed a bug in a commit from earlier on your branch?</p>
-<pre><code class="language-bash">git commit --fixup 1a2b3c4          # makes a commit titled &quot;fixup! Add search box&quot;
-git rebase -i --autosquash main     # it&#39;s already placed and marked as fixup, so just save
-</code></pre>
+<pre tabindex="0"><code class="language-bash">git commit --fixup 1a2b3c4          # makes a commit titled &quot;fixup! Add search box&quot;
+git rebase -i --autosquash main     # it's already placed and marked as fixup, so just save</code></pre>
 <h2 id="keep-pull-from-making-messy-merges">Keep pull from making messy merges</h2>
 <p>By default <code>git pull</code> can create &quot;Merge branch &#39;main&#39; of github.com…&quot; commits when your local branch and GitHub&#39;s have both moved. Many people prefer:</p>
-<pre><code class="language-bash">git config --global pull.rebase true
-</code></pre>
+<pre tabindex="0"><code class="language-bash">git config --global pull.rebase true</code></pre>
 <p>Now <code>git pull</code> rebases your local commits on top of what you fetched.</p>
 <h2 id="exercise-in-your-sandbox">Exercise (in your sandbox)</h2>
 <ol>
@@ -153,14 +143,15 @@ git rebase -i --autosquash main     # it&#39;s already placed and marked as fixu
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>Replays them on a new base as new commits with new IDs: Same changes, new parents, so new IDs. That's why the golden rule exists.</li><li>Never rebase commits others have already based work on: Rewriting shared history breaks your teammates' copies.</li><li>git push --force-with-lease: --force-with-lease refuses to overwrite commits you haven't seen.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/04-rebase.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/04-rebase.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="git-03-branching-and-merging.html"><span>Previous</span>Git 3: Branching and merging</a>
     <a class="next" href="git-05-remotes.html"><span>Next</span>Git 5: Remotes, fetch, pull and push</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group"><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -171,8 +162,8 @@ git rebase -i --autosquash main     # it&#39;s already placed and marked as fixu
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group" open><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -180,8 +171,8 @@ git rebase -i --autosquash main     # it&#39;s already placed and marked as fixu
         <li><a href="git-04-rebase.html" data-page="git-04-rebase" aria-current="page"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -190,8 +181,8 @@ git rebase -i --autosquash main     # it&#39;s already placed and marked as fixu
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -201,14 +192,15 @@ git rebase -i --autosquash main     # it&#39;s already placed and marked as fixu
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

@@ -57,15 +57,14 @@
 <li>Tick <strong>Viewed</strong> on each file as you go, so you can track your progress.</li>
 <li>Finish with <strong>Review changes</strong>:</li>
 </ul>
-<div class="table"><table><thead><tr><th>Choice</th><th>Meaning</th></tr></thead><tbody><tr><td>Comment</td><td>General feedback, no verdict</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Reviewing: the mechanics"><table><thead><tr><th>Choice</th><th>Meaning</th></tr></thead><tbody><tr><td>Comment</td><td>General feedback, no verdict</td></tr>
 <tr><td>Approve</td><td>Good to merge</td></tr>
 <tr><td>Request changes</td><td>Must be addressed before merging</td></tr></tbody></table></div>
 <h3 id="suggested-changes">Suggested changes</h3>
 <p>For small fixes, suggest the exact code. The author can apply it with one click:</p>
-<pre><code class="language-markdown">```suggestion
+<pre tabindex="0"><code class="language-markdown">```suggestion
 const total = items.reduce((sum, item) =&gt; sum + item.price, 0);
-```
-</code></pre>
+```</code></pre>
 <h2 id="reviewing-the-human-part">Reviewing: the human part</h2>
 <ul>
 <li><strong>Review the code, not the person.</strong> &quot;This loop runs twice&quot; beats &quot;You wrote this wrong&quot;.</li>
@@ -85,15 +84,14 @@ const total = items.reduce((sum, item) =&gt; sum + item.price, 0);
 </ul>
 <h2 id="codeowners-automatic-reviewers">CODEOWNERS: automatic reviewers</h2>
 <p>A <code>CODEOWNERS</code> file (in <code>.github/</code>, the root, or <code>docs/</code>) requests reviews from the right people automatically:</p>
-<pre><code># Everything: the core team
+<pre tabindex="0"><code># Everything: the core team
 *               @your-org/core
 
 # Docs: the docs team
 /docs/          @your-org/docs
 
 # Payments code: two named people
-/src/payments/  @alice @bob
-</code></pre>
+/src/payments/  @alice @bob</code></pre>
 <p>Later lines take priority. Combine it with the ruleset option <em>Require review from Code Owners</em> for sensitive areas.</p>
 <h2 id="exercise">Exercise</h2>
 <ol>
@@ -144,14 +142,15 @@ const total = items.reduce((sum, item) =&gt; sum + item.price, 0);
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>A small, focused PR with a clear description: Small, focused PRs get faster and more thorough reviews.</li><li>A suggestion block in a review comment: A ```suggestion block shows an Apply button to the author.</li><li>Requests reviews from the right people automatically: Matching paths automatically request reviews from their owners.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/github/03-code-review.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/github/03-code-review.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="github-02-issues-and-projects.html"><span>Previous</span>GitHub 2: Issues and Projects</a>
     <a class="next" href="github-04-actions.html"><span>Next</span>GitHub 4: Automate with Actions</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group"><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -162,8 +161,8 @@ const total = items.reduce((sum, item) =&gt; sum + item.price, 0);
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -171,8 +170,8 @@ const total = items.reduce((sum, item) =&gt; sum + item.price, 0);
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group" open><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -181,8 +180,8 @@ const total = items.reduce((sum, item) =&gt; sum + item.price, 0);
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -192,14 +191,15 @@ const total = items.reduce((sum, item) =&gt; sum + item.price, 0);
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

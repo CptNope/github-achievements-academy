@@ -43,7 +43,7 @@
 <p>GitHub Actions runs code for you when something happens in your repo: run tests on every pull request, deploy when you merge, label new issues. Public repos get it free on GitHub&#39;s runners, and private repos get a monthly allowance of free minutes.</p>
 <h2 id="the-anatomy-of-a-workflow">The anatomy of a workflow</h2>
 <p>Workflows are YAML files in <code>.github/workflows/</code>. Here&#39;s a complete one that runs tests on every PR and every push to <code>main</code>:</p>
-<pre><code class="language-yaml">name: CI                       # shown in the Actions tab and on PRs
+<pre tabindex="0"><code class="language-yaml">name: CI                       # shown in the Actions tab and on PRs
 
 on:                            # WHEN it runs
   pull_request:
@@ -62,9 +62,8 @@ jobs:
         with:
           node-version: 22
       - run: npm ci                        # a shell command
-      - run: npm test
-</code></pre>
-<div class="table"><table><thead><tr><th>Piece</th><th>What it is</th></tr></thead><tbody><tr><td><code>on</code></td><td>The trigger: <code>push</code>, <code>pull_request</code>, <code>schedule</code> (cron), <code>workflow_dispatch</code> (a manual button), <code>release</code>, <code>issues</code>…</td></tr>
+      - run: npm test</code></pre>
+<div class="table" tabindex="0" role="region" aria-label="Table: The anatomy of a workflow"><table><thead><tr><th>Piece</th><th>What it is</th></tr></thead><tbody><tr><td><code>on</code></td><td>The trigger: <code>push</code>, <code>pull_request</code>, <code>schedule</code> (cron), <code>workflow_dispatch</code> (a manual button), <code>release</code>, <code>issues</code>…</td></tr>
 <tr><td><code>jobs</code></td><td>One or more jobs. They run in parallel unless you add <code>needs: other-job</code></td></tr>
 <tr><td><code>runs-on</code></td><td>The machine: <code>ubuntu-latest</code>, <code>windows-latest</code> or <code>macos-latest</code></td></tr>
 <tr><td><code>uses</code></td><td>Run a reusable action from the <a href="https://github.com/marketplace?type=actions" rel="noopener">Marketplace</a></td></tr>
@@ -82,19 +81,17 @@ jobs:
 <p>Notice how both set <code>permissions: contents: read</code> and use the <code>pull_request</code> trigger. That&#39;s deliberate, and the security section below explains why.</p>
 <h2 id="secrets-and-variables">Secrets and variables</h2>
 <p>Need an API key in a workflow? <strong>Never put it in the YAML.</strong> Add it under <strong>Settings → Secrets and variables → Actions</strong>, then use it:</p>
-<pre><code class="language-yaml">      - run: ./deploy.sh
+<pre tabindex="0"><code class="language-yaml">      - run: ./deploy.sh
         env:
-          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
-</code></pre>
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}</code></pre>
 <p>GitHub masks secret values in logs. Non-secret settings go in <strong>Variables</strong> and are read with <code>${{ vars.NAME }}</code>.</p>
 <h2 id="workflow-security-in-four-rules">Workflow security in four rules</h2>
 <ol>
 <li><strong>Set <code>permissions:</code> to the minimum.</strong> Start with <code>contents: read</code> and add only what a job needs.</li>
 <li><strong>Be careful with <code>pull_request_target</code>.</strong> It runs with write access and secrets, even for PRs from forks. Never check out and run a fork&#39;s code in it.</li>
-<li><strong>Never put untrusted text straight into <code>run:</code>.</strong> Issue titles, PR bodies and branch names can contain shell commands. Pass them through <code>env:</code> instead:<pre><code class="language-yaml">- run: echo &quot;Title: $TITLE&quot;
+<li><strong>Never put untrusted text straight into <code>run:</code>.</strong> Issue titles, PR bodies and branch names can contain shell commands. Pass them through <code>env:</code> instead:<pre tabindex="0"><code class="language-yaml">- run: echo &quot;Title: $TITLE&quot;
   env:
-    TITLE: ${{ github.event.issue.title }}
-</code></pre>
+    TITLE: ${{ github.event.issue.title }}</code></pre>
 </li>
 <li><strong>Pin third-party actions</strong> to a full commit SHA for high-security repos (<code>uses: owner/action@&lt;40-char-sha&gt;</code>), so a compromised tag can&#39;t change what runs.</li>
 </ol>
@@ -151,14 +148,15 @@ jobs:
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>.github/workflows/: GitHub only runs YAML files in .github/workflows/.</li><li>In Settings → Secrets and variables → Actions: Secrets are encrypted and masked in logs. Never put them in the YAML.</li><li>The title could contain shell commands that would run: Untrusted text placed directly into a script is a classic injection risk.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/github/04-actions.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/github/04-actions.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="github-03-code-review.html"><span>Previous</span>GitHub 3: Code review</a>
     <a class="next" href="github-05-releases.html"><span>Next</span>GitHub 5: Releases and versioning</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group"><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -169,8 +167,8 @@ jobs:
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -178,8 +176,8 @@ jobs:
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group" open><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -188,8 +186,8 @@ jobs:
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -199,14 +197,15 @@ jobs:
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

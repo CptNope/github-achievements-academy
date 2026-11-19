@@ -29,18 +29,17 @@
     
     <article class="prose">
 <p><strong>Badge:</strong> co-author commits in <strong>merged</strong> pull requests.</p>
-<div class="table"><table><thead><tr><th>Tier</th><th style="text-align:right">Co-authored merged PRs</th></tr></thead><tbody><tr><td>Base</td><td style="text-align:right">1</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Lesson 4: Pair Extraordinaire"><table><thead><tr><th>Tier</th><th style="text-align:right">Co-authored merged PRs</th></tr></thead><tbody><tr><td>Base</td><td style="text-align:right">1</td></tr>
 <tr><td>Bronze</td><td style="text-align:right">10</td></tr>
 <tr><td>Silver</td><td style="text-align:right">24</td></tr>
 <tr><td>Gold</td><td style="text-align:right">48</td></tr></tbody></table></div>
 <h2 id="the-real-skill-pair-programming-and-giving-credit">The real skill: pair programming and giving credit</h2>
 <p>When two people write code together, whether on a call, at one keyboard, or by passing a branch back and forth, Git can credit <strong>both</strong> of them. You add a <code>Co-authored-by</code> trailer at the end of the commit message:</p>
-<pre><code>feat: add dark mode toggle
+<pre tabindex="0"><code>feat: add dark mode toggle
 
-Implemented together during Friday&#39;s pairing session.
+Implemented together during Friday's pairing session.
 
-Co-authored-by: Sam Rivera &lt;12345678+samrivera@users.noreply.github.com&gt;
-</code></pre>
+Co-authored-by: Sam Rivera &lt;12345678+samrivera@users.noreply.github.com&gt;</code></pre>
 <p>Rules for the trailer:</p>
 <ul>
 <li>It goes at the <strong>very end</strong> of the message, after a <strong>blank line</strong>.</li>
@@ -52,8 +51,7 @@ Co-authored-by: Sam Rivera &lt;12345678+samrivera@users.noreply.github.com&gt;
 <li>Find a partner: a coworker, a friend, or someone from this repo&#39;s <a href="https://github.com/CptNope/github-achievements-academy/discussions" rel="noopener">Discussions</a>. Post in <strong>General</strong> with the title <code>Looking for a pair</code> and say which repo or task you&#39;d like to work on.</li>
 <li>Pick a small, real task in either of your repos, like a feature, a test or a doc page.</li>
 <li>Work on it <strong>together</strong> over a screen share. Take turns driving.</li>
-<li>Commit with the trailer:<pre><code class="language-bash">git commit -m &quot;docs: add install guide&quot; -m &quot;Co-authored-by: Name &lt;id+user@users.noreply.github.com&gt;&quot;
-</code></pre>
+<li>Commit with the trailer:<pre tabindex="0"><code class="language-bash">git commit -m &quot;docs: add install guide&quot; -m &quot;Co-authored-by: Name &lt;id+user@users.noreply.github.com&gt;&quot;</code></pre>
 </li>
 <li>Open a PR and merge it. Both of you get credit once it&#39;s merged.</li>
 </ol>
@@ -104,14 +102,15 @@ GitHub Desktop also have co-author fields.</p>
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>At the very end of the commit message, after a blank line: Trailers must sit at the end of the message, separated from the body by a blank line.</li><li>One linked to their GitHub account, like their no-reply address: GitHub can only credit them if the email belongs to their account.</li><li>Only people who actually contributed to that change: Crediting people who didn't contribute falsifies authorship.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/04-pair-extraordinaire.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/04-pair-extraordinaire.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="03-pull-shark.html"><span>Previous</span>Lesson 3: Pull Shark</a>
     <a class="next" href="05-galaxy-brain.html"><span>Next</span>Lesson 5: Galaxy Brain</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group" open><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -122,8 +121,8 @@ GitHub Desktop also have co-author fields.</p>
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -131,8 +130,8 @@ GitHub Desktop also have co-author fields.</p>
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -141,8 +140,8 @@ GitHub Desktop also have co-author fields.</p>
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -152,14 +151,15 @@ GitHub Desktop also have co-author fields.</p>
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

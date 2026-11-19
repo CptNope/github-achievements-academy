@@ -40,37 +40,32 @@
     <article class="prose">
 <p>Ninety percent of your Git life is one loop: <strong>look, choose, save, check.</strong> Get fast and careful at this, and everything else is the occasional extra.</p>
 <h2 id="1-look-what-changed">1. Look: what changed?</h2>
-<pre><code class="language-bash">git status            # which files changed, and which are staged
+<pre tabindex="0"><code class="language-bash">git status            # which files changed, and which are staged
 git diff              # the exact lines changed, not yet staged
-git diff --staged     # the exact lines that WILL go in the next commit
-</code></pre>
+git diff --staged     # the exact lines that WILL go in the next commit</code></pre>
 <p>Make <code>git status</code> a reflex. Run it before and after everything. It also tells you what to do next, for example how to unstage a file.</p>
 <h2 id="2-choose-stage-what-belongs-together">2. Choose: stage what belongs together</h2>
-<pre><code class="language-bash">git add path/to/file.js     # stage one file
+<pre tabindex="0"><code class="language-bash">git add path/to/file.js     # stage one file
 git add .                   # stage everything in this folder (check git status first!)
-git add -p                  # go through your changes piece by piece
-</code></pre>
+git add -p                  # go through your changes piece by piece</code></pre>
 <p><code>git add -p</code> is the habit that separates beginners from pros. Git shows each change (&quot;hunk&quot;) and asks what to do:</p>
-<div class="table"><table><thead><tr><th>Key</th><th>Meaning</th></tr></thead><tbody><tr><td><code>y</code></td><td>stage this hunk</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: 2. Choose: stage what belongs together"><table><thead><tr><th>Key</th><th>Meaning</th></tr></thead><tbody><tr><td><code>y</code></td><td>stage this hunk</td></tr>
 <tr><td><code>n</code></td><td>skip it</td></tr>
 <tr><td><code>s</code></td><td>split it into smaller hunks</td></tr>
 <tr><td><code>q</code></td><td>quit</td></tr>
 <tr><td><code>?</code></td><td>help</td></tr></tbody></table></div>
 <p>You&#39;ll often catch a stray debug line or a forgotten <code>console.log</code> this way.</p>
 <p>Changed your mind?</p>
-<pre><code class="language-bash">git restore --staged path/to/file.js   # unstage, but keep your edits
-</code></pre>
+<pre tabindex="0"><code class="language-bash">git restore --staged path/to/file.js   # unstage, but keep your edits</code></pre>
 <h2 id="3-save-write-a-commit-message-people-can-use">3. Save: write a commit message people can use</h2>
-<pre><code class="language-bash">git commit -m &quot;Fix crash when the cart is empty&quot;
-</code></pre>
+<pre tabindex="0"><code class="language-bash">git commit -m &quot;Fix crash when the cart is empty&quot;</code></pre>
 <p>For anything bigger, leave out <code>-m</code> and Git opens your editor so you can write a subject and a body:</p>
-<pre><code>Fix crash when the cart is empty
+<pre tabindex="0"><code>Fix crash when the cart is empty
 
 The total() function divided by the item count, which is zero for an
 empty cart. Return 0 early instead, and add a test for it.
 
-Closes #42
-</code></pre>
+Closes #42</code></pre>
 <p><strong>Good commit messages:</strong></p>
 <ul>
 <li>Keep the subject around <strong>50 characters</strong>, with no full stop at the end</li>
@@ -81,10 +76,9 @@ Closes #42
 <p>Some teams use <a href="https://www.conventionalcommits.org/" rel="noopener">Conventional Commits</a> prefixes like <code>feat:</code>, <code>fix:</code> and <code>docs:</code>. This repo uses them too.</p>
 <p><strong>Commit size:</strong> one logical change per commit. &quot;Add login form&quot; is good. &quot;Add login form, rename utils, update deps&quot; should be three commits.</p>
 <h2 id="4-check-did-it-do-what-you-meant">4. Check: did it do what you meant?</h2>
-<pre><code class="language-bash">git log --oneline -5        # the last 5 commits, one line each
+<pre tabindex="0"><code class="language-bash">git log --oneline -5        # the last 5 commits, one line each
 git show                    # the latest commit in full
-git show HEAD~1             # the one before it
-</code></pre>
+git show HEAD~1             # the one before it</code></pre>
 <p><code>HEAD~1</code> means &quot;one commit before HEAD&quot;, and <code>HEAD~2</code> means two before. You&#39;ll use this notation a lot.</p>
 <h2 id="exercise-in-your-sandbox-repo">Exercise (in your sandbox repo)</h2>
 <ol>
@@ -138,14 +132,15 @@ git show HEAD~1             # the one before it
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>git diff --staged: Plain git diff shows unstaged changes. --staged shows what's queued for the commit.</li><li>Fix crash when the cart is empty: Short, imperative, and specific about what the commit does.</li><li>Stage changes piece by piece: Interactive staging builds focused commits and catches stray debug lines.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/02-everyday-loop.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/02-everyday-loop.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="git-01-how-git-works.html"><span>Previous</span>Git 1: How Git actually works</a>
     <a class="next" href="git-03-branching-and-merging.html"><span>Next</span>Git 3: Branching and merging</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group"><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -156,8 +151,8 @@ git show HEAD~1             # the one before it
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group" open><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop" aria-current="page"><span class="n">2</span>The everyday loop</a></li>
@@ -165,8 +160,8 @@ git show HEAD~1             # the one before it
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -175,8 +170,8 @@ git show HEAD~1             # the one before it
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -186,14 +181,15 @@ git show HEAD~1             # the one before it
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">

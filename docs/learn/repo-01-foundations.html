@@ -41,11 +41,11 @@
     <article class="prose">
 <p>Every repository, from a weekend experiment to a company product, benefits from the same handful of files and settings. Set them up once in a few minutes and your repo is understandable, safe to contribute to, and easy to maintain. The rest of this track builds on this checklist for specific kinds of projects.</p>
 <h2 id="before-you-create-it-three-decisions">Before you create it: three decisions</h2>
-<div class="table"><table><thead><tr><th>Decision</th><th>Options</th><th>Rule of thumb</th></tr></thead><tbody><tr><td><strong>Owner</strong></td><td>Your personal account, or an organization</td><td>Personal for your own projects. An org for anything a team, client or community will share, so it doesn&#39;t depend on one person&#39;s account</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: Before you create it: three decisions"><table><thead><tr><th>Decision</th><th>Options</th><th>Rule of thumb</th></tr></thead><tbody><tr><td><strong>Owner</strong></td><td>Your personal account, or an organization</td><td>Personal for your own projects. An org for anything a team, client or community will share, so it doesn&#39;t depend on one person&#39;s account</td></tr>
 <tr><td><strong>Visibility</strong></td><td>Public, private, internal (orgs on Enterprise)</td><td>Public unless there&#39;s a reason not to: client code, secrets you can&#39;t remove, unreleased product</td></tr>
 <tr><td><strong>Name</strong></td><td>Short, lowercase, hyphens</td><td><code>invoice-generator</code>, not <code>My_Invoice_Generator_FINAL2</code>. It ends up in URLs and clone commands</td></tr></tbody></table></div>
 <h2 id="the-files">The files</h2>
-<pre><code>your-repo/
+<pre tabindex="0"><code>your-repo/
 ├── README.md            what it is, how to use it
 ├── LICENSE              who may use it, and how
 ├── .gitignore           files Git should never track
@@ -55,8 +55,7 @@
 └── .github/
     ├── ISSUE_TEMPLATE/  bug and feature forms
     ├── PULL_REQUEST_TEMPLATE.md
-    └── dependabot.yml   keeps dependencies current
-</code></pre>
+    └── dependabot.yml   keeps dependencies current</code></pre>
 <h3 id="readme-the-front-door">README: the front door</h3>
 <p>A good README answers, in this order:</p>
 <ol>
@@ -68,7 +67,7 @@
 </ol>
 <h3 id="license-no-license-means-all-rights-reserved">LICENSE: no license means &quot;all rights reserved&quot;</h3>
 <p>Without a license, nobody can legally reuse your code, even in a public repo. Pick one when you create the repo (GitHub offers a dropdown) or later with <strong>Add file → Create new file → <code>LICENSE</code></strong>, which shows a license picker.</p>
-<div class="table"><table><thead><tr><th>License</th><th>In short</th><th>Common for</th></tr></thead><tbody><tr><td><strong>MIT</strong></td><td>Do almost anything, keep the copyright notice</td><td>Libraries, tools, most small projects</td></tr>
+<div class="table" tabindex="0" role="region" aria-label="Table: LICENSE: no license means 'all rights reserved'"><table><thead><tr><th>License</th><th>In short</th><th>Common for</th></tr></thead><tbody><tr><td><strong>MIT</strong></td><td>Do almost anything, keep the copyright notice</td><td>Libraries, tools, most small projects</td></tr>
 <tr><td><strong>Apache-2.0</strong></td><td>Like MIT, plus an explicit patent grant</td><td>Larger projects, company-backed open source</td></tr>
 <tr><td><strong>GPL-3.0 / GPL-2.0-or-later</strong></td><td>Changes you distribute must stay open source under the GPL</td><td>Apps, WordPress plugins and themes (which must be GPL-compatible)</td></tr>
 <tr><td><strong>None (private repo)</strong></td><td>All rights reserved</td><td>Client or company code</td></tr></tbody></table></div>
@@ -145,14 +144,15 @@
     <details class="quiz-answers"><summary>Show the answers</summary><ol><li>Very little: no license means all rights reserved: Public isn't the same as open source. Without a license, others have no permission to reuse the code.</li><li>Insights → Community standards: The community profile lists README, license, contributing guide, code of conduct and more, with buttons to add each.</li><li>.env files and keys: Secrets and local config should never be committed. Ignore them before the first commit.</li></ol></details>
   </section>
     <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
-    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/repos/01-foundations.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <p class="edit">Last reviewed November 2026. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/repos/01-foundations.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     <nav class="pager" aria-label="Next and previous">
     <a class="prev" href="github-07-open-source.html"><span>Previous</span>GitHub 7: Contributing to open source</a>
     <a class="next" href="repo-02-personal-projects.html"><span>Next</span>Repo 2: Personal projects and portfolio pieces</a>
   </nav>
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Badges</h2>
+    <p class="toc-start"><a href="start-here.html" data-page="start-here">Start here</a></p>
+    <details class="toc-group"><summary><h2>Badges</h2></summary>
     <ol>
         <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
         <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
@@ -163,8 +163,8 @@
         <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
         <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
         <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
-    </ol>
-    <h2>Git fundamentals</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Git fundamentals</h2></summary>
     <ol>
         <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
         <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
@@ -172,8 +172,8 @@
         <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
         <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
         <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
-    </ol>
-    <h2>GitHub skills</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>GitHub skills</h2></summary>
     <ol>
         <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
         <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
@@ -182,8 +182,8 @@
         <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
         <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
         <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
-    </ol>
-    <h2>Repo recipes</h2>
+    </ol></details>
+    <details class="toc-group" open><summary><h2>Repo recipes</h2></summary>
     <ol>
         <li><a href="repo-01-foundations.html" data-page="repo-01-foundations" aria-current="page"><span class="n">1</span>Foundations</a></li>
         <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects</a></li>
@@ -193,14 +193,15 @@
         <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress</a></li>
         <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses and templates</a></li>
         <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining</a></li>
-    </ol>
-    <h2>Guides</h2>
+    </ol></details>
+    <details class="toc-group"><summary><h2>Guides</h2></summary>
     <ol>
         <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
         <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="markdown.html" data-page="markdown">Writing Markdown on GitHub</a></li>
         <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
         <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
-    </ol>
+    </ol></details>
   </aside>
 </div>
 <footer class="foot">
