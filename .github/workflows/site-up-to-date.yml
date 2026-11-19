@@ -1,0 +1,35 @@
+name: Website lessons up to date
+
+# The lesson pages in docs/learn/ are generated from lessons/*.md and FAIR-PLAY.md.
+# This check fails if someone edits the Markdown without running `npm run build`.
+on:
+  pull_request:
+    paths: ["lessons/**", "FAIR-PLAY.md", "scripts/build-site.mjs", "docs/learn/**", "package*.json"]
+  push:
+    branches: [main]
+    paths: ["lessons/**", "FAIR-PLAY.md", "scripts/build-site.mjs", "docs/learn/**", "package*.json"]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Fail if generated pages changed
+        run: |
+          if ! git diff --quiet -- docs/learn; then
+            echo "::error::docs/learn is out of date. Run 'npm install && npm run build' and commit the result."
+            git --no-pager diff --stat -- docs/learn
+            exit 1
+          fi

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 3: Pull Shark · GitHub Achievements Academy</title>
+<meta name="description" content="Badge: have pull requests merged.">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../#check">Check a profile</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Lesson 3: Pull Shark</h1>
+    <article class="prose">
+<p><strong>Badge:</strong> have pull requests <strong>merged</strong>.</p>
+<div class="table"><table><thead><tr><th>Tier</th><th style="text-align:right">Merged PRs</th></tr></thead><tbody><tr><td>Base</td><td style="text-align:right">2</td></tr>
+<tr><td>Bronze</td><td style="text-align:right">16</td></tr>
+<tr><td>Silver</td><td style="text-align:right">128</td></tr>
+<tr><td>Gold</td><td style="text-align:right">1024</td></tr></tbody></table></div>
+<h2 id="the-real-skill-contributing-to-someone-else39s-project">The real skill: contributing to someone else&#39;s project</h2>
+<p>In Lesson 2 you merged into your own repo. Most open source work goes through a <strong>fork</strong>: your own copy of someone else&#39;s repo. You push to your fork and ask the original (&quot;upstream&quot;) project to pull your changes in.</p>
+<blockquote>
+<p>Only PRs <strong>merged into the parent repo</strong> count. Commits that stay in your fork don&#39;t.</p>
+</blockquote>
+<h2 id="exercise-join-the-learners-wall-earns-the-base-tier">Exercise: join the Learners Wall (earns the base tier)</h2>
+<h3 id="pr-1-create-your-page">PR #1: create your page</h3>
+<pre><code class="language-bash">gh repo fork CptNope/github-achievements-academy --clone
+cd github-achievements-academy
+git switch -c add-&lt;your-username&gt;
+cp learners/_TEMPLATE.md learners/&lt;your-username&gt;.md    # use your exact GitHub username, lowercase
+# edit the file: tell us about yourself and tick the lessons you&#39;ve done
+git add learners/&lt;your-username&gt;.md
+git commit -m &quot;learners: add &lt;your-username&gt;&quot;
+git push -u origin add-&lt;your-username&gt;
+gh pr create --fill
+</code></pre>
+<p>An automated check verifies your PR. Then a maintainer reviews and merges it. ### PR #2: after your next lesson</p>
+<pre><code class="language-bash">git switch main
+git pull upstream main          # gh sets up &quot;upstream&quot; when you fork with --clone
+git switch -c update-&lt;your-username&gt;
+# tick the new lesson and write one sentence about what you learned
+git commit -am &quot;learners: update &lt;your-username&gt; progress&quot;
+git push -u origin update-&lt;your-username&gt;
+gh pr create --fill
+</code></pre>
+<p>Once two of your PRs are merged, you&#39;ll get the base badge.</p>
+<h2 id="going-further-honestly-bronze-and-beyond">Going further, honestly (Bronze and beyond)</h2>
+<p>Higher tiers come from being a <strong>real contributor</strong>. Good places to start:</p>
+<ul>
+<li><strong>Your own projects.</strong> Use a branch-and-PR workflow for real features in repos you own. Each merged PR counts, and it gives you a clean history. (One real change per PR. Don&#39;t split a typo fix into 20 PRs.)</li>
+<li><strong>Good first issues.</strong> Search <a href="https://github.com/search?q=label%3A%22good+first+issue%22+is%3Aopen&amp;type=issues" rel="noopener"><code>label:&quot;good first issue&quot; is:open</code></a> for projects you actually use.</li>
+<li><strong>Docs and translations.</strong> Maintainers love these.</li>
+<li><strong>This repo!</strong> Keeping the achievement info accurate, fixing typos, and translating lessons are all welcome.</li>
+</ul>
+<p>Don&#39;t send trivial whitespace or &quot;fixed typo in comment&quot; PRs to strangers just to collect merges. Maintainers notice, and it&#39;s the spam <a href="fair-play.html">FAIR-PLAY.md</a> warns about.</p>
+<h2 id="what-you-learned">What you learned</h2>
+<ul>
+<li>Fork, upstream, branch, PR</li>
+<li>Passing CI checks and responding to review</li>
+<li>Keeping your fork in sync</li>
+</ul>
+<p>Next: <a href="04-pair-extraordinaire.html">Lesson 4: Pair Extraordinaire</a></p>
+
+    </article>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/03-pull-shark.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="02-yolo.html"><span>Previous</span>Lesson 2: YOLO</a>
+    <a class="next" href="04-pair-extraordinaire.html"><span>Next</span>Lesson 4: Pair Extraordinaire</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Course</h2>
+    <ol>
+        <li><a href="00-setup.html"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html" aria-current="page"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+        <li><a href="fair-play.html">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+</body>
+</html>

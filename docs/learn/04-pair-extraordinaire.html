@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 4: Pair Extraordinaire · GitHub Achievements Academy</title>
+<meta name="description" content="Badge: co-author commits in merged pull requests.">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../#check">Check a profile</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Lesson 4: Pair Extraordinaire</h1>
+    <article class="prose">
+<p><strong>Badge:</strong> co-author commits in <strong>merged</strong> pull requests.</p>
+<div class="table"><table><thead><tr><th>Tier</th><th style="text-align:right">Co-authored merged PRs</th></tr></thead><tbody><tr><td>Base</td><td style="text-align:right">1</td></tr>
+<tr><td>Bronze</td><td style="text-align:right">10</td></tr>
+<tr><td>Silver</td><td style="text-align:right">24</td></tr>
+<tr><td>Gold</td><td style="text-align:right">48</td></tr></tbody></table></div>
+<h2 id="the-real-skill-pair-programming-and-giving-credit">The real skill: pair programming and giving credit</h2>
+<p>When two people write code together, whether on a call, at one keyboard, or by passing a branch back and forth, Git can credit <strong>both</strong> of them. You add a <code>Co-authored-by</code> trailer at the end of the commit message:</p>
+<pre><code>feat: add dark mode toggle
+
+Implemented together during Friday&#39;s pairing session.
+
+Co-authored-by: Sam Rivera &lt;12345678+samrivera@users.noreply.github.com&gt;
+</code></pre>
+<p>Rules for the trailer:</p>
+<ul>
+<li>It goes at the <strong>very end</strong> of the message, after a <strong>blank line</strong>.</li>
+<li>One trailer per co-author.</li>
+<li>The email must be one that&#39;s linked to their GitHub account. Their no-reply address is the safest choice. Ask them for it, or find it in one of their existing commits.</li>
+</ul>
+<h2 id="exercise-pair-for-real">Exercise: pair for real</h2>
+<ol>
+<li>Find a partner: a coworker, a friend, or someone from this repo&#39;s <a href="https://github.com/CptNope/github-achievements-academy/discussions" rel="noopener">Discussions</a>. Post in <strong>General</strong> with the title <code>Looking for a pair</code> and say which repo or task you&#39;d like to work on.</li>
+<li>Pick a small, real task in either of your repos, like a feature, a test or a doc page.</li>
+<li>Work on it <strong>together</strong> over a screen share. Take turns driving.</li>
+<li>Commit with the trailer:<pre><code class="language-bash">git commit -m &quot;docs: add install guide&quot; -m &quot;Co-authored-by: Name &lt;id+user@users.noreply.github.com&gt;&quot;
+</code></pre>
+</li>
+<li>Open a PR and merge it. Both of you get credit once it&#39;s merged.</li>
+</ol>
+<blockquote>
+<p>In the GitHub web editor, you can add co-authors when committing. VS Code and
+GitHub Desktop also have co-author fields.</p>
+</blockquote>
+<h2 id="honesty-check-only-add-people-who-actually-contributed-to-that-change-crediting-someone-who-didn39t-help-or-yourself-through-an-alt-account-falsifies-authorship-that39s-the-kind-of-inauthentic-activity-fair-playmd-covers">Honesty check Only add people who <strong>actually contributed</strong> to that change. Crediting someone who didn&#39;t help, or yourself through an alt account, falsifies authorship. That&#39;s the kind of inauthentic activity <a href="fair-play.html">FAIR-PLAY.md</a> covers.</h2>
+<h2 id="what-you-learned">What you learned</h2>
+<ul>
+<li>Git trailers and commit message structure</li>
+<li>Pair programming etiquette</li>
+<li>Proper credit in collaborative work</li>
+</ul>
+<p>Next: <a href="05-galaxy-brain.html">Lesson 5: Galaxy Brain</a></p>
+
+    </article>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/04-pair-extraordinaire.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="03-pull-shark.html"><span>Previous</span>Lesson 3: Pull Shark</a>
+    <a class="next" href="05-galaxy-brain.html"><span>Next</span>Lesson 5: Galaxy Brain</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Course</h2>
+    <ol>
+        <li><a href="00-setup.html"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html" aria-current="page"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+        <li><a href="fair-play.html">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+</body>
+</html>

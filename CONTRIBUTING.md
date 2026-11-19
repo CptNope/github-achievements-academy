@@ -20,6 +20,7 @@ Corrections, clearer explanations, new screenshots and translations are all very
 - Achievement rules change. If you spot something outdated, include a link to your source.
 - Keep the tone friendly and beginner-safe.
 - Never add instructions that automate bulk activity or fake interactions. See [FAIR-PLAY.md](FAIR-PLAY.md).
+- The website's lesson pages are generated from the Markdown. After editing a lesson, run `npm install` once, then `npm run build`, and commit the updated `docs/learn/` files too. A CI check reminds you if you forget.
 
 ## Code of conduct
 

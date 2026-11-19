@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 0: Setup · GitHub Achievements Academy</title>
+<meta name="description" content="Most &quot;I did it but got no badge&quot; problems come down to setup. Get this right once and everything else just works.">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../#check">Check a profile</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Lesson 0: Setup</h1>
+    <article class="prose">
+<p>Most &quot;I did it but got no badge&quot; problems come down to setup. Get this right once and everything else just works.</p>
+<h2 id="1-make-sure-your-commits-are-linked-to-your-account">1. Make sure your commits are linked to your account</h2>
+<p>GitHub credits a commit to you by matching its <strong>author email</strong> to a <strong>verified email</strong> on your account. Unverified or unknown emails don&#39;t count.</p>
+<pre><code class="language-bash">git config --global user.name  &quot;Your Name&quot;
+git config --global user.email &quot;you@example.com&quot;
+git config --global user.email          # print it to double-check
+</code></pre>
+<p>Then go to <strong>Settings → Emails</strong> on GitHub and confirm that this address is listed and <strong>verified</strong>.</p>
+<blockquote>
+<p><strong>Privacy tip:</strong> turn on <em>Keep my email addresses private</em>. Then use your no-reply address,
+<code>ID+username@users.noreply.github.com</code> (you&#39;ll find it on that same settings page), as your
+<code>user.email</code>. It still counts toward achievements.</p>
+</blockquote>
+<h2 id="2-install-the-github-cli-optional-but-handy">2. Install the GitHub CLI (optional, but handy)</h2>
+<pre><code class="language-bash"># macOS
+brew install gh
+# Windows
+winget install --id GitHub.cli
+# Linux: see https://github.com/cli/cli#installation
+
+gh auth login
+</code></pre>
+<h2 id="3-decide-about-private-contributions">3. Decide about private contributions</h2>
+<p>By default, only <strong>public</strong> activity counts toward what&#39;s visible on your profile. If much of your work is in private repos:</p>
+<p><strong>Settings → Public profile → Contributions &amp; activity</strong></p>
+<ul>
+<li><em>Include private contributions on my profile</em></li>
+<li><em>Show private contributions &amp; achievements</em> (wording may vary)</li>
+</ul>
+<p>Private activity shows as anonymized counts. Nobody sees the private repo names.</p>
+<h2 id="4-make-a-sandbox-repo">4. Make a sandbox repo</h2>
+<p>Lessons 1 and 2 happen in <strong>your own</strong> repo, so you never create noise in anyone else&#39;s project.</p>
+<pre><code class="language-bash">gh repo create my-github-sandbox --public --add-readme --clone
+cd my-github-sandbox
+</code></pre>
+<p>Or click <strong>New repository</strong> on github.com and tick <em>Add a README file</em>.</p>
+<h2 id="5-make-sure-achievements-are-visible">5. Make sure achievements are visible</h2>
+<p><strong>Settings → Public profile → Achievements</strong>: make sure they aren&#39;t hidden.</p>
+<p><strong>Done?</strong> Move on to <a href="01-quickdraw.html">Lesson 1: Quickdraw</a>.</p>
+<p>You can also run <code>./scripts/coach.sh doctor</code> to check steps 1 and 2 automatically.</p>
+
+    </article>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/00-setup.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <span></span>
+    <a class="next" href="01-quickdraw.html"><span>Next</span>Lesson 1: Quickdraw</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Course</h2>
+    <ol>
+        <li><a href="00-setup.html" aria-current="page"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+        <li><a href="fair-play.html">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+</body>
+</html>

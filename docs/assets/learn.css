@@ -1,0 +1,109 @@
+/* Lesson pages · GitHub Achievements Academy. Shares tokens with docs/index.html. */
+:root{
+  --bg:#0c0a08; --surface:#181512; --surface-2:#221e1a; --paper:#ebeae7; --ink:#fff; --soft:#d9d4ce; --muted:#a39d96; --accent:#c9a45a; --accent-ink:#0c0a08;
+  --m:clamp(16px,1.6vw,24px);
+  --step-small:clamp(0.8125rem,0.79rem + 0.1vw,0.875rem);
+  --step-body:clamp(1.0625rem,1rem + 0.25vw,1.1875rem);
+  --step-lead:clamp(1.25rem,1.1rem + 0.7vw,1.625rem);
+  --step-head:clamp(2.5rem,1.2rem + 5vw,5.5rem);
+  --ease:cubic-bezier(.2,.7,.2,1);
+  font-family:"Chivo",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--bg);color:var(--ink);-webkit-text-size-adjust:100%;scroll-padding-top:24px}
+body{margin:0;font-size:var(--step-body);line-height:1.55;letter-spacing:-0.01em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+::selection{background:var(--accent);color:var(--accent-ink)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:var(--m);top:-60px;background:var(--accent);color:var(--accent-ink);padding:10px 16px;font-weight:700;z-index:10}
+.skip:focus{top:12px}
+
+/* Top bar */
+.bar{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:20px var(--m)}
+.bar .mark{font-weight:900;text-transform:uppercase;letter-spacing:-0.05em;font-size:28px;line-height:1;text-decoration:none;transition:color .2s}
+.bar .mark:hover{color:var(--accent)}
+.bar nav{display:flex;gap:20px;font-size:var(--step-small);font-weight:700}
+.bar nav a,.toc a,.pager a,.foot a,.edit a{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:transparent;transition:text-decoration-color .2s,color .2s}
+.bar nav a:hover,.toc a:hover,.foot a:hover,.edit a:hover{text-decoration-color:currentColor;color:var(--accent)}
+.bar nav a[aria-current]{color:var(--accent)}
+
+/* Layout */
+.page{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:clamp(32px,6vw,120px);padding:clamp(48px,8vw,120px) var(--m) 120px}
+.lesson h1,.index h1{font-weight:900;text-transform:uppercase;letter-spacing:-0.045em;line-height:0.92;font-size:var(--step-head);margin:0 0 56px;max-width:14ch}
+
+/* Prose */
+.prose{max-width:70ch}
+.prose > *:first-child{margin-top:0}
+.prose p,.prose li{color:var(--soft)}
+.prose strong{color:var(--ink)}
+.prose p{margin:0 0 1.1em}
+.prose h2{font-weight:900;text-transform:uppercase;letter-spacing:-0.035em;line-height:1;font-size:clamp(1.75rem,1.2rem + 1.8vw,2.75rem);margin:2.4em 0 .7em}
+.prose h3{font-weight:700;font-size:var(--step-lead);line-height:1.2;letter-spacing:-0.02em;margin:1.8em 0 .5em}
+.prose ul,.prose ol{padding-left:1.3em;margin:0 0 1.2em}
+.prose li{margin:.35em 0}
+.prose li::marker{color:var(--accent)}
+.prose a{color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.prose a:hover{text-decoration-thickness:2px}
+.prose blockquote{margin:1.6em 0;padding:20px 24px;background:var(--surface);color:var(--soft)}
+.prose blockquote p:last-child{margin-bottom:0}
+.prose code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:var(--surface-2);padding:.12em .35em}
+.prose pre{background:var(--surface);padding:20px 24px;overflow-x:auto;margin:1.4em 0;line-height:1.5}
+.prose pre code{background:none;padding:0;font-size:15px;color:var(--ink)}
+.prose input[type=checkbox]{accent-color:var(--accent);margin-right:.5em}
+.prose li:has(> input[type=checkbox]){list-style:none;margin-left:-1.3em}
+.table{overflow-x:auto;margin:1.4em 0}
+.prose table{border-collapse:collapse;width:100%;font-size:16px}
+.prose th{text-align:left;font-weight:700;color:var(--ink);background:var(--surface-2);padding:12px 14px}
+.prose td{padding:12px 14px;color:var(--soft);border-bottom:1px solid var(--surface-2);vertical-align:top}
+.prose hr{border:0;height:24px}
+
+.edit{margin-top:64px;color:var(--muted);font-size:var(--step-small)}
+
+/* Next / previous */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+.pager a{display:block;background:var(--surface);padding:24px;text-decoration:none;font-weight:900;text-transform:uppercase;letter-spacing:-0.03em;line-height:1.05;font-size:clamp(1.25rem,1rem + 1vw,1.75rem);transition:background .2s,color .2s,transform .2s var(--ease)}
+.pager a span{display:block;font-weight:400;text-transform:none;letter-spacing:0;font-size:var(--step-small);color:var(--muted);margin-bottom:8px}
+.pager a:hover{background:var(--accent);color:var(--accent-ink)}
+.pager a:hover span{color:var(--accent-ink)}
+.pager a:active{transform:scale(.98)}
+.pager .next{text-align:right}
+
+/* Course list */
+.toc{position:sticky;top:24px;align-self:start}
+.toc h2{font-size:var(--step-small);font-weight:700;color:var(--muted);margin:0 0 12px;letter-spacing:0}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li a{display:flex;gap:12px;padding:8px 0;font-weight:700;text-decoration-color:transparent}
+.toc .n{display:inline-block;width:1.4em;color:var(--muted);font-variant-numeric:tabular-nums}
+.toc a[aria-current]{color:var(--accent)}
+.toc a[aria-current] .n{color:var(--accent)}
+
+/* Index */
+.index{padding:clamp(48px,8vw,120px) var(--m) 120px}
+.index .lead{font-size:var(--step-lead);max-width:40ch;margin:0 0 64px;line-height:1.3}
+.poster{list-style:none;margin:0;padding:0}
+.poster a{display:flex;justify-content:space-between;align-items:baseline;gap:24px;text-decoration:none;transition:color .2s}
+.poster a:hover,.poster a:focus-visible{color:var(--accent)}
+.poster .item{font-weight:900;text-transform:uppercase;font-size:clamp(2.6rem,7.5vw,7rem);letter-spacing:-0.05em;line-height:0.98}
+.poster .detail{flex:none;text-align:right;color:var(--muted)}
+
+/* Footer */
+.foot{background:var(--paper);color:#0c0a08;padding:40px var(--m);font-size:var(--step-small);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot p{margin:0}
+
+@media (max-width:900px){
+  .page{grid-template-columns:minmax(0,1fr)}
+  .toc{position:static;order:-1;background:var(--surface);padding:16px 20px}
+  .toc ol{display:flex;flex-wrap:wrap;gap:4px 18px}
+  .toc li a{padding:4px 0}
+  .lesson h1{margin-bottom:40px}
+}
+@media (max-width:600px){
+  .bar{flex-direction:column;align-items:flex-start;gap:12px}
+  .pager{grid-template-columns:1fr}
+  .pager .next{text-align:left}
+  .poster a{flex-direction:column;gap:4px;margin-bottom:20px}
+  .poster .item{font-size:12vw}
+  .poster .detail{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}

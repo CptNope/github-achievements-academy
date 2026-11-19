@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 1: Quickdraw · GitHub Achievements Academy</title>
+<meta name="description" content="Badge: close an issue or pull request within 5 minutes of opening it. One-time.">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../#check">Check a profile</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Lesson 1: Quickdraw</h1>
+    <article class="prose">
+<p><strong>Badge:</strong> close an issue or pull request within <strong>5 minutes</strong> of opening it. One-time.</p>
+<h2 id="the-real-skill-the-issue-lifecycle">The real skill: the issue lifecycle</h2>
+<p>Issues are how projects track bugs, ideas and tasks. Good maintainers <strong>triage fast</strong>. They close duplicates, mistakes and invalid reports quickly, with a clear reason, so the issue tracker stays useful.</p>
+<p>An issue has a few states and outcomes:</p>
+<div class="table"><table><thead><tr><th>State</th><th>Close reason</th><th>When to use it</th></tr></thead><tbody><tr><td>Open</td><td>none</td><td>Still needs work</td></tr>
+<tr><td>Closed</td><td><strong>Completed</strong></td><td>The work is done</td></tr>
+<tr><td>Closed</td><td><strong>Not planned</strong></td><td>Won&#39;t fix, out of scope, or invalid</td></tr>
+<tr><td>Closed</td><td><strong>Duplicate</strong></td><td>Already reported elsewhere (link it!)</td></tr></tbody></table></div>
+<h2 id="exercise-in-your-sandbox-repo-about-3-minutes">Exercise (in your sandbox repo, about 3 minutes)</h2>
+<p>Pretend you just spotted a typo in your README, and then realize you already fixed it.</p>
+<h3 id="on-githubcom">On github.com</h3>
+<ol>
+<li>Open your sandbox repo → <strong>Issues</strong> → <strong>New issue</strong>.</li>
+<li>Title: <code>Typo in README</code>. Body: <code>The word &quot;teh&quot; appears in the intro.</code></li>
+<li>Click <strong>Submit</strong>.</li>
+<li>Within 5 minutes, add the comment <code>Already fixed in main, closing.</code> and click
+<strong>Close issue ▾ → Close as not planned</strong>.</li>
+</ol>
+<h3 id="or-with-the-cli">Or with the CLI</h3>
+<pre><code class="language-bash">gh issue create --title &quot;Typo in README&quot; --body &#39;The word &quot;teh&quot; appears in the intro.&#39;
+# note the issue number it prints, e.g. #1
+gh issue close 1 --reason &quot;not planned&quot; --comment &quot;Already fixed in main, closing.&quot;
+</code></pre>
+<h3 id="or-with-the-coach">Or with the coach</h3>
+<pre><code class="language-bash">./scripts/coach.sh quickdraw
+</code></pre>
+<h2 id="what-you-learned">What you learned</h2>
+<ul>
+<li>Creating, commenting on and closing issues</li>
+<li>Close reasons and why they matter for project history</li>
+<li>How fast triage keeps a backlog healthy</li>
+</ul>
+<blockquote>
+<p>The badge can take up to 24 hours to appear. See <a href="troubleshooting.html">troubleshooting</a>.</p>
+</blockquote>
+<p><strong>Learners Wall:</strong> tick <em>Lesson 1</em> on your page in a pull request. That&#39;s one more merged PR toward Pull Shark!</p>
+<p>Next: <a href="02-yolo.html">Lesson 2: YOLO</a></p>
+
+    </article>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/01-quickdraw.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="00-setup.html"><span>Previous</span>Lesson 0: Setup</a>
+    <a class="next" href="02-yolo.html"><span>Next</span>Lesson 2: YOLO</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Course</h2>
+    <ol>
+        <li><a href="00-setup.html"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html" aria-current="page"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+        <li><a href="fair-play.html">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+</body>
+</html>

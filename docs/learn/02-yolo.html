@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 2: YOLO · GitHub Achievements Academy</title>
+<meta name="description" content="Badge: merge a pull request without a code review. One-time.">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../#check">Check a profile</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Lesson 2: YOLO</h1>
+    <article class="prose">
+<p><strong>Badge:</strong> merge a pull request <strong>without a code review</strong>. One-time.</p>
+<h2 id="the-real-skill-the-pull-request-flow-and-why-reviews-exist">The real skill: the pull request flow (and why reviews exist)</h2>
+<p>A pull request (PR) says: &quot;here&#39;s a set of changes on a branch, please merge them into <code>main</code>.&quot; On a team, someone reviews the PR first. In a solo project, you&#39;re often the only one, so you merge your own work. That&#39;s YOLO.</p>
+<p>The badge&#39;s name is a wink: <strong>on a team, skipping review is risky.</strong> This lesson teaches the flow <em>and</em> how to protect yourself from YOLO-ing by accident later.</p>
+<h2 id="exercise-in-your-sandbox-repo">Exercise (in your sandbox repo)</h2>
+<pre><code class="language-bash">cd my-github-sandbox
+git switch -c add-about-section          # 1. create a branch
+printf &quot;\n## About\nThis is my sandbox for learning GitHub.\n&quot; &gt;&gt; README.md
+git add README.md
+git commit -m &quot;docs: add About section&quot;  # 2. commit
+git push -u origin add-about-section     # 3. push the branch
+gh pr create --fill                      # 4. open the PR
+gh pr merge --squash --delete-branch     # 5. merge it yourself, with no review
+git switch main &amp;&amp; git pull              # 6. sync your local main
+</code></pre>
+<p>Or run <code>./scripts/coach.sh yolo</code> for a guided version that explains each step.</p>
+<h2 id="bonus-lesson-turn-on-protection">Bonus lesson: turn on protection</h2>
+<p>Now do what real teams do: <strong>Settings → Rules → Rulesets → New branch ruleset</strong></p>
+<ul>
+<li>Target: <code>main</code></li>
+<li><em>Require a pull request before merging</em></li>
+<li>Required approvals: <code>1</code></li>
+</ul>
+<p>Try steps 1 to 5 again with a new branch. GitHub now blocks the merge until someone approves. (On a solo repo, you can remove the rule afterwards.)</p>
+<h2 id="what-you-learned">What you learned</h2>
+<ul>
+<li>Branch → commit → push → PR → merge</li>
+<li>Squash merging and deleting branches</li>
+<li>Branch rulesets, and why reviews protect <code>main</code></li>
+</ul>
+<p><strong>Learners Wall:</strong> tick <em>Lesson 2</em> on your page.</p>
+<p>Next: <a href="03-pull-shark.html">Lesson 3: Pull Shark</a></p>
+
+    </article>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/02-yolo.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="01-quickdraw.html"><span>Previous</span>Lesson 1: Quickdraw</a>
+    <a class="next" href="03-pull-shark.html"><span>Next</span>Lesson 3: Pull Shark</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Course</h2>
+    <ol>
+        <li><a href="00-setup.html"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html" aria-current="page"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+        <li><a href="fair-play.html">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+</body>
+</html>
