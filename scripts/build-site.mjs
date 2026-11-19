@@ -45,6 +45,18 @@ for (const p of pages) {
   if (p.src === "FAIR-PLAY.md") p.short = "Fair play";
   if (p.src === "lessons/oh-no.md") p.short = "Oh no! Undo mistakes";
   if (p.src === "lessons/cheat-sheet.md") p.short = "Cheat sheet";
+  // Shorter names for the big-type lesson lists (full titles stay on the pages themselves)
+  const SHORT = {
+    "lessons/repos/01-foundations.md": "Foundations",
+    "lessons/repos/02-personal-projects.md": "Personal projects",
+    "lessons/repos/03-open-source-packages.md": "Packages",
+    "lessons/repos/04-websites-and-docs.md": "Websites and docs",
+    "lessons/repos/05-team-and-client-projects.md": "Team and client",
+    "lessons/repos/06-wordpress-plugins.md": "WordPress",
+    "lessons/repos/07-courses-and-templates.md": "Courses and templates",
+    "lessons/repos/08-maintaining.md": "Maintaining",
+  };
+  if (SHORT[p.src]) p.short = SHORT[p.src];
   // the template sets the h1; emoji are dropped so the pages match the site's type-only look
   p.md = p.md.replace(/^#\s+.+\n/m, "").replace(/^[ \t]*[\p{Extended_Pictographic}]\uFE0F?[ \t]*/gmu, "").replace(/(\*\*|\| |^|\s)[\p{Extended_Pictographic}]\uFE0F?\s*/gmu, "$1");
 }
