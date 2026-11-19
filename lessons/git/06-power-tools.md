@@ -128,3 +128,5 @@ Now `git st`, `git lg`, `git undo` and `git amend` work everywhere.
 You now know more Git than most working developers use day to day. Keep the ["Oh no" guide](../oh-no.md) bookmarked. Mistakes happen to everyone, and now you know how to undo them.
 
 🧱 **Learners Wall:** add a line to your page saying you finished the Git track, and which power tool you liked most.
+
+➡️ Next: the GitHub skills track starts with [GitHub 1: Your profile as a portfolio](../github/01-profile.md)

@@ -41,6 +41,20 @@ Each badge here is treated as a **lesson**. You'll learn the real-world skill be
 | 6 | [Power tools](lessons/git/06-power-tools.md) | Stash, cherry-pick, bisect, blame, tags, `.gitignore`, aliases |
 | 🆘 | [Oh no! Undo any mistake](lessons/oh-no.md) | Copy-and-paste fixes for the common Git disasters |
 
+### Track 3: GitHub skills
+
+| # | Lesson | What you'll learn |
+|---|--------|-------------------|
+| 1 | [Your profile as a portfolio](lessons/github/01-profile.md) | Profile README, pinned repos, what the contribution graph says |
+| 2 | [Issues and Projects](lessons/github/02-issues-and-projects.md) | Good bug reports, labels, sub-issues, issue forms, project boards |
+| 3 | [Code review](lessons/github/03-code-review.md) | Reviewable PRs, suggested changes, kind feedback, rulesets, CODEOWNERS |
+| 4 | [Automate with Actions](lessons/github/04-actions.md) | Workflow anatomy, secrets, workflow security, Pages |
+| 5 | [Releases and versioning](lessons/github/05-releases.md) | Semantic versioning, releases, release notes people read |
+| 6 | [Security basics](lessons/github/06-security.md) | 2FA and passkeys, tokens, signed commits, Dependabot, push protection |
+| 7 | [Contributing to open source](lessons/github/07-open-source.md) | Finding projects, etiquette, handling reviews and rejection |
+
+📦 **[Starter templates](templates/)**: copy-ready CI workflow, issue forms, PR template, CODEOWNERS, Dependabot and security policy.
+
 **Lessons 1 and 2** can be done in an afternoon in your own sandbox repo.
 **Lesson 3** starts right here: your first two merged PRs to this repo earn you the first Pull Shark tier.
 **Lessons 4 to 7** take real time and real people, and that's the point.

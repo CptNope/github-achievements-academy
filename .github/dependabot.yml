@@ -1,0 +1,12 @@
+# Keeps this repo's GitHub Actions and npm dev dependencies current.
+# Explained in lessons/github/06-security.md.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"

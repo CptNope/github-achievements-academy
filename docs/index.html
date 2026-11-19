@@ -105,7 +105,7 @@ p{margin:0}
 .git .copy p{max-width:34ch;font-size:var(--step-lead);line-height:1.3}
 .git .copy .btn{margin-top:32px}
 .git ol{grid-column:7/13;list-style:none;margin:0;padding:0}
-.git li a{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:14px 0;text-decoration:none;font-weight:900;text-transform:uppercase;letter-spacing:-0.035em;line-height:1.05;font-size:var(--step-lead);transition:color .2s}
+.git li a{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:18px 0;text-decoration:none;font-weight:900;text-transform:uppercase;letter-spacing:-0.035em;line-height:1.05;font-size:clamp(1.75rem,1.2rem + 2vw,3rem);transition:color .2s}
 .git li a span{flex:none;font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);font-size:var(--step-body)}
 .git li a:hover,.git li a:focus-visible{color:var(--accent)}
 .git li.rescue a{color:var(--accent)}
@@ -346,18 +346,15 @@ Co-authored-by: Sam Rivera &lt;1234+samrivera@users.noreply.github.com&gt;</code
 <section class="git wrap" id="git" aria-labelledby="git-h">
   <div class="grid">
     <div class="copy">
-      <h2 id="git-h" class="rv">Then master Git</h2>
-      <p class="rv" style="--i:1">Badges teach GitHub. The second track teaches Git itself, from what a commit really is to finding a bug with bisect.</p>
-      <a class="btn rv" style="--i:2" href="learn/git-01-how-git-works.html">Start the Git track</a>
+      <h2 id="git-h" class="rv">Then go further</h2>
+      <p class="rv" style="--i:1">Badges are the start. Two more tracks teach Git itself and the way professional teams work on GitHub, from rebasing to code review to shipping releases.</p>
+      <a class="btn rv" style="--i:2" href="learn/">See every lesson</a>
     </div>
-    <ol class="rv" style="--i:2" aria-label="Git fundamentals lessons">
-      <li><a href="learn/git-01-how-git-works.html">How Git actually works<span>Git 1</span></a></li>
-      <li><a href="learn/git-02-everyday-loop.html">The everyday loop<span>Git 2</span></a></li>
-      <li><a href="learn/git-03-branching-and-merging.html">Branching and merging<span>Git 3</span></a></li>
-      <li><a href="learn/git-04-rebase.html">Rebase without fear<span>Git 4</span></a></li>
-      <li><a href="learn/git-05-remotes.html">Fetch, pull and push<span>Git 5</span></a></li>
-      <li><a href="learn/git-06-power-tools.html">Power tools<span>Git 6</span></a></li>
+    <ol class="rv" style="--i:2" aria-label="More tracks and guides">
+      <li><a href="learn/git-01-how-git-works.html">Git fundamentals<span>6 lessons</span></a></li>
+      <li><a href="learn/github-01-profile.html">GitHub skills<span>7 lessons</span></a></li>
       <li class="rescue"><a href="learn/oh-no.html">Oh no! Undo any mistake<span>Guide</span></a></li>
+      <li><a href="https://github.com/CptNope/github-achievements-academy/tree/main/templates">Starter templates<span>Copy-ready files</span></a></li>
     </ol>
   </div>
 </section>

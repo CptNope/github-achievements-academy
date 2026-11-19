@@ -1,0 +1,9 @@
+# Copy to .github/CODEOWNERS. Lesson: GitHub 3.
+# Later lines take priority. Owners are requested as reviewers automatically.
+
+# Default owner for everything
+*                   @your-username
+
+# Examples: a team, and specific people for sensitive code
+# /docs/            @your-org/docs-team
+# /src/payments/    @alice @bob

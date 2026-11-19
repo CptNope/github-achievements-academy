@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GitHub 2: Issues and Projects · GitHub Achievements Academy</title>
+<meta name="description" content="Issues are GitHub's to-do list, bug tracker and discussion thread rolled into one. Projects turn them into a board or a spreadsheet you can plan with. Used">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../#check">Check a profile</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>GitHub 2: Issues and Projects</h1>
+    <nav class="jump" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#writing-an-issue-people-can-act-on">Writing an issue people can act on</a></li>
+        <li><a href="#organizing-issues">Organizing issues</a></li>
+        <li><a href="#link-pull-requests-to-issues">Link pull requests to issues</a></li>
+        <li><a href="#issue-templates-and-forms">Issue templates and forms</a></li>
+        <li><a href="#projects-boards-and-tables">Projects: boards and tables</a></li>
+        <li><a href="#exercise-in-your-sandbox">Exercise (in your sandbox)</a></li>
+        <li><a href="#what-you-learned">What you learned</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+<p>Issues are GitHub&#39;s to-do list, bug tracker and discussion thread rolled into one. Projects turn them into a board or a spreadsheet you can plan with. Used well, they&#39;re how solo developers stay organized and how teams avoid duplicate work.</p>
+<h2 id="writing-an-issue-people-can-act-on">Writing an issue people can act on</h2>
+<p><strong>A good bug report:</strong></p>
+<pre><code class="language-markdown">**What happened**
+The cart total shows NaN after removing the last item.
+
+**Steps to reproduce**
+1. Add one item to the cart
+2. Remove it
+3. Look at the total
+
+**Expected:** $0.00
+**Environment:** Chrome 131, macOS 15
+
+Screenshot attached.
+</code></pre>
+<p><strong>A good feature request</strong> explains the <em>problem</em> before the solution: &quot;Customers can&#39;t find past orders&quot; is more useful than &quot;Add an orders page&quot;.</p>
+<h2 id="organizing-issues">Organizing issues</h2>
+<div class="table"><table><thead><tr><th>Tool</th><th>Use it for</th></tr></thead><tbody><tr><td><strong>Labels</strong></td><td>Categories like <code>bug</code>, <code>docs</code>, <code>good first issue</code> and <code>help wanted</code>. Use a small, consistent set</td></tr>
+<tr><td><strong>Assignees</strong></td><td>Who&#39;s working on it right now. Prevents two people doing the same thing</td></tr>
+<tr><td><strong>Milestones</strong></td><td>Group issues into a release or deadline (&quot;v1.2&quot;, &quot;Launch&quot;), with a progress bar</td></tr>
+<tr><td><strong>Sub-issues</strong></td><td>Break a big issue into smaller ones. The parent shows progress as they close</td></tr>
+<tr><td><strong>Issue types</strong></td><td>Organization-wide categories (like Bug, Feature, Task), set by org admins</td></tr></tbody></table></div>
+<blockquote>
+<p>The labels <code>good first issue</code> and <code>help wanted</code> are special. GitHub uses them to suggest
+your issues to new contributors.</p>
+</blockquote>
+<h2 id="link-pull-requests-to-issues">Link pull requests to issues</h2>
+<p>Write a closing keyword followed by the issue number in a PR description (or a commit message):</p>
+<pre><code>Fixes #42
+</code></pre>
+<p>When the PR merges into the default branch, issue #42 closes automatically, and each one links to the other. The keywords are <code>close</code>, <code>closes</code>, <code>closed</code>, <code>fix</code>, <code>fixes</code>, <code>fixed</code>, <code>resolve</code>, <code>resolves</code> and <code>resolved</code>.</p>
+<h2 id="issue-templates-and-forms">Issue templates and forms</h2>
+<p>Templates make people give you the information you need up front. Put <strong>issue forms</strong> (YAML files) in <code>.github/ISSUE_TEMPLATE/</code>:</p>
+<pre><code class="language-yaml">name: Bug report
+description: Something isn&#39;t working
+labels: [&quot;bug&quot;]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Which version?
+</code></pre>
+<p>A <code>config.yml</code> in the same folder can turn off blank issues and point questions to Discussions. This repo does both. See <a href="https://github.com/CptNope/github-achievements-academy/tree/main/.github/ISSUE_TEMPLATE" rel="noopener">its templates</a> and the copy-ready version in <a href="https://github.com/CptNope/github-achievements-academy/tree/main/templates" rel="noopener">templates/</a>.</p>
+<h2 id="projects-boards-and-tables">Projects: boards and tables</h2>
+<p>A <strong>Project</strong> pulls issues and PRs from one or more repos into a single view. Create one from your profile or org: <strong>Projects → New project</strong>.</p>
+<ul>
+<li><strong>Table view:</strong> a spreadsheet with custom fields like Priority, Estimate or Sprint</li>
+<li><strong>Board view:</strong> Kanban columns (Todo → In progress → Done). Drag cards between them</li>
+<li><strong>Roadmap view:</strong> issues on a timeline using date fields</li>
+</ul>
+<p>Set up <strong>built-in workflows</strong> (the <strong>⋯</strong> menu → <strong>Workflows</strong>) so items move automatically, for example &quot;When a PR is merged, set Status to Done&quot;.</p>
+<h2 id="exercise-in-your-sandbox">Exercise (in your sandbox)</h2>
+<ol>
+<li>Create three issues: one bug, one feature, one docs task. Give each a label.</li>
+<li>Make the feature a parent and add two sub-issues to it.</li>
+<li>Create a Project with a board view and add all your issues.</li>
+<li>Open a PR that says <code>Fixes #&lt;your docs issue&gt;</code>, merge it, and watch the issue close itself.</li>
+</ol>
+<h2 id="what-you-learned">What you learned</h2>
+<ul>
+<li>Writing bug reports and feature requests people can act on</li>
+<li>Labels, milestones, sub-issues and closing keywords</li>
+<li>Issue forms, and planning with Projects</li>
+</ul>
+<p>Next: <a href="github-03-code-review.html">GitHub 3: Code review</a></p>
+
+    </article>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/github/02-issues-and-projects.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="github-01-profile.html"><span>Previous</span>GitHub 1: Your profile as a portfolio</a>
+    <a class="next" href="github-03-code-review.html"><span>Next</span>GitHub 3: Code review</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Badges</h2>
+    <ol>
+        <li><a href="00-setup.html"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+    </ol>
+    <h2>Git fundamentals</h2>
+    <ol>
+        <li><a href="git-01-how-git-works.html"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html"><span class="n">6</span>Power tools</a></li>
+    </ol>
+    <h2>GitHub skills</h2>
+    <ol>
+        <li><a href="github-01-profile.html"><span class="n">1</span>Your profile as a portfolio</a></li>
+        <li><a href="github-02-issues-and-projects.html" aria-current="page"><span class="n">2</span>Issues and Projects</a></li>
+        <li><a href="github-03-code-review.html"><span class="n">3</span>Code review</a></li>
+        <li><a href="github-04-actions.html"><span class="n">4</span>Automate with Actions</a></li>
+        <li><a href="github-05-releases.html"><span class="n">5</span>Releases and versioning</a></li>
+        <li><a href="github-06-security.html"><span class="n">6</span>Security basics</a></li>
+        <li><a href="github-07-open-source.html"><span class="n">7</span>Contributing to open source</a></li>
+    </ol>
+    <h2>Guides</h2>
+    <ol>
+        <li><a href="oh-no.html">Oh no! Undo mistakes</a></li>
+        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+        <li><a href="fair-play.html">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+</body>
+</html>

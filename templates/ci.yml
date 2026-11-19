@@ -1,0 +1,29 @@
+# Copy to .github/workflows/ci.yml in your repo.
+# Runs your tests on every pull request and every push to main. Lesson: GitHub 4.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:        # adds a "Run workflow" button in the Actions tab
+
+permissions:
+  contents: read            # least privilege
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      # Node.js example. For other languages, swap these two steps,
+      # e.g. actions/setup-python + "pip install -r requirements.txt".
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GitHub 7: Contributing to open source · GitHub Achievements Academy</title>
+<meta name="description" content="Contributing to a project you use is the best way to learn from experienced developers, build a public track record, and earn badges the honest way. It's a">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../#check">Check a profile</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>GitHub 7: Contributing to open source</h1>
+    <nav class="jump" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#find-the-right-project">Find the right project</a></li>
+        <li><a href="#before-you-write-code">Before you write code</a></li>
+        <li><a href="#making-the-contribution">Making the contribution</a></li>
+        <li><a href="#after-you-open-the-pr">After you open the PR</a></li>
+        <li><a href="#contributions-that-aren39t-code">Contributions that aren&#39;t code</a></li>
+        <li><a href="#please-don39t">Please don&#39;t</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+        <li><a href="#you39ve-finished-github-skills">You&#39;ve finished GitHub skills</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+<p>Contributing to a project you use is the best way to learn from experienced developers, build a public track record, and earn badges the honest way. It&#39;s also a little intimidating. This lesson is the unwritten etiquette that maintainers wish everyone knew.</p>
+<h2 id="find-the-right-project">Find the right project</h2>
+<p>The best first project is one <strong>you already use</strong>: a library, a WordPress plugin, a tool, a docs site. You understand its users, and you&#39;ll notice the rough edges.</p>
+<p>Signs a project welcomes newcomers:</p>
+<ul>
+<li>Recent commits and PRs that get merged, not hundreds sitting untouched</li>
+<li>A <code>CONTRIBUTING.md</code> file and a code of conduct</li>
+<li>Issues labeled <a href="https://github.com/search?q=label%3A%22good+first+issue%22+is%3Aopen&amp;type=issues" rel="noopener"><code>good first issue</code></a> or <code>help wanted</code></li>
+<li>Maintainers who reply kindly in issues</li>
+</ul>
+<h2 id="before-you-write-code">Before you write code</h2>
+<ol>
+<li><strong>Read <code>CONTRIBUTING.md</code>.</strong> It tells you how they want PRs, which tests to run, and whether they need something like a CLA (Contributor License Agreement) or DCO sign-off (<code>git commit -s</code>).</li>
+<li><strong>Search existing issues and PRs.</strong> Someone may already be on it.</li>
+<li><strong>For anything bigger than a typo, comment on the issue first:</strong> &quot;I&#39;d like to work on this. My plan is X. Does that sound right?&quot; Wait for a maintainer to agree. This one step prevents most rejected PRs.</li>
+<li><strong>Claim it, then deliver.</strong> If you can&#39;t finish, say so, so someone else can pick it up.</li>
+</ol>
+<h2 id="making-the-contribution">Making the contribution</h2>
+<p>You already know the mechanics from <a href="03-pull-shark.html">Lesson 3</a>: fork, branch, commit, PR. On top of that:</p>
+<ul>
+<li><strong>Match the project&#39;s style</strong>, even where you&#39;d do it differently</li>
+<li><strong>One change per PR.</strong> Don&#39;t fix three unrelated things at once</li>
+<li><strong>Run their tests</strong> and add one for your change if you can</li>
+<li><strong>Fill in the PR template</strong> completely, and link the issue (<code>Fixes #123</code>)</li>
+<li><strong>Keep your branch up to date</strong> with their <code>main</code> (<a href="git-05-remotes.html#keep-your-fork-in-sync">Git 5</a>)</li>
+</ul>
+<h2 id="after-you-open-the-pr">After you open the PR</h2>
+<ul>
+<li><strong>Be patient.</strong> Many maintainers are volunteers. A week without a reply is normal. A polite nudge after about two weeks is fine.</li>
+<li><strong>Respond to every review comment</strong>, and push fixes to the same branch. The PR updates automatically.</li>
+<li><strong>Don&#39;t take it personally.</strong> &quot;Can you change X?&quot; is the process working, not criticism.</li>
+<li><strong>If it&#39;s declined, ask what would help next time,</strong> thank them, and move on. Some ideas don&#39;t fit a project&#39;s direction, and that&#39;s their call.</li>
+</ul>
+<h2 id="contributions-that-aren39t-code">Contributions that aren&#39;t code</h2>
+<p>These are just as valued, and often more needed:</p>
+<ul>
+<li><strong>Docs:</strong> fix confusing instructions, add examples, translate</li>
+<li><strong>Bug reports</strong> with clear steps to reproduce (<a href="github-02-issues-and-projects.html">GitHub 2</a>)</li>
+<li><strong>Triage:</strong> confirm bugs others reported, find duplicates</li>
+<li><strong>Answering questions</strong> in Discussions (<a href="05-galaxy-brain.html">Galaxy Brain</a>)</li>
+<li><strong>Testing betas</strong> and reporting back</li>
+<li><strong>Sponsoring</strong> maintainers (<a href="07-public-sponsor.html">Public Sponsor</a>)</li>
+</ul>
+<h2 id="please-don39t">Please don&#39;t</h2>
+<ul>
+<li>Send AI-generated or automated PRs you haven&#39;t read, run and understood</li>
+<li>Open &quot;fixed typo&quot; PRs to dozens of repos just to collect merges</li>
+<li>Comment &quot;+1&quot; or &quot;any update?&quot; over and over. Use a reaction instead</li>
+<li>Argue in public when a maintainer says no</li>
+</ul>
+<p>All of these burn out maintainers, and they&#39;re noticed. See <a href="fair-play.html">FAIR-PLAY.md</a>.</p>
+<h2 id="exercise">Exercise</h2>
+<ol>
+<li>Pick one tool you use every week and find its repo.</li>
+<li>Read its <code>CONTRIBUTING.md</code> and browse its open issues.</li>
+<li>Find one thing you could genuinely help with, even a confusing sentence in the docs, and either comment on an issue or open a small PR.</li>
+</ol>
+<p><strong>Learners Wall:</strong> add a line about your first contribution to someone else&#39;s project. That&#39;s a milestone worth recording.</p>
+<h2 id="you39ve-finished-github-skills">You&#39;ve finished GitHub skills</h2>
+<p>Between the three tracks, you now know how to use Git confidently, work the way professional teams do on GitHub, and contribute to open source with good manners. Consider giving back: answer a question in our <a href="https://github.com/CptNope/github-achievements-academy/discussions" rel="noopener">Discussions</a>, or improve a lesson that confused you.</p>
+
+    </article>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/github/07-open-source.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="github-06-security.html"><span>Previous</span>GitHub 6: Security basics</a>
+    <a class="next" href="oh-no.html"><span>Next</span>Oh no! Undoing Git mistakes</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Badges</h2>
+    <ol>
+        <li><a href="00-setup.html"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+    </ol>
+    <h2>Git fundamentals</h2>
+    <ol>
+        <li><a href="git-01-how-git-works.html"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html"><span class="n">6</span>Power tools</a></li>
+    </ol>
+    <h2>GitHub skills</h2>
+    <ol>
+        <li><a href="github-01-profile.html"><span class="n">1</span>Your profile as a portfolio</a></li>
+        <li><a href="github-02-issues-and-projects.html"><span class="n">2</span>Issues and Projects</a></li>
+        <li><a href="github-03-code-review.html"><span class="n">3</span>Code review</a></li>
+        <li><a href="github-04-actions.html"><span class="n">4</span>Automate with Actions</a></li>
+        <li><a href="github-05-releases.html"><span class="n">5</span>Releases and versioning</a></li>
+        <li><a href="github-06-security.html"><span class="n">6</span>Security basics</a></li>
+        <li><a href="github-07-open-source.html" aria-current="page"><span class="n">7</span>Contributing to open source</a></li>
+    </ol>
+    <h2>Guides</h2>
+    <ol>
+        <li><a href="oh-no.html">Oh no! Undo mistakes</a></li>
+        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+        <li><a href="fair-play.html">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+</body>
+</html>
