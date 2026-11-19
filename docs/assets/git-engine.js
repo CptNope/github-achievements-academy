@@ -4,7 +4,7 @@
 // rebasing and undoing, which is where people actually get stuck.
 
 export class GitSim {
-  constructor() { this.reset(); }
+  constructor(opts = {}) { this.rootMessage = opts.rootMessage || "Initial commit"; this.reset(); }
 
   reset() {
     this.commits = {};        // id -> { id, parents: [], msg, n }
@@ -15,9 +15,9 @@ export class GitSim {
     this.reflog = [];         // newest first: { id, msg }
     this.counter = 0;
     this.stashes = [];
-    const root = this._newCommit([], "Initial commit");
+    const root = this._newCommit([], this.rootMessage);
     this.branches.main = root;
-    this._log(root, "commit (initial): Initial commit");
+    this._log(root, `commit (initial): ${this.rootMessage}`);
   }
 
   // ---------- helpers ----------

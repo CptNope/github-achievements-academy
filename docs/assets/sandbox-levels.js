@@ -62,7 +62,7 @@ export const LEVELS = [
   {
     id: "undo-local",
     title: "Undo a commit you haven't pushed",
-    lesson: "oh-no.html#i-want-to-undo-my-last-commit-but-keep-the-changes",
+    lesson: "oh-no.html#i-want-to-uncommit-but-keep-my-changes",
     intro: "Oops: the last commit on `main` was a mistake, and it hasn't been pushed. **Move `main` back so the \"oops\" commit isn't on it.** (It'll still be in the reflog, faded on the graph.)",
     setup: ['git commit -m "Add pricing page"', 'git commit -m "oops: commit debug logs"'],
     goal: (s) => s.head.branch === "main" && !contains(s, "main", (m) => m.startsWith("oops")) && contains(s, "main", (m) => m === "Add pricing page"),

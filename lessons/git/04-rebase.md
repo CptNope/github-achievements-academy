@@ -6,9 +6,16 @@ Rebasing has a scary reputation, but it does one simple thing: **it replays your
 
 Your branch started from commit B, but `main` has moved on:
 
-```
-A ← B ← C ← D          ← main
-     ↖ E ← F           ← my-feature
+```gitgraph
+caption: my-feature started from B, and main has moved on to D.
+git commit -m B
+git switch -c my-feature
+git commit -m E
+git commit -m F
+git switch main
+git commit -m C
+git commit -m D
+git switch my-feature
 ```
 
 ```bash
@@ -18,12 +25,20 @@ git rebase main
 
 Git takes your commits E and F, sets them aside, moves your branch to the tip of `main`, then replays them one by one:
 
-```
-A ← B ← C ← D          ← main
-             ↖ E' ← F' ← my-feature
+```gitgraph
+caption: After git rebase main. New copies of E and F sit on top of D. The originals fade out, no longer on any branch.
+git commit -m B
+git switch -c my-feature
+git commit -m E
+git commit -m F
+git switch main
+git commit -m C
+git commit -m D
+git switch my-feature
+git rebase main
 ```
 
-E' and F' have the same changes as E and F, but they're **new commits with new IDs**, because their parent changed. Remember that, because it's why the golden rule exists.
+The new E and F have the same changes as the originals, but they're **new commits with new IDs**, because their parent changed. (Git people often write them as E′ and F′.) Remember that, because it's why the golden rule exists.
 
 🎮 **Watch it:** in the [rebase sandbox challenge](https://cptnope.github.io/github-achievements-academy/sandbox/?level=rebase) your old commits fade out and new ones appear on top of `main`.
 
@@ -35,6 +50,19 @@ E' and F' have the same changes as E and F, but they're **new commits with new I
 | Rewrites commits? | No | Yes, so your commits get new IDs |
 | Conflicts | Resolved once | Resolved per commit, which can mean several times |
 | Safe on shared branches? | Yes | **Only if nobody else uses the branch** |
+
+```gitgraph
+caption: The same starting point, merged instead of rebased. E and F keep their IDs, and M joins the two lines.
+git commit -m B
+git switch -c my-feature
+git commit -m E
+git commit -m F
+git switch main
+git commit -m C
+git commit -m D
+git switch my-feature
+git merge main -m M
+```
 
 Both are fine. Many teams merge on GitHub and rebase locally to stay current.
 
@@ -106,7 +134,20 @@ git rebase -i --autosquash main     # it's already placed and marked as fixup, s
 
 ## Keep pull from making messy merges
 
-By default `git pull` can create "Merge branch 'main' of github.com…" commits when your local branch and GitHub's have both moved. Many people prefer:
+By default `git pull` can create "Merge branch 'main' of github.com…" commits when your local branch and GitHub's have both moved:
+
+```gitgraph
+caption: You and a teammate both committed after B. A plain git pull joins the two with a merge commit, M.
+git commit -m B
+git branch origin/main
+git commit -m Yours
+git switch origin/main
+git commit -m Theirs
+git switch main
+git merge origin/main -m M
+```
+
+Many people prefer:
 
 ```bash
 git config --global pull.rebase true

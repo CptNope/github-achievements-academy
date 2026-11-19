@@ -1,5 +1,6 @@
 import { GitSim } from "./git-engine.js";
 import { LEVELS } from "./sandbox-levels.js";
+import { renderGraph } from "./git-graph.js";
 
 const FREE = { id: "free", title: "Free play", lesson: "git-01-how-git-works.html", intro: "No goal: experiment freely. Try `git commit`, `git switch -c idea`, `git merge`, `git rebase`, `git reset` and `git reflog`. Type `restart` to start over.", setup: [] };
 const ALL = [...LEVELS, FREE];
@@ -23,6 +24,7 @@ function fillPicker() {
 
 function start(l, { focus = false } = {}) {
   level = l; complete = false; undoStack = [];
+  sim.rootMessage = l.root || "Initial commit";
   sim.reset();
   for (const c of l.setup) sim.run(c);
   lastIds = new Set(sim.order);
@@ -93,72 +95,23 @@ $("btn-solution").addEventListener("click", () => {
 $("btn-next").addEventListener("click", () => { const i = ALL.indexOf(level); start(ALL[Math.min(i + 1, ALL.length - 1)], { focus: true }); });
 
 // ---------- graph ----------
-const GAP_X = 92, GAP_Y = 78, PAD_X = 40, TOP = 64, R = 13;
-
-function lanesFor() {
-  const lane = {}; let next = 0;
-  const reach = sim.reachable();
-  const chain = (tip) => { const out = []; let c = tip; while (c) { out.push(c); c = sim.commits[c].parents[0]; } return out; };
-  const tips = [["main", sim.branches.main], ...Object.entries(sim.branches).filter(([b]) => b !== "main").sort((a, b) => sim.commits[a[1]].n - sim.commits[b[1]].n)];
-  if (sim.head.detached) tips.push(["HEAD", sim.head.detached]);
-  for (const [, t] of Object.entries(sim.tags)) tips.push(["tag", t]);
-  for (const [, tip] of tips) {
-    if (!tip) continue; let used = false;
-    for (const c of chain(tip)) { if (lane[c] !== undefined) break; lane[c] = next; used = true; }
-    if (used) next++;
-  }
-  // commits no longer on any branch (after reset, rebase or branch -D): their own lanes, faded
-  const orphans = sim.order.filter((c) => lane[c] === undefined).sort((a, b) => sim.commits[b].n - sim.commits[a].n);
-  for (const c of orphans) {
-    if (lane[c] !== undefined) continue;
-    for (const x of chain(c)) { if (lane[x] !== undefined) break; lane[x] = next; }
-    next++;
-  }
-  return { lane, reach, lanes: next };
-}
-
 function draw() {
-  const { lane, reach, lanes } = lanesFor();
-  const ids = sim.order;
-  const x = (id) => PAD_X + sim.commits[id].n * GAP_X;
-  const y = (id) => TOP + lane[id] * GAP_Y;
-  const W = PAD_X * 2 + (ids.length - 1) * GAP_X + 120;
-  const H = TOP + Math.max(1, lanes) * GAP_Y + 10;
-  const head = sim.headId();
-  let svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`;
-  for (const id of ids) for (const p of sim.commits[id].parents) {
-    const x1 = x(p), y1 = y(p), x2 = x(id), y2 = y(id);
-    const d = y1 === y2 ? `M${x1},${y1} L${x2},${y2}` : `M${x1},${y1} C${x1 + GAP_X * 0.6},${y1} ${x2 - GAP_X * 0.6},${y2} ${x2},${y2}`;
-    svg += `<path class="edge${reach.has(id) ? "" : " faded"}" d="${d}"/>`;
-  }
-  // labels per commit
-  const labels = {};
-  const add = (id, html) => (labels[id] = labels[id] || []).push(html);
-  for (const [b, t] of Object.entries(sim.branches)) add(t, { text: b, on: sim.head.branch === b, kind: "branch" });
-  for (const [t, v] of Object.entries(sim.tags)) add(v, { text: t, kind: "tag" });
-  if (sim.head.detached) add(sim.head.detached, { text: "HEAD", on: true, kind: "branch" });
-  for (const id of ids) {
-    const f = reach.has(id) ? "" : " faded";
-    const isNew = !lastIds.has(id) ? " new" : "";
-    svg += `<g><title>${esc(id)}: ${esc(sim.commits[id].msg)}</title><circle class="node${id === head ? " head" : ""}${f}${isNew}" cx="${x(id)}" cy="${y(id)}" r="${R}"/>`;
-    svg += `<text class="cid${f ? " faded-t" : ""}" x="${x(id)}" y="${y(id) + R + 15}" text-anchor="middle">${id}</text>`;
-    const m = sim.commits[id].msg; const short = m.length > 13 ? m.slice(0, 12) + "…" : m;
-    svg += `<text class="cmsg${f ? " faded-t" : ""}" x="${x(id)}" y="${y(id) + R + 29}" text-anchor="middle">${esc(short)}</text></g>`;
-    (labels[id] || []).forEach((l, i) => {
-      const w = l.text.length * 7.4 + 16; const ly = y(id) - R - 12 - i * 24;
-      svg += `<g class="lbl${l.on ? " on" : ""}${l.kind === "tag" ? " tag" : ""}"><rect x="${x(id) - w / 2}" y="${ly - 15}" width="${w}" height="21" rx="10.5"/><text x="${x(id)}" y="${ly}" text-anchor="middle">${esc(l.text)}</text></g>`;
-    });
-  }
-  svg += "</svg>";
-  const maxLabels = Math.max(0, ...Object.values(labels).map((a) => a.length));
+  const { svg, label } = renderGraph(sim, { fresh: lastIds });
   const g = $("graph");
   g.innerHTML = svg;
-  g.querySelector("svg").style.marginTop = Math.max(0, (maxLabels - 1) * 24) + "px";
-  g.setAttribute("aria-label", `Commit graph: ${ids.length} commits. ${Object.entries(sim.branches).map(([b, t]) => `${b} at ${t}`).join(", ")}. HEAD ${sim.head.branch ? "on " + sim.head.branch : "detached at " + sim.head.detached}.`);
+  g.setAttribute("aria-label", label);
   g.scrollLeft = g.scrollWidth;
-  lastIds = new Set(ids);
+  lastIds = new Set(sim.order);
 }
 
 // ---------- boot ----------
-const want = new URLSearchParams(location.search).get("level");
-start(ALL.find((l) => l.id === want) || ALL.find((l) => !solved.has(l.id)) || ALL[0]);
+const params = new URLSearchParams(location.search);
+const want = params.get("level");
+try {
+  const cmds = JSON.parse(params.get("cmds") || "null");
+  if (Array.isArray(cmds) && cmds.length <= 40 && cmds.every((c) => typeof c === "string" && c.startsWith("git ") && c.length < 120)) {
+    FREE.setup = cmds; FREE.root = params.get("root") || undefined;
+    FREE.intro = "This is the graph from the lesson you came from. Carry on from here: try a commit, a merge or a rebase, and watch what changes. Type `restart` to rebuild it.";
+  }
+} catch { /* ignore a malformed link */ }
+start(FREE.setup.length ? FREE : ALL.find((l) => l.id === want) || ALL.find((l) => !solved.has(l.id)) || ALL[0]);

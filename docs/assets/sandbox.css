@@ -24,23 +24,7 @@
 .sb-graph{overflow-x:auto;overflow-y:hidden;min-height:180px;padding:0 20px;scroll-behavior:smooth;display:flex;align-items:center}
 .sb-graph svg{flex:none}
 .sb-graph svg{display:block}
-.sb-graph .edge{fill:none;stroke:#8a837a;stroke-width:3}
-.sb-graph .edge.faded{stroke:#6f6860;stroke-dasharray:5 5}
-.sb-graph .node{fill:var(--paper);stroke:var(--surface);stroke-width:4}
-.sb-graph .node.faded{fill:var(--surface);stroke:#8a837a;stroke-width:3;stroke-dasharray:4 3}
-.sb-graph .node.head{fill:var(--accent)}
-.sb-graph .node.new{animation:pop .45s var(--ease)}
 @keyframes pop{from{transform:scale(.2);opacity:0}to{transform:scale(1);opacity:1}}
-.sb-graph .node{transform-box:fill-box;transform-origin:center}
-.sb-graph .cid{fill:var(--muted);font:600 11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace} /* taste-skill-ignore: literal code (commit IDs, terminal) */
-.sb-graph .cmsg{fill:var(--soft);font:400 11px "Chivo",system-ui,sans-serif}
-.sb-graph .faded-t{opacity:.85}
-.sb-graph .lbl rect{fill:var(--surface-2)}
-.sb-graph .lbl text{fill:var(--ink);font:700 12px "Chivo",system-ui,sans-serif}
-.sb-graph .lbl.on rect{fill:var(--accent)}
-.sb-graph .lbl.on text{fill:var(--accent-ink)}
-.sb-graph .lbl.tag rect{fill:none;stroke:var(--muted);stroke-width:1.5}
-.sb-graph .lbl.tag text{fill:var(--soft);font-weight:400}
 .sb-legend{display:flex;flex-wrap:wrap;gap:8px 20px;padding:8px 20px 0;font-size:var(--step-small);color:var(--muted)}
 .sb-legend .dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--paper);margin-right:8px;vertical-align:-1px}
 .sb-legend .dot.head{background:var(--accent)}

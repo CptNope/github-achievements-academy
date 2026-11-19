@@ -14,8 +14,11 @@ Every commit gets an ID, a long hash like `3f9c2a1e…`. You'll usually see the 
 
 Because each commit points to its parent, your history forms a chain:
 
-```
-A ← B ← C
+```gitgraph
+caption: Three commits. Each one points back to the one before it.
+labels: off
+git commit -m B
+git commit -m C
 ```
 
 > 💡 Git doesn't waste space storing the same file twice. If a file didn't change between snapshots, both commits point to the same stored copy.
@@ -24,15 +27,19 @@ A ← B ← C
 
 This is the big one. A branch is **not** a copy of your code. It's a tiny file containing one commit ID, a movable label that says "this commit is the tip of `main`".
 
-```
-A ← B ← C   ← main
+```gitgraph
+caption: The main label points at commit C, the tip of the branch.
+git commit -m B
+git commit -m C
 ```
 
 When you commit on `main`, Git makes commit D and moves the `main` label forward to it. Creating a branch just adds a second label:
 
-```
-A ← B ← C   ← main
-            ← feature
+```gitgraph
+caption: After git branch feature, two labels sit on the same commit. Nothing was copied.
+git commit -m B
+git commit -m C
+git branch feature
 ```
 
 That's why making a branch is instant, even in a huge project.
@@ -42,6 +49,14 @@ That's why making a branch is instant, even in a huge project.
 `HEAD` tells Git which branch you're currently on. When you run `git switch feature`, `HEAD` moves to point at `feature`, and your files change to match that branch's snapshot. New commits move whichever branch `HEAD` points at.
 
 If `HEAD` points straight at a commit instead of a branch, Git calls that a **detached HEAD**. It's safe to look around, but commits you make there aren't on any branch. See the ["Oh no" guide](../oh-no.md#i-am-in-detached-head-state) if you end up there.
+
+```gitgraph
+caption: After git switch --detach B and one commit, HEAD sits on X, which no branch points to yet.
+git commit -m B
+git commit -m C
+git switch --detach HEAD~1
+git commit -m X
+```
 
 ## The three places your work lives
 

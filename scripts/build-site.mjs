@@ -7,6 +7,8 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync, rmSync } from "nod
 import { posix, join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Marked } from "marked";
+import { GitSim } from "../docs/assets/git-engine.js";
+import { renderGraph } from "../docs/assets/git-graph.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "docs", "learn");
@@ -75,6 +77,28 @@ function rewriteHref(href, fromSrc) {
   return `${REPO}/${isDir ? "tree" : "blob"}/main/${target.replace(/\/$/, "")}${hash ? "#" + hash : ""}`;
 }
 
+// ```gitgraph blocks: replay real commands in the sandbox's Git simulator and draw the result,
+// so lesson diagrams match what learners see when they practice. Lines:
+//   caption: text      root: A      labels: off      pair: first|last      git <command>
+const SITE = "https://cptnope.github.io/github-achievements-academy";
+function gitgraph(text) {
+  const opts = {}; const cmds = [];
+  for (const line of text.split("\n").map((l) => l.trim()).filter(Boolean)) {
+    const m = line.match(/^(caption|root|labels|pair):\s*(.*)$/);
+    if (m) opts[m[1]] = m[2]; else if (line.startsWith("git ")) cmds.push(line);
+    else throw new Error(`gitgraph: can't read "${line}"`);
+  }
+  const sim = new GitSim({ rootMessage: opts.root || "A" });
+  for (const c of cmds) sim.run(c);
+  const { svg, label } = renderGraph(sim, { big: true, showIds: false, noLabels: opts.labels === "off" });
+  const link = `${SITE}/sandbox/?cmds=${encodeURIComponent(JSON.stringify(cmds))}&root=${encodeURIComponent(opts.root || "A")}`;
+  const fig = `<figure class="gitgraph" data-ui>
+  <div class="gg-scroll" tabindex="0" role="region" aria-label="Diagram: ${esc(opts.caption || "commit graph")}"><div role="img" aria-label="${esc(label)}">${svg}</div></div>
+  <figcaption><span>${esc(opts.caption || "")}</span><a href="${esc(link)}">Try this in the sandbox</a></figcaption>
+</figure>`;
+  return (opts.pair === "first" ? '<div class="gg-pair">' : "") + fig + (opts.pair === "last" ? "</div>" : "") + "\n";
+}
+
 function render(p) {
   const marked = new Marked({ gfm: true });
   marked.use({
@@ -89,6 +113,7 @@ function render(p) {
         return `<a href="${esc(out)}"${title ? ` title="${esc(title)}"` : ""}${ext}>${this.parser.parseInline(tokens)}</a>`;
       },
       code({ text, lang }) {
+        if (lang === "gitgraph") return gitgraph(text);
         // focusable so keyboard users can scroll long lines (WCAG 2.1.1)
         const l = (lang || "").split(/\s/)[0];
         return `<pre tabindex="0"><code${l ? ` class="language-${esc(l)}"` : ""}>${esc(text)}</code></pre>\n`;

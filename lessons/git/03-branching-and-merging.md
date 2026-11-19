@@ -20,18 +20,41 @@ Got uncommitted changes? `git switch` brings them with you if they don't clash. 
 
 **Fast-forward.** If `main` hasn't moved since you branched, Git just slides the `main` label forward to your latest commit. No new commit is needed:
 
+```gitgraph
+caption: Before. feature is two commits ahead, and main hasn't moved.
+pair: first
+git commit -m B
+git commit -m C
+git switch -c feature
+git commit -m D
+git commit -m E
+git switch main
 ```
-before:  A ← B ← C  ← main
-                  ↖ D ← E  ← feature
 
-after:   A ← B ← C ← D ← E  ← main, feature
+```gitgraph
+caption: After git merge feature. The main label slides forward to E.
+pair: last
+git commit -m B
+git commit -m C
+git switch -c feature
+git commit -m D
+git commit -m E
+git switch main
+git merge feature
 ```
 
 **Merge commit.** If both branches have new commits, Git creates a new commit with **two parents** that joins them:
 
-```
-A ← B ← C ← F ← M   ← main
-         ↖ D ← E ↙
+```gitgraph
+caption: Both branches moved on, so merging creates M, a commit with two parents (F and E).
+git commit -m B
+git commit -m C
+git switch -c feature
+git commit -m D
+git commit -m E
+git switch main
+git commit -m F
+git merge feature -m M
 ```
 
 ```bash
@@ -47,6 +70,16 @@ On GitHub, the **Merge pull request** button gives you three choices:
 | Create a merge commit | Keeps every commit, plus a merge commit |
 | Squash and merge | All the PR's commits become **one** commit on main |
 | Rebase and merge | Replays each commit on top of main, with no merge commit |
+
+```gitgraph
+caption: Squash and merge: the changes from D and E land on main as one new commit, S. D and E themselves stay on the PR branch.
+git commit -m B
+git switch -c feature
+git commit -m D
+git commit -m E
+git switch main
+git commit -m S
+```
 
 ## Merge conflicts, demystified
 

@@ -44,7 +44,7 @@ git restore --staged wrong-file.js
 
 Your edits stay in the file. They're just not staged anymore.
 
-## I want to throw away my uncommitted changes to a file
+## I want to discard changes to a file
 
 ```bash
 git restore path/to/file.js
@@ -52,7 +52,7 @@ git restore path/to/file.js
 
 ⚠️ This one really is permanent. Uncommitted changes were never saved by Git, so they can't be recovered. Not sure? Run `git stash` instead, and you can bring them back later.
 
-## I want to undo my last commit, but keep the changes
+## I want to uncommit but keep my changes
 
 ```bash
 git reset --soft HEAD~1      # the commit is gone, and its changes are staged
@@ -69,6 +69,14 @@ git push
 ```
 
 `revert` makes a **new** commit that does the exact opposite of the old one. History stays intact, so it's safe on `main` and shared branches. To find the ID, run `git log --oneline`.
+
+```gitgraph
+caption: git revert C adds a new commit that undoes C. Nothing is rewritten, so teammates aren't affected.
+git commit -m B
+git commit -m C
+git commit -m D
+git revert HEAD~1
+```
 
 Reverting a merge commit needs one extra flag that says which side to keep. Usually that's `-m 1` (the branch you merged into):
 
@@ -88,6 +96,15 @@ git switch my-feature        # 3. carry on, on the right branch
 
 Check with `git log --oneline --graph --all` before step 2. If `main` was in sync with GitHub before your commits, `git reset --hard origin/main` works too.
 
+```gitgraph
+caption: After the fix: my-feature keeps your work, and main is back where it was.
+git commit -m B
+git commit -m Work
+git branch my-feature
+git reset --hard HEAD~1
+git switch my-feature
+```
+
 ## I committed to the wrong branch (not main)
 
 ```bash
@@ -105,6 +122,16 @@ When you delete a branch, Git prints its last commit:
 Deleted branch my-feature (was 3f9c2a1).
 ```
 
+```gitgraph
+caption: After git branch -D my-feature, D and E are faded but still there. One command brings the label back.
+git commit -m B
+git switch -c my-feature
+git commit -m D
+git commit -m E
+git switch main
+git branch -D my-feature
+```
+
 Bring it back:
 
 ```bash
@@ -119,7 +146,7 @@ git reflog
 
 Find the last commit from that branch (the messages help) and run the same `git branch` command with its ID.
 
-## I ran `git reset --hard` and lost commits
+## I ran reset --hard and lost commits
 
 The commits still exist, and the reflog remembers them:
 
@@ -131,6 +158,14 @@ git reset --hard 9f8e7d6
 ```
 
 Reflog entries usually stick around for at least 30 days. They only exist on **your** computer, though, so the sooner you look, the better.
+
+```gitgraph
+caption: After git reset --hard HEAD~2, commits C and D are faded: off every branch, but still in the reflog.
+git commit -m B
+git commit -m C
+git commit -m D
+git reset --hard HEAD~2
+```
 
 ## I messed up a rebase
 

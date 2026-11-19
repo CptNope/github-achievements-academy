@@ -36,6 +36,17 @@ git cherry-pick 9a8b7c6
 
 Git applies that single commit's changes as a new commit on `main`. Add `-x` to note where it came from in the message, which is handy for release branches.
 
+```gitgraph
+caption: git cherry-pick copies only Fix onto main. The other feature commits stay where they are.
+git commit -m B
+git switch -c feature
+git commit -m Redesign
+git commit -m Fix
+git commit -m More
+git switch main
+git cherry-pick feature~1
+```
+
 🎮 Try it in the [cherry-pick sandbox challenge](https://cptnope.github.io/github-achievements-academy/sandbox/?level=cherry-pick).
 
 ## Bisect: find the commit that broke it

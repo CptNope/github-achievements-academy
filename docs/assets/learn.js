@@ -84,6 +84,9 @@
 
   paint();
 
+  // ----- wide commit diagrams on small screens: start at the right-hand end, where the branch tips are -----
+  document.querySelectorAll(".gg-scroll").forEach((el) => { if (el.scrollWidth > el.clientWidth) el.scrollLeft = el.scrollWidth; });
+
   // ----- gentle entrances (skipped entirely for reduced motion) -----
   if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
     const sel = [".lesson > h1", ".jump", ".prose > h2", ".prose > pre", ".prose > .table", ".prose > blockquote", ".quiz", ".complete", ".pager a",
