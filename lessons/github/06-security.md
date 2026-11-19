@@ -58,6 +58,11 @@ updates:
 
 This repo uses exactly that. See [its dependabot.yml](../../.github/dependabot.yml), or copy [the template](../../templates/dependabot.yml).
 
+> 💡 **Real example:** minutes after this repo added that file, Dependabot opened three PRs. They bumped
+> `actions/checkout` and `actions/setup-node` from v4 to v7, and the `marked` library from 15 to 18.
+> Major version bumps can break things, so we tested the new `marked` locally first (the site came out
+> identical), then updated. Read the release notes before merging a major bump.
+
 ## Secret scanning and push protection
 
 **Secret scanning** looks for leaked keys (AWS, Stripe, GitHub tokens and hundreds more). **Push protection** goes further: it **blocks the push** if it spots a key, before it ever reaches GitHub. Check that both are on in **Settings → Code security**.

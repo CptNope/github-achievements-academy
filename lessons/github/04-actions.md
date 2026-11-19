@@ -21,8 +21,8 @@ jobs:
   test:                        # a job: runs on a fresh virtual machine
     runs-on: ubuntu-latest
     steps:                     # steps run in order
-      - uses: actions/checkout@v5          # a ready-made action: get the code
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v7          # a ready-made action: get the code
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
       - run: npm ci                        # a shell command
@@ -38,7 +38,7 @@ jobs:
 | `run` | Run shell commands |
 | `with` | Inputs for an action |
 
-> 💡 Version numbers like `@v5` go out of date. [GitHub 6](06-security.md#dependabot) shows how to let Dependabot keep them current for you.
+> 💡 Version numbers like `@v7` go out of date. [GitHub 6](06-security.md#dependabot) shows how to let Dependabot keep them current for you.
 
 ## A real example: this repo's own checks
 

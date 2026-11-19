@@ -84,6 +84,12 @@ updates:
       interval: &quot;weekly&quot;
 </code></pre>
 <p>This repo uses exactly that. See <a href="https://github.com/CptNope/github-achievements-academy/blob/main/.github/dependabot.yml" rel="noopener">its dependabot.yml</a>, or copy <a href="https://github.com/CptNope/github-achievements-academy/blob/main/templates/dependabot.yml" rel="noopener">the template</a>.</p>
+<blockquote>
+<p><strong>Real example:</strong> minutes after this repo added that file, Dependabot opened three PRs. They bumped
+<code>actions/checkout</code> and <code>actions/setup-node</code> from v4 to v7, and the <code>marked</code> library from 15 to 18.
+Major version bumps can break things, so we tested the new <code>marked</code> locally first (the site came out
+identical), then updated. Read the release notes before merging a major bump.</p>
+</blockquote>
 <h2 id="secret-scanning-and-push-protection">Secret scanning and push protection</h2>
 <p><strong>Secret scanning</strong> looks for leaked keys (AWS, Stripe, GitHub tokens and hundreds more). <strong>Push protection</strong> goes further: it <strong>blocks the push</strong> if it spots a key, before it ever reaches GitHub. Check that both are on in <strong>Settings → Code security</strong>.</p>
 <p>If a secret does leak, follow the <a href="oh-no.html#i-committed-a-password-or-api-key">Oh no! guide</a>. <strong>Revoke it first.</strong></p>
