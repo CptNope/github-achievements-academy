@@ -19,7 +19,8 @@
     document.querySelectorAll("[data-track-progress]").forEach((el) => {
       const links = document.querySelectorAll(`a[data-track="${CSS.escape(el.dataset.trackProgress)}"][data-lesson]`);
       const total = links.length; const n = [...links].filter((a) => state.done[a.dataset.page]).length;
-      el.textContent = total ? `${n} of ${total} done` : "";
+      el.textContent = !total ? "" : n === 0 ? `Not started · ${total} to go` : `${n} of ${total} done`;
+      el.parentElement.classList.toggle("zero", n === 0);
       const bar = el.parentElement.querySelector(".bar-fill"); if (bar) bar.style.width = total ? (n / total) * 100 + "%" : "0";
     });
     const btn = document.getElementById("mark-done");
@@ -82,4 +83,16 @@
   }
 
   paint();
+
+  // ----- gentle entrances (skipped entirely for reduced motion) -----
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+    const sel = [".lesson > h1", ".jump", ".prose > h2", ".prose > pre", ".prose > .table", ".prose > blockquote", ".quiz", ".complete", ".pager a",
+      ".index-hero > div > *", ".track-map li", ".track-head", ".track-list li"].join(",");
+    const els = [...document.querySelectorAll(sel)];
+    const groups = new Map();
+    els.forEach((el) => { const k = el.parentElement; const i = groups.get(k) || 0; groups.set(k, i + 1); el.style.setProperty("--i", Math.min(i, 6)); el.classList.add("rv"); });
+    document.documentElement.classList.add("anim");
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -6% 0px" });
+    els.forEach((el) => io.observe(el));
+  }
 })();

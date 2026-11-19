@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>All lessons · GitHub Achievements Academy</title>
-<meta name="description" content="Every lesson in GitHub Achievements Academy: the GitHub badges track, Git fundamentals, GitHub skills, and guides for undoing mistakes.">
+<meta name="description" content="Every lesson in GitHub Achievements Academy: the GitHub badges track, Git fundamentals, GitHub skills, repo recipes, and guides for undoing mistakes.">
 <meta name="theme-color" content="#0c0a08">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,85 +24,101 @@
   </nav>
 </header>
 <main id="content" class="index">
-  <h1>All lessons</h1>
-  <p class="lead">New? Begin with <a href="start-here.html">Start here</a>. Four tracks and five guides. Start with the badges, master Git itself, learn to work like a professional team on GitHub, then set up and maintain repos for any purpose. Each track runs in order, top to bottom. Practice anything in the <a href="../sandbox/">Git sandbox</a>.</p>
-  <section class="track" id="start-here" aria-labelledby="t-start-here">
-    <h2 id="t-start-here">Start here</h2>
-    <p>New here? Pick a path that matches where you are, from total beginner to team lead.</p>
-    <div class="track-progress"><div class="bar" aria-hidden="true"><i class="bar-fill"></i></div><span data-track-progress="Start here" aria-live="polite"></span></div>
-    <ul class="poster">
-      <li><a href="start-here.html" data-page="start-here" data-track="Start here"><span class="item">Start here</span><span class="detail">Pick your path</span></a></li>
-    </ul>
-  </section>
+  <div class="index-hero">
+    <div>
+      <h1>All lessons</h1>
+      <p class="lead">Four tracks, from your first commit to running real projects, and five guides to keep open in a tab. Each track runs in order, top to bottom. Practice anything in the <a href="../sandbox/">Git sandbox</a>.</p>
+      <a class="start-band" href="start-here.html" data-page="start-here"><strong>New here? Start here</strong><span>Pick one of six paths, from total beginner to team lead</span></a>
+    </div>
+    <nav class="track-map" aria-label="Tracks on this page">
+      <ol>
+      <li><a href="#badges"><strong>Badges</strong><span>9 lessons</span></a><div class="track-progress"><div class="bar" aria-hidden="true"><i class="bar-fill"></i></div><span data-track-progress="Badges" aria-live="polite"></span></div></li>
+      <li><a href="#git-fundamentals"><strong>Git fundamentals</strong><span>6 lessons</span></a><div class="track-progress"><div class="bar" aria-hidden="true"><i class="bar-fill"></i></div><span data-track-progress="Git fundamentals" aria-live="polite"></span></div></li>
+      <li><a href="#github-skills"><strong>GitHub skills</strong><span>7 lessons</span></a><div class="track-progress"><div class="bar" aria-hidden="true"><i class="bar-fill"></i></div><span data-track-progress="GitHub skills" aria-live="polite"></span></div></li>
+      <li><a href="#repo-recipes"><strong>Repo recipes</strong><span>8 lessons</span></a><div class="track-progress"><div class="bar" aria-hidden="true"><i class="bar-fill"></i></div><span data-track-progress="Repo recipes" aria-live="polite"></span></div></li>
+      <li><a href="#guides"><strong>Guides</strong><span>5 guides</span></a></li>
+      </ol>
+    </nav>
+  </div>
   <section class="track" id="badges" aria-labelledby="t-badges">
-    <h2 id="t-badges">Badges</h2>
-    <p>Earn every obtainable GitHub achievement, and learn the real skill behind each one.</p>
-    <div class="track-progress"><div class="bar" aria-hidden="true"><i class="bar-fill"></i></div><span data-track-progress="Badges" aria-live="polite"></span></div>
-    <ul class="poster">
-      <li><a href="00-setup.html" data-page="00-setup" data-track="Badges" data-lesson><span class="item">Setup</span><span class="detail">Lesson 0</span></a></li>
-      <li><a href="01-quickdraw.html" data-page="01-quickdraw" data-track="Badges" data-lesson><span class="item">Quickdraw</span><span class="detail">Lesson 1</span></a></li>
-      <li><a href="02-yolo.html" data-page="02-yolo" data-track="Badges" data-lesson><span class="item">YOLO</span><span class="detail">Lesson 2</span></a></li>
-      <li><a href="03-pull-shark.html" data-page="03-pull-shark" data-track="Badges" data-lesson><span class="item">Pull Shark</span><span class="detail">Lesson 3</span></a></li>
-      <li><a href="04-pair-extraordinaire.html" data-page="04-pair-extraordinaire" data-track="Badges" data-lesson><span class="item">Pair Extraordinaire</span><span class="detail">Lesson 4</span></a></li>
-      <li><a href="05-galaxy-brain.html" data-page="05-galaxy-brain" data-track="Badges" data-lesson><span class="item">Galaxy Brain</span><span class="detail">Lesson 5</span></a></li>
-      <li><a href="06-starstruck.html" data-page="06-starstruck" data-track="Badges" data-lesson><span class="item">Starstruck</span><span class="detail">Lesson 6</span></a></li>
-      <li><a href="07-public-sponsor.html" data-page="07-public-sponsor" data-track="Badges" data-lesson><span class="item">Public Sponsor</span><span class="detail">Lesson 7</span></a></li>
-      <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired" data-track="Badges" data-lesson><span class="item">Highlights &amp; retired badges</span><span class="detail">Lesson 8</span></a></li>
-    </ul>
+    <div class="track-head">
+      <h2 id="t-badges">Badges</h2>
+      <p>Earn every obtainable GitHub achievement, and learn the real skill behind each one.</p>
+      <div class="track-progress"><div class="bar" aria-hidden="true"><i class="bar-fill"></i></div><span data-track-progress="Badges" aria-live="polite"></span></div>
+    </div>
+    <ol class="track-list">
+        <li><a href="00-setup.html" data-page="00-setup" data-track="Badges" data-lesson><span class="detail">Lesson 0</span><span class="item">Setup</span></a></li>
+        <li><a href="01-quickdraw.html" data-page="01-quickdraw" data-track="Badges" data-lesson><span class="detail">Lesson 1</span><span class="item">Quickdraw</span></a></li>
+        <li><a href="02-yolo.html" data-page="02-yolo" data-track="Badges" data-lesson><span class="detail">Lesson 2</span><span class="item">YOLO</span></a></li>
+        <li><a href="03-pull-shark.html" data-page="03-pull-shark" data-track="Badges" data-lesson><span class="detail">Lesson 3</span><span class="item">Pull Shark</span></a></li>
+        <li><a href="04-pair-extraordinaire.html" data-page="04-pair-extraordinaire" data-track="Badges" data-lesson><span class="detail">Lesson 4</span><span class="item">Pair Extraordinaire</span></a></li>
+        <li><a href="05-galaxy-brain.html" data-page="05-galaxy-brain" data-track="Badges" data-lesson><span class="detail">Lesson 5</span><span class="item">Galaxy Brain</span></a></li>
+        <li><a href="06-starstruck.html" data-page="06-starstruck" data-track="Badges" data-lesson><span class="detail">Lesson 6</span><span class="item">Starstruck</span></a></li>
+        <li><a href="07-public-sponsor.html" data-page="07-public-sponsor" data-track="Badges" data-lesson><span class="detail">Lesson 7</span><span class="item">Public Sponsor</span></a></li>
+        <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired" data-track="Badges" data-lesson><span class="detail">Lesson 8</span><span class="item">Highlights &amp; retired badges</span></a></li>
+    </ol>
   </section>
   <section class="track" id="git-fundamentals" aria-labelledby="t-git-fundamentals">
-    <h2 id="t-git-fundamentals">Git fundamentals</h2>
-    <p>Master Git itself: how it works, branching, rebasing, remotes and the power tools.</p>
-    <div class="track-progress"><div class="bar" aria-hidden="true"><i class="bar-fill"></i></div><span data-track-progress="Git fundamentals" aria-live="polite"></span></div>
-    <ul class="poster">
-      <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works" data-track="Git fundamentals" data-lesson><span class="item">How Git actually works</span><span class="detail">Git 1</span></a></li>
-      <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop" data-track="Git fundamentals" data-lesson><span class="item">The everyday loop</span><span class="detail">Git 2</span></a></li>
-      <li><a href="git-03-branching-and-merging.html" data-page="git-03-branching-and-merging" data-track="Git fundamentals" data-lesson><span class="item">Branching and merging</span><span class="detail">Git 3</span></a></li>
-      <li><a href="git-04-rebase.html" data-page="git-04-rebase" data-track="Git fundamentals" data-lesson><span class="item">Rebase without fear</span><span class="detail">Git 4</span></a></li>
-      <li><a href="git-05-remotes.html" data-page="git-05-remotes" data-track="Git fundamentals" data-lesson><span class="item">Remotes, fetch, pull and push</span><span class="detail">Git 5</span></a></li>
-      <li><a href="git-06-power-tools.html" data-page="git-06-power-tools" data-track="Git fundamentals" data-lesson><span class="item">Power tools</span><span class="detail">Git 6</span></a></li>
-    </ul>
+    <div class="track-head">
+      <h2 id="t-git-fundamentals">Git fundamentals</h2>
+      <p>Master Git itself: how it works, branching, rebasing, remotes and the power tools.</p>
+      <div class="track-progress"><div class="bar" aria-hidden="true"><i class="bar-fill"></i></div><span data-track-progress="Git fundamentals" aria-live="polite"></span></div>
+    </div>
+    <ol class="track-list">
+        <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works" data-track="Git fundamentals" data-lesson><span class="detail">Git 1</span><span class="item">How Git actually works</span></a></li>
+        <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop" data-track="Git fundamentals" data-lesson><span class="detail">Git 2</span><span class="item">The everyday loop</span></a></li>
+        <li><a href="git-03-branching-and-merging.html" data-page="git-03-branching-and-merging" data-track="Git fundamentals" data-lesson><span class="detail">Git 3</span><span class="item">Branching and merging</span></a></li>
+        <li><a href="git-04-rebase.html" data-page="git-04-rebase" data-track="Git fundamentals" data-lesson><span class="detail">Git 4</span><span class="item">Rebase without fear</span></a></li>
+        <li><a href="git-05-remotes.html" data-page="git-05-remotes" data-track="Git fundamentals" data-lesson><span class="detail">Git 5</span><span class="item">Remotes, fetch, pull and push</span></a></li>
+        <li><a href="git-06-power-tools.html" data-page="git-06-power-tools" data-track="Git fundamentals" data-lesson><span class="detail">Git 6</span><span class="item">Power tools</span></a></li>
+    </ol>
   </section>
   <section class="track" id="github-skills" aria-labelledby="t-github-skills">
-    <h2 id="t-github-skills">GitHub skills</h2>
-    <p>Work the way professional teams do: profiles, Issues and Projects, code review, Actions, releases, security and open source.</p>
-    <div class="track-progress"><div class="bar" aria-hidden="true"><i class="bar-fill"></i></div><span data-track-progress="GitHub skills" aria-live="polite"></span></div>
-    <ul class="poster">
-      <li><a href="github-01-profile.html" data-page="github-01-profile" data-track="GitHub skills" data-lesson><span class="item">Your profile as a portfolio</span><span class="detail">GitHub 1</span></a></li>
-      <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects" data-track="GitHub skills" data-lesson><span class="item">Issues and Projects</span><span class="detail">GitHub 2</span></a></li>
-      <li><a href="github-03-code-review.html" data-page="github-03-code-review" data-track="GitHub skills" data-lesson><span class="item">Code review</span><span class="detail">GitHub 3</span></a></li>
-      <li><a href="github-04-actions.html" data-page="github-04-actions" data-track="GitHub skills" data-lesson><span class="item">Automate with Actions</span><span class="detail">GitHub 4</span></a></li>
-      <li><a href="github-05-releases.html" data-page="github-05-releases" data-track="GitHub skills" data-lesson><span class="item">Releases and versioning</span><span class="detail">GitHub 5</span></a></li>
-      <li><a href="github-06-security.html" data-page="github-06-security" data-track="GitHub skills" data-lesson><span class="item">Security basics</span><span class="detail">GitHub 6</span></a></li>
-      <li><a href="github-07-open-source.html" data-page="github-07-open-source" data-track="GitHub skills" data-lesson><span class="item">Contributing to open source</span><span class="detail">GitHub 7</span></a></li>
-    </ul>
+    <div class="track-head">
+      <h2 id="t-github-skills">GitHub skills</h2>
+      <p>Work the way professional teams do: profiles, Issues and Projects, code review, Actions, releases, security and open source.</p>
+      <div class="track-progress"><div class="bar" aria-hidden="true"><i class="bar-fill"></i></div><span data-track-progress="GitHub skills" aria-live="polite"></span></div>
+    </div>
+    <ol class="track-list">
+        <li><a href="github-01-profile.html" data-page="github-01-profile" data-track="GitHub skills" data-lesson><span class="detail">GitHub 1</span><span class="item">Your profile as a portfolio</span></a></li>
+        <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects" data-track="GitHub skills" data-lesson><span class="detail">GitHub 2</span><span class="item">Issues and Projects</span></a></li>
+        <li><a href="github-03-code-review.html" data-page="github-03-code-review" data-track="GitHub skills" data-lesson><span class="detail">GitHub 3</span><span class="item">Code review</span></a></li>
+        <li><a href="github-04-actions.html" data-page="github-04-actions" data-track="GitHub skills" data-lesson><span class="detail">GitHub 4</span><span class="item">Automate with Actions</span></a></li>
+        <li><a href="github-05-releases.html" data-page="github-05-releases" data-track="GitHub skills" data-lesson><span class="detail">GitHub 5</span><span class="item">Releases and versioning</span></a></li>
+        <li><a href="github-06-security.html" data-page="github-06-security" data-track="GitHub skills" data-lesson><span class="detail">GitHub 6</span><span class="item">Security basics</span></a></li>
+        <li><a href="github-07-open-source.html" data-page="github-07-open-source" data-track="GitHub skills" data-lesson><span class="detail">GitHub 7</span><span class="item">Contributing to open source</span></a></li>
+    </ol>
   </section>
   <section class="track" id="repo-recipes" aria-labelledby="t-repo-recipes">
-    <h2 id="t-repo-recipes">Repo recipes</h2>
-    <p>Set up the right repo for the job, from portfolio pieces, packages and websites to client projects, WordPress plugins and courses, then keep it healthy for years.</p>
-    <div class="track-progress"><div class="bar" aria-hidden="true"><i class="bar-fill"></i></div><span data-track-progress="Repo recipes" aria-live="polite"></span></div>
-    <ul class="poster">
-      <li><a href="repo-01-foundations.html" data-page="repo-01-foundations" data-track="Repo recipes" data-lesson><span class="item">Foundations</span><span class="detail">Repo 1</span></a></li>
-      <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects" data-track="Repo recipes" data-lesson><span class="item">Personal projects</span><span class="detail">Repo 2</span></a></li>
-      <li><a href="repo-03-open-source-packages.html" data-page="repo-03-open-source-packages" data-track="Repo recipes" data-lesson><span class="item">Packages</span><span class="detail">Repo 3</span></a></li>
-      <li><a href="repo-04-websites-and-docs.html" data-page="repo-04-websites-and-docs" data-track="Repo recipes" data-lesson><span class="item">Websites and docs</span><span class="detail">Repo 4</span></a></li>
-      <li><a href="repo-05-team-and-client-projects.html" data-page="repo-05-team-and-client-projects" data-track="Repo recipes" data-lesson><span class="item">Team and client</span><span class="detail">Repo 5</span></a></li>
-      <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins" data-track="Repo recipes" data-lesson><span class="item">WordPress</span><span class="detail">Repo 6</span></a></li>
-      <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates" data-track="Repo recipes" data-lesson><span class="item">Courses and templates</span><span class="detail">Repo 7</span></a></li>
-      <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining" data-track="Repo recipes" data-lesson><span class="item">Maintaining</span><span class="detail">Repo 8</span></a></li>
-    </ul>
+    <div class="track-head">
+      <h2 id="t-repo-recipes">Repo recipes</h2>
+      <p>Set up the right repo for the job, from portfolio pieces, packages and websites to client projects, WordPress plugins and courses, then keep it healthy for years.</p>
+      <div class="track-progress"><div class="bar" aria-hidden="true"><i class="bar-fill"></i></div><span data-track-progress="Repo recipes" aria-live="polite"></span></div>
+    </div>
+    <ol class="track-list">
+        <li><a href="repo-01-foundations.html" data-page="repo-01-foundations" data-track="Repo recipes" data-lesson><span class="detail">Repo 1</span><span class="item">Foundations</span></a></li>
+        <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects" data-track="Repo recipes" data-lesson><span class="detail">Repo 2</span><span class="item">Personal projects</span></a></li>
+        <li><a href="repo-03-open-source-packages.html" data-page="repo-03-open-source-packages" data-track="Repo recipes" data-lesson><span class="detail">Repo 3</span><span class="item">Packages</span></a></li>
+        <li><a href="repo-04-websites-and-docs.html" data-page="repo-04-websites-and-docs" data-track="Repo recipes" data-lesson><span class="detail">Repo 4</span><span class="item">Websites and docs</span></a></li>
+        <li><a href="repo-05-team-and-client-projects.html" data-page="repo-05-team-and-client-projects" data-track="Repo recipes" data-lesson><span class="detail">Repo 5</span><span class="item">Team and client</span></a></li>
+        <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins" data-track="Repo recipes" data-lesson><span class="detail">Repo 6</span><span class="item">WordPress</span></a></li>
+        <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates" data-track="Repo recipes" data-lesson><span class="detail">Repo 7</span><span class="item">Courses and templates</span></a></li>
+        <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining" data-track="Repo recipes" data-lesson><span class="detail">Repo 8</span><span class="item">Maintaining</span></a></li>
+    </ol>
   </section>
   <section class="track" id="guides" aria-labelledby="t-guides">
-    <h2 id="t-guides">Guides</h2>
-    <p>Keep these open in a tab. Everyone needs them eventually.</p>
-    
-    <ul class="poster">
-      <li><a href="oh-no.html" data-page="oh-no" data-track="Guides"><span class="item">Oh no! Undo mistakes</span><span class="detail">Undo any Git mistake</span></a></li>
-      <li><a href="cheat-sheet.html" data-page="cheat-sheet" data-track="Guides"><span class="item">Cheat sheet</span><span class="detail">Print it, pin it</span></a></li>
-      <li><a href="markdown.html" data-page="markdown" data-track="Guides"><span class="item">Writing Markdown on GitHub</span><span class="detail">Format READMEs and issues</span></a></li>
-      <li><a href="troubleshooting.html" data-page="troubleshooting" data-track="Guides"><span class="item">Troubleshooting</span><span class="detail">When a badge won't show</span></a></li>
-      <li><a href="fair-play.html" data-page="fair-play" data-track="Guides"><span class="item">Fair play</span><span class="detail">Read before you start</span></a></li>
-    </ul>
+    <div class="track-head">
+      <h2 id="t-guides">Guides</h2>
+      <p>Keep these open in a tab. Everyone needs them eventually.</p>
+      
+    </div>
+    <ol class="track-list">
+        <li><a href="oh-no.html" data-page="oh-no" data-track="Guides"><span class="detail">Guide</span><span class="item">Oh no! Undo mistakes</span><span class="note">Undo any Git mistake</span></a></li>
+        <li><a href="cheat-sheet.html" data-page="cheat-sheet" data-track="Guides"><span class="detail">Guide</span><span class="item">Cheat sheet</span><span class="note">Print it, pin it</span></a></li>
+        <li><a href="markdown.html" data-page="markdown" data-track="Guides"><span class="detail">Guide</span><span class="item">Writing Markdown on GitHub</span><span class="note">Format READMEs and issues</span></a></li>
+        <li><a href="troubleshooting.html" data-page="troubleshooting" data-track="Guides"><span class="detail">Guide</span><span class="item">Troubleshooting</span><span class="note">When a badge won't show</span></a></li>
+        <li><a href="fair-play.html" data-page="fair-play" data-track="Guides"><span class="detail">Guide</span><span class="item">Fair play</span><span class="note">Read before you start</span></a></li>
+    </ol>
   </section>
   <p class="reset-row">Your progress is saved in this browser only. <button type="button" id="reset-progress" class="link-btn">Reset my progress</button></p>
 </main>

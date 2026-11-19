@@ -4,7 +4,7 @@
 .sb-pick{display:flex;flex-direction:column;gap:8px;margin-bottom:32px}
 .sb-pick label{font-size:var(--step-small);color:var(--muted);font-weight:700}
 .sb-pick select{font:inherit;font-weight:700;background:var(--surface);color:var(--ink);border:0;padding:12px 14px;min-height:48px;cursor:pointer}
-.sb-level h1{font-weight:900;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.95;font-size:clamp(2rem,1.2rem + 2.6vw,3.5rem);margin:0 0 20px}
+.sb-level h1{font-weight:900;letter-spacing:-0.03em;line-height:1.05;font-size:clamp(1.5rem,1.2rem + 0.9vw,2rem);margin:0 0 16px}
 .sb-intro{color:var(--soft);margin:0 0 24px}
 .sb-intro code,.sb-help code,.sb-tip code,.sb-done code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:var(--surface-2);padding:.1em .35em}
 .sb-actions{display:flex;flex-wrap:wrap;gap:8px}
@@ -21,7 +21,8 @@
 .sb-note{margin-top:16px;font-size:var(--step-small);color:var(--muted)}
 
 .sb-graph-wrap{margin:0;background:var(--surface);padding:20px 0 12px}
-.sb-graph{overflow-x:auto;overflow-y:hidden;min-height:260px;padding:0 20px;scroll-behavior:smooth}
+.sb-graph{overflow-x:auto;overflow-y:hidden;min-height:180px;padding:0 20px;scroll-behavior:smooth;display:flex;align-items:center}
+.sb-graph svg{flex:none}
 .sb-graph svg{display:block}
 .sb-graph .edge{fill:none;stroke:#8a837a;stroke-width:3}
 .sb-graph .edge.faded{stroke:#6f6860;stroke-dasharray:5 5}

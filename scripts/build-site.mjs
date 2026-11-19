@@ -216,13 +216,15 @@ function quizHtml(p) {
   </section>`;
 }
 
+const tag = (p) => (p.num !== null ? `: ${p.label} ${p.num}` : "");
+
 pages.forEach((p, i) => {
   const html = render(p);
   const prev = pages[i - 1];
   const next = pages[i + 1];
   const pager = `<nav class="pager" aria-label="Next and previous">
-    ${prev ? `<a class="prev" href="${prev.out}"><span>Previous</span>${esc(prev.title)}</a>` : "<span></span>"}
-    ${next ? `<a class="next" href="${next.out}"><span>Next</span>${esc(next.title)}</a>` : `<a class="next" href="index.html"><span>Back to</span>All lessons</a>`}
+    ${prev ? `<a class="prev" href="${prev.out}"><span>Previous${tag(prev)}</span>${esc(prev.short)}</a>` : "<span></span>"}
+    ${next ? `<a class="next" href="${next.out}"><span>Next${tag(next)}</span>${esc(next.short)}</a>` : `<a class="next" href="index.html"><span>Back to</span>All lessons</a>`}
   </nav>`;
   const body = `<div class="page">
   <main id="content" class="lesson">
@@ -252,29 +254,47 @@ const INTRO = {
   "Repo recipes": "Set up the right repo for the job, from portfolio pieces, packages and websites to client projects, WordPress plugins and courses, then keep it healthy for years.",
   "Guides": "Keep these open in a tab. Everyone needs them eventually.",
 };
-const list = GROUPS.map((g) => {
-  const items = pages
-    .filter((p) => p.group === g)
-    .map((p) => `<li><a href="${p.out}" data-page="${stem(p)}" data-track="${esc(g)}"${p.num !== null ? " data-lesson" : ""}><span class="item">${esc(p.short)}</span><span class="detail">${p.num !== null ? `${p.label} ${p.num}` : esc(p.detail)}</span></a></li>`)
-    .join("\n      ");
+const TRACKS = GROUPS.filter((g) => g !== "Start here");
+const trackPages = (g) => pages.filter((p) => p.group === g);
+const progressHtml = (g) => `<div class="track-progress"><div class="bar" aria-hidden="true"><i class="bar-fill"></i></div><span data-track-progress="${esc(g)}" aria-live="polite"></span></div>`;
+const list = TRACKS.map((g) => {
+  const items = trackPages(g)
+    .map((p) => `<li><a href="${p.out}" data-page="${stem(p)}" data-track="${esc(g)}"${p.num !== null ? " data-lesson" : ""}><span class="detail">${p.num !== null ? `${p.label} ${p.num}` : "Guide"}</span><span class="item">${esc(p.short)}</span>${p.num === null ? `<span class="note">${esc(p.detail)}</span>` : ""}</a></li>`)
+    .join("\n        ");
   return `<section class="track" id="${slug(g)}" aria-labelledby="t-${slug(g)}">
-    <h2 id="t-${slug(g)}">${esc(g)}</h2>
-    <p>${esc(INTRO[g])}</p>
-    ${g !== "Guides" ? `<div class="track-progress"><div class="bar" aria-hidden="true"><i class="bar-fill"></i></div><span data-track-progress="${esc(g)}" aria-live="polite"></span></div>` : ""}
-    <ul class="poster">
-      ${items}
-    </ul>
+    <div class="track-head">
+      <h2 id="t-${slug(g)}">${esc(g)}</h2>
+      <p>${esc(INTRO[g])}</p>
+      ${g !== "Guides" ? progressHtml(g) : ""}
+    </div>
+    <ol class="track-list">
+        ${items}
+    </ol>
   </section>`;
 }).join("\n  ");
+const map = TRACKS.map((g) => {
+  const n = trackPages(g).length;
+  return `<li><a href="#${slug(g)}"><strong>${esc(g)}</strong><span>${n} ${g === "Guides" ? "guides" : "lessons"}</span></a>${g !== "Guides" ? progressHtml(g) : ""}</li>`;
+}).join("\n      ");
 writeFileSync(
   join(OUT, "index.html"),
   layout({
     title: "All lessons",
-    description: "Every lesson in GitHub Achievements Academy: the GitHub badges track, Git fundamentals, GitHub skills, and guides for undoing mistakes.",
+    description: "Every lesson in GitHub Achievements Academy: the GitHub badges track, Git fundamentals, GitHub skills, repo recipes, and guides for undoing mistakes.",
     current: "index",
     body: `<main id="content" class="index">
-  <h1>All lessons</h1>
-  <p class="lead">New? Begin with <a href="start-here.html">Start here</a>. Four tracks and five guides. Start with the badges, master Git itself, learn to work like a professional team on GitHub, then set up and maintain repos for any purpose. Each track runs in order, top to bottom. Practice anything in the <a href="../sandbox/">Git sandbox</a>.</p>
+  <div class="index-hero">
+    <div>
+      <h1>All lessons</h1>
+      <p class="lead">Four tracks, from your first commit to running real projects, and five guides to keep open in a tab. Each track runs in order, top to bottom. Practice anything in the <a href="../sandbox/">Git sandbox</a>.</p>
+      <a class="start-band" href="start-here.html" data-page="start-here"><strong>New here? Start here</strong><span>Pick one of six paths, from total beginner to team lead</span></a>
+    </div>
+    <nav class="track-map" aria-label="Tracks on this page">
+      <ol>
+      ${map}
+      </ol>
+    </nav>
+  </div>
   ${list}
   <p class="reset-row">Your progress is saved in this browser only. <button type="button" id="reset-progress" class="link-btn">Reset my progress</button></p>
 </main>`,
