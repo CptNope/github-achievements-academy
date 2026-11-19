@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GitHub Achievements Academy: earn every GitHub badge honestly</title>
+<meta name="description" content="A free, open-source course that teaches real Git and GitHub skills and earns you every obtainable GitHub achievement along the way, without breaking GitHub's rules.">
+<meta property="og:title" content="GitHub Achievements Academy">
+<meta property="og:description" content="Learn real Git and GitHub skills. Earn every GitHub badge honestly.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0a08; --surface:#181512; --surface-2:#221e1a; --paper:#ebeae7; --ink:#fff; --muted:#a39d96; --accent:#c9a45a; --accent-ink:#0c0a08;
+  --m:clamp(16px,1.6vw,24px);
+  --step-small:clamp(0.8125rem,0.79rem + 0.1vw,0.875rem);
+  --step-body:clamp(1.0625rem,1rem + 0.25vw,1.1875rem);
+  --step-lead:clamp(1.25rem,1.1rem + 0.7vw,1.625rem);
+  --step-head:clamp(2.5rem,1.2rem + 5vw,5.5rem);
+  --step-poster:clamp(3rem,9vw,8.5rem);
+  --ease:cubic-bezier(.2,.7,.2,1);
+  font-family:"Chivo",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--bg);color:var(--ink);-webkit-text-size-adjust:100%}
+body{margin:0;font-size:var(--step-body);line-height:1.45;letter-spacing:-0.01em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+::selection{background:var(--accent);color:var(--accent-ink)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{padding-inline:var(--m)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px}
+h1,h2,h3{margin:0;font-weight:900;letter-spacing:-0.04em;line-height:0.92;text-transform:uppercase}
+p{margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;background:var(--ink);color:var(--bg);font-weight:700;text-decoration:none;border:0;font:inherit;font-weight:700;cursor:pointer;transition:transform .2s var(--ease),background .2s}
+.btn:hover{background:var(--accent);color:var(--accent-ink)}
+.btn:active{transform:scale(.97)}
+.link{font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-color:transparent;transition:text-decoration-color .2s,color .2s}
+.link:hover{text-decoration-color:currentColor;color:var(--accent)}
+
+/* HERO */
+.hero{min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;padding:var(--m)}
+.hero-top{display:flex;justify-content:space-between;gap:24px;align-items:flex-start}
+.hero-top p{max-width:36ch;font-size:var(--step-lead);line-height:1.3}
+.hero-top .btn{margin-top:20px}
+.corner-links{display:flex;gap:20px;font-size:var(--step-small)}
+.hero-name{align-self:center;margin:6vh 0}
+.hero-name svg{display:block;width:100%;height:auto;overflow:visible}
+.hero-name text,.footer-mark text{font-family:"Chivo",system-ui,sans-serif;font-weight:900}
+.hero-name svg{transform-origin:50% 100%}
+@supports (animation-timeline: view()){
+  .hero-name svg{animation:shrink linear both;animation-timeline:view();animation-range:exit 0% exit 100%}
+  .footer-mark svg{animation:grow linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
+}
+@keyframes shrink{to{transform:scale(.93)}}
+@keyframes grow{from{transform:scale(.94)}to{transform:scale(1)}}
+.hero-bottom{display:flex;justify-content:space-between;align-items:baseline;gap:24px;font-size:var(--step-body)}
+.hero-bottom .muted{color:var(--muted)}
+
+/* INTRO */
+.intro{padding-block:clamp(96px,14vw,200px) 96px}
+.intro .lead{grid-column:1/-1;font-size:var(--step-lead);line-height:1.25;max-width:44ch}
+.intro .cols{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:72px}
+.intro .cols p{font-size:var(--step-body);color:var(--muted)}
+.intro .cols b{color:var(--ink)}
+.intro h2{font-size:var(--step-head);margin-bottom:48px;grid-column:1/-1}
+
+/* UI FRAGMENTS */
+.fragments{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:start;margin-top:120px}
+.ui{background:var(--surface);color:var(--ink);padding:24px;font-size:16px;line-height:1.45}
+.ui .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.ui .pill{display:inline-block;padding:4px 12px;font-weight:700;font-size:14px;background:var(--accent);color:var(--accent-ink)}
+.ui .pill.alt{background:#3b6e4a;color:#fff}
+.ui .pill.ghost{background:var(--surface-2);color:var(--ink)}
+.ui .t{font-weight:700;font-size:20px;margin:14px 0 6px}
+.ui .s{color:var(--muted);font-size:15px}
+.ui pre{margin:14px 0 0;padding:16px;background:var(--bg);font-size:14px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+.ui .avatar{width:32px;height:32px;border-radius:50%;background:var(--accent);flex:none}
+.ui .avatar.b{background:#7d9fb8}
+.f1{grid-column:1/6}
+.f2{grid-column:6/13;margin-top:96px}
+.f3{grid-column:2/8;margin-top:-24px}
+.f4{grid-column:8/13;margin-top:48px}
+.fragments .ui{min-height:220px}
+.ui figcaption{margin-top:16px;color:var(--muted);font-size:var(--step-small)}
+.drift{animation:drift 9s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translateY(0)}to{transform:translateY(-12px)}}
+
+/* POSTER LIST */
+.poster{background:var(--surface);padding-block:96px}
+.poster h2{font-size:var(--step-head);margin-bottom:56px;color:var(--accent)}
+.poster ul{list-style:none;margin:0;padding:0}
+.poster li a{display:flex;justify-content:space-between;align-items:baseline;gap:24px;text-decoration:none;color:var(--ink);transition:color .2s}
+.poster li a:hover,.poster li a:focus-visible{color:var(--accent)}
+.poster .item{font-weight:900;text-transform:uppercase;font-size:var(--step-poster);letter-spacing:-0.05em;line-height:0.95}
+.poster .detail{font-size:var(--step-body);font-variant-numeric:tabular-nums;text-align:right;flex:none;max-width:18ch}
+
+/* SLIP */
+.how{padding-block:clamp(120px,14vw,220px)}
+.how .copy{grid-column:1/6}
+.how h2{font-size:var(--step-head);margin-bottom:28px}
+.how .copy p{max-width:32ch;font-size:var(--step-lead);line-height:1.3}
+.how .copy p+p{margin-top:20px;font-size:var(--step-body);color:var(--muted)}
+.slip{grid-column:7/13;max-width:500px;background:var(--paper);color:#0c0a08;padding:36px 32px 56px;font-variant-numeric:tabular-nums;font-size:var(--step-body);clip-path:polygon(0 0,100% 0,100% calc(100% - 14px),95% 100%,90% calc(100% - 14px),85% 100%,80% calc(100% - 14px),75% 100%,70% calc(100% - 14px),65% 100%,60% calc(100% - 14px),55% 100%,50% calc(100% - 14px),45% 100%,40% calc(100% - 14px),35% 100%,30% calc(100% - 14px),25% 100%,20% calc(100% - 14px),15% 100%,10% calc(100% - 14px),5% 100%,0 calc(100% - 14px))}
+.slip h3{font-size:var(--step-body);letter-spacing:0;text-transform:none;font-weight:700;line-height:1.3;margin-top:28px}
+.slip h3:first-child{margin-top:0}
+.slip .r{display:flex;align-items:baseline;gap:8px;margin-top:10px}
+.slip .r span:first-child{flex:none;max-width:70%}
+.slip .dots{flex:1;min-width:20px;border-bottom:4px dotted #0c0a08;transform:translateY(-4px)}
+.slip .total{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:32px -32px 0;padding:0 32px;min-height:44px;background:#0c0a08;color:var(--paper);font-weight:700}
+
+/* SHOWCASE */
+.compare{background:var(--accent);color:var(--accent-ink);padding-block:96px 56px}
+.compare .top{align-items:start}
+.compare h2{grid-column:1/6;font-size:var(--step-head)}
+.compare .top p{grid-column:7/13;max-width:56ch;font-size:var(--step-body)}
+.compare .spec{margin-top:12vh;align-items:start}
+.compare .spec div:first-child{grid-column:1/7}
+.compare .spec div:last-child{grid-column:7/13}
+.compare .cap{font-size:var(--step-body);font-weight:700;max-width:30ch}
+.compare .num{display:block;font-weight:900;font-size:clamp(120px,18vw,300px);line-height:0.86;letter-spacing:-0.06em;margin-top:16px;font-variant-numeric:tabular-nums}
+.compare .num.struck{text-decoration:line-through;text-decoration-thickness:0.06em}
+
+/* FAQ */
+.faq{padding-block:clamp(120px,14vw,220px)}
+.faq h2{font-size:var(--step-head);grid-column:1/-1}
+.faq .qs{grid-column:5/13;margin-top:80px}
+.faq details{padding:14px 24px;margin:0 0 22px;transition:background .2s}
+.faq details[open]{background:var(--surface)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;font-size:var(--step-lead);line-height:1.3}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:12px;height:12px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:6px;transition:transform .25s var(--ease)}
+.faq details[open] summary::after{transform:rotate(-135deg);margin-top:12px}
+.faq summary:hover{color:var(--accent)}
+.faq .a{padding-top:14px;max-width:52ch;font-size:var(--step-body);color:var(--ink)}
+.faq .a a{color:var(--accent)}
+
+/* CTA */
+.cta{background:var(--surface);padding-block:clamp(120px,12vw,200px)}
+.cta h2{font-size:var(--step-head)}
+.cta form{margin-top:32px;display:flex;flex-wrap:wrap;align-items:stretch;gap:0;font-size:var(--step-head);font-weight:900;text-transform:uppercase;letter-spacing:-0.03em}
+.cta label{display:flex;align-items:center;padding-right:.3em}
+.cta input{font:inherit;text-transform:none;letter-spacing:-0.02em;width:9em;max-width:100%;min-height:1.4em;padding:0 .3em;border:0;background:var(--surface-2);color:var(--ink)}
+.cta input::placeholder{color:#77716a}
+.cta button{font:inherit;text-transform:uppercase;border:0;padding:0 .4em;background:var(--accent);color:var(--accent-ink);cursor:pointer;transition:transform .2s var(--ease),background .2s}
+.cta button:hover{background:#e0bd73}
+.cta button:active{transform:scale(.97)}
+.cta .note{margin-top:20px;color:var(--muted);font-size:var(--step-body);max-width:60ch}
+.result{margin-top:56px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.result[hidden]{display:none}
+.result .ui .big{font-weight:900;font-size:clamp(48px,6vw,88px);line-height:1;letter-spacing:-0.04em;margin:12px 0;font-variant-numeric:tabular-nums}
+.bar{height:10px;background:var(--bg);margin-top:16px}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .9s var(--ease)}
+.result .msg{grid-column:1/-1;color:var(--muted)}
+
+/* FOOTER */
+.footer{background:var(--paper);color:#0c0a08;min-height:88svh;display:grid;grid-template-rows:auto 1fr auto;padding:40px var(--m) 20px}
+.footer .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.footer h2{font-size:var(--step-body);letter-spacing:0;text-transform:none;line-height:1.4;font-weight:700}
+.footer ul{list-style:none;margin:6px 0 0;padding:0;font-size:var(--step-body);line-height:1.6}
+.footer ul a{color:#4a4540;text-decoration:none;overflow-wrap:anywhere}
+.footer ul a:hover{color:#0c0a08;text-decoration:underline}
+.footer-invite{align-self:end;font-size:var(--step-lead);max-width:30ch;margin-bottom:24px}
+.footer-mark svg{display:block;width:100%;height:auto;transform-origin:50% 100%}
+.legal{font-size:var(--step-small);color:#4a4540;margin-top:16px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* REVEAL */
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i,0)*75ms)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important}
+  .js .rv{opacity:1;transform:none;transition:none}
+}
+
+/* TABLET */
+@media (max-width:960px){
+  .intro .cols{grid-template-columns:repeat(2,1fr);row-gap:40px}
+  .how .copy,.slip{grid-column:1/-1}
+  .slip{margin-top:56px}
+  .f1,.f2,.f3,.f4{grid-column:1/-1;margin-top:0}
+  .fragments{gap:32px}
+  .faq .qs{grid-column:1/-1}
+  .compare h2,.compare .top p{grid-column:1/-1}
+  .compare .top p{margin-top:20px}
+  .result{grid-template-columns:1fr}
+  .footer{min-height:auto;row-gap:96px}
+}
+/* PHONE */
+@media (max-width:600px){
+  .hero{grid-template-rows:auto auto auto 1fr}
+  .hero-top{flex-direction:column-reverse;gap:28px}
+  .hero{min-height:auto;row-gap:32px}
+  .hero-top .btn{width:100%}
+  .hero-name{margin:24px 0 0;order:-1}
+  .hero-bottom{flex-direction:column;align-items:flex-start;gap:8px;align-self:end}
+  .intro .cols{grid-template-columns:1fr;gap:28px}
+  .poster .item{font-size:12vw}
+  .poster li a{flex-direction:column;gap:6px;margin-bottom:22px}
+  .poster .detail{text-align:left;max-width:none}
+  .compare{height:auto;padding-bottom:0}
+  .compare h2,.compare .top p,.compare .spec div:first-child,.compare .spec div:last-child{grid-column:1/-1}
+  .compare .top p{margin-top:16px}
+  .compare .spec{margin-top:48px}
+  .compare .spec div{height:38svh;overflow:hidden}
+  .compare .spec div:last-child{background:var(--accent-ink);color:var(--accent);margin:0 calc(var(--m)*-1);padding:16px var(--m) 0}
+  .compare .num{font-size:52vw}
+  .compare .spec div{height:auto}
+  .faq details{padding-inline:16px}
+  .cta form{flex-direction:column;align-items:flex-start;font-size:10vw}
+  .cta input{width:100%;margin:10px 0}
+  .footer .cols{grid-template-columns:repeat(2,1fr);row-gap:32px}
+  .footer{min-height:auto;row-gap:72px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="hero-top">
+    <div>
+      <p>Learn real Git and GitHub skills. Earn every badge honestly.</p>
+      <a class="btn" href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/00-setup.md">Start with lesson 0</a>
+    </div>
+    <nav class="corner-links" aria-label="Main">
+      <a class="link" href="#badges">Badges</a>
+      <a class="link" href="#check">Check a profile</a>
+      <a class="link" href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+    </nav>
+  </div>
+  <h1 class="hero-name"><span class="vh">GitHub Achievements Academy: earn it</span>
+    <svg viewBox="0 0 470 82" aria-hidden="true" focusable="false"><text x="0" y="78" font-size="108" textLength="470" lengthAdjust="spacingAndGlyphs" fill="#fff">EARN IT</text></svg>
+  </h1>
+  <div class="hero-bottom">
+    <span class="muted">GitHub Achievements Academy · free and MIT licensed</span>
+    <span class="corner-links"><a class="link" href="https://github.com/CptNope/github-achievements-academy/tree/main/learners">Learners Wall</a><a class="link" href="https://github.com/CptNope/github-achievements-academy/discussions">Ask in Q&amp;A</a></span>
+  </div>
+</header>
+
+<main>
+<section class="intro wrap" id="about" aria-labelledby="about-h">
+  <div class="grid">
+    <h2 id="about-h" class="rv">Badges as lessons</h2>
+    <p class="lead rv" style="--i:1">Farming scripts open a thousand empty pull requests. Here every GitHub badge is a lesson instead: you learn the real skill, and the badge is your certificate.</p>
+    <div class="cols">
+      <p class="rv" style="--i:2"><b>Who it's for.</b> Anyone new to GitHub, from students to career changers, plus developers who have always done solo work and never sent a pull request to someone else's project.</p>
+      <p class="rv" style="--i:3"><b>What you learn.</b> Issue triage, the branch and pull request flow, forks and upstreams, code review, co-authored commits, answering questions well, and shipping a project that people want to star.</p>
+      <p class="rv" style="--i:4"><b>Where it happens.</b> On GitHub itself. Lessons 1 and 2 run in a sandbox repo you own, and lesson 3 runs right here, on the Learners Wall, where a person reviews every pull request.</p>
+      <p class="rv" style="--i:5"><b>How to join.</b> Read lesson 0, fork the repo and add your own page to the Learners Wall. It's free, it needs no sign-up beyond your GitHub account, and nothing here asks you for stars.</p>
+    </div>
+  </div>
+
+  <div class="fragments" aria-label="What each lesson looks like on GitHub">
+    <figure class="f1 rv" style="margin:0" data-ui>
+      <div class="ui drift">
+        <div class="row"><span class="pill ghost">Closed as not planned</span><span class="s">2 minutes after opening</span></div>
+        <div class="t">Typo in README</div>
+        <div class="row s"><span class="avatar" aria-hidden="true"></span>you · "Already fixed in main, closing."</div>
+      </div>
+      <figcaption>Lesson 1: triage an issue in under five minutes.</figcaption>
+    </figure>
+    <figure class="f2 rv" style="margin:0;--i:1" data-ui>
+      <div class="ui">
+        <div class="row"><span class="pill alt">Merged</span><span class="s">learners: add janedoe · #42</span></div>
+        <div class="t">All checks have passed</div>
+        <div class="row s">Validate learner page · passed for learners/janedoe.md</div>
+        <div class="row s" style="margin-top:8px"><span class="avatar b" aria-hidden="true"></span>Approved by a maintainer · squash merged into main</div>
+      </div>
+      <figcaption>Lesson 3: a reviewed pull request to the Learners Wall.</figcaption>
+    </figure>
+    <figure class="f3 rv" style="margin:0;--i:2" data-ui>
+      <div class="ui">
+        <div class="row"><span class="avatar" aria-hidden="true"></span><span class="avatar b" aria-hidden="true" style="margin-left:-18px"></span><span class="s">2 people authored this commit</span></div>
+<pre><code>feat: add dark mode toggle
+
+Built together on a Friday call.
+
+Co-authored-by: Sam Rivera &lt;1234+samrivera@users.noreply.github.com&gt;</code></pre>
+      </div>
+      <figcaption>Lesson 4: credit the person you paired with.</figcaption>
+    </figure>
+    <figure class="f4 rv" style="margin:0;--i:3" data-ui>
+      <div class="ui">
+        <div class="row"><span class="pill">Answered</span><span class="s">Q&amp;A · Lesson 3 help</span></div>
+        <div class="t">My PR check says "use a lowercase filename"</div>
+        <div class="row s"><span class="avatar b" aria-hidden="true"></span>Rename it with <code>git mv</code>, then push again. Marked as the answer.</div>
+      </div>
+      <figcaption>Lesson 5: an answer the asker accepted.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="poster wrap" id="badges" aria-labelledby="badges-h">
+  <h2 id="badges-h" class="rv">Seven badges you can earn</h2>
+  <ul>
+    <li class="rv"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/01-quickdraw.md"><span class="item">Quickdraw</span><span class="detail">Close within 5 minutes</span></a></li>
+    <li class="rv"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/02-yolo.md"><span class="item">YOLO</span><span class="detail">Merge without review</span></a></li>
+    <li class="rv"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/03-pull-shark.md"><span class="item">Pull Shark</span><span class="detail">2 · 16 · 128 · 1024 merged</span></a></li>
+    <li class="rv"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/04-pair-extraordinaire.md"><span class="item">Pair</span><span class="detail">1 · 10 · 24 · 48 co-authored</span></a></li>
+    <li class="rv"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/05-galaxy-brain.md"><span class="item">Galaxy Brain</span><span class="detail">2 · 8 · 16 · 32 answers</span></a></li>
+    <li class="rv"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/06-starstruck.md"><span class="item">Starstruck</span><span class="detail">16 · 128 · 512 · 4096 stars</span></a></li>
+    <li class="rv"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/07-public-sponsor.md"><span class="item">Sponsor</span><span class="detail">$1 counts</span></a></li>
+  </ul>
+</section>
+
+<section class="how wrap" id="how" aria-labelledby="how-h">
+  <div class="grid">
+    <div class="copy">
+      <h2 id="how-h" class="rv">Your first afternoon</h2>
+      <p class="rv" style="--i:1">Three badges in about an hour, and every step is something you'll use at work.</p>
+      <p class="rv" style="--i:2">The rest take real time and real people: a partner to pair with, a question you can answer, a project worth starring. That's the point.</p>
+    </div>
+    <div class="slip rv" style="--i:2" aria-label="Itinerary for your first afternoon">
+      <h3>Setup</h3>
+      <div class="r"><span>Verify your commit email</span><span class="dots" aria-hidden="true"></span><span>5 min</span></div>
+      <div class="r"><span>Create a sandbox repo</span><span class="dots" aria-hidden="true"></span><span>2 min</span></div>
+      <h3>In your sandbox</h3>
+      <div class="r"><span>Open and triage an issue</span><span class="dots" aria-hidden="true"></span><span>3 min</span></div>
+      <div class="r"><span>Branch, pull request, self-merge</span><span class="dots" aria-hidden="true"></span><span>10 min</span></div>
+      <div class="r"><span>Turn on branch protection</span><span class="dots" aria-hidden="true"></span><span>5 min</span></div>
+      <h3>On the Learners Wall</h3>
+      <div class="r"><span>Fork the academy</span><span class="dots" aria-hidden="true"></span><span>1 min</span></div>
+      <div class="r"><span>Pull request #1: your page</span><span class="dots" aria-hidden="true"></span><span>15 min</span></div>
+      <div class="r"><span>Pull request #2: your progress</span><span class="dots" aria-hidden="true"></span><span>10 min</span></div>
+      <div class="total"><span>Quickdraw, YOLO, Pull Shark</span><span>≈ 1 hour</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="compare wrap" id="fair-play" aria-labelledby="fair-h">
+  <div class="grid top">
+    <h2 id="fair-h" class="rv">Farmed or earned</h2>
+    <p class="rv" style="--i:1">GitHub's Acceptable Use Policies ban automated bulk activity, fake accounts and automated starring. A badge isn't worth your account, especially if your work and portfolio live there. So nothing in this course loops, fakes an interaction or trades stars.</p>
+  </div>
+  <div class="grid spec">
+    <div class="rv"><p class="cap">Empty pull requests a script opens in one afternoon</p><span class="num struck" aria-label="1024, crossed out">1024</span></div>
+    <div class="rv" style="--i:1"><p class="cap">Reviewed pull requests to start Pull Shark honestly</p><span class="num">2</span></div>
+  </div>
+</section>
+
+<section class="faq wrap" id="faq" aria-labelledby="faq-h">
+  <div class="grid">
+    <h2 id="faq-h" class="rv">Questions people ask</h2>
+    <div class="qs">
+      <details class="rv"><summary>Can I get banned for chasing badges?</summary><div class="a">Not for normal activity. The risk comes from bulk automation, alternate accounts, and buying or trading stars, all of which GitHub's Acceptable Use Policies prohibit. Everything in this course is one real action at a time. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/FAIR-PLAY.md">Read the fair-play guide.</a></div></details>
+      <details class="rv"><summary>I did the lesson but the badge never appeared.</summary><div class="a">Give it up to 24 hours, then check that your commit email is verified on your account, and that the work was merged into the default branch of the parent repo. Commits that stay in a fork don't count. <a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/troubleshooting.md">Full troubleshooting list.</a></div></details>
+      <details class="rv"><summary>Do private repositories count?</summary><div class="a">Only if you turn on private contributions in your profile settings. They then show up as anonymous counts, so nobody sees the repo names.</div></details>
+      <details class="rv"><summary>Do I need the command line?</summary><div class="a">No. Every lesson can be done on github.com. The optional coach script uses the GitHub CLI, explains each command before it runs, and asks for your OK at every step.</div></details>
+      <details class="rv"><summary>Can I still get Arctic Code Vault or Mars 2020?</summary><div class="a">No. Both are retired and can't be earned anymore, so ignore anyone selling a method. Lesson 8 lists what's retired or was never released.</div></details>
+      <details class="rv"><summary>Is this made by GitHub?</summary><div class="a">No. It's an independent, open-source project by Jeremy Anderson Tech. Corrections are welcome as pull requests, and every fix you send counts toward Pull Shark.</div></details>
+    </div>
+  </div>
+</section>
+
+<section class="cta wrap" id="check" aria-labelledby="check-h">
+  <h2 id="check-h" class="rv">How close are you?</h2>
+  <form id="checker" class="rv" style="--i:1" action="https://github.com/" method="get" novalidate>
+    <label for="user">Check @</label>
+    <input id="user" name="u" type="text" placeholder="username" autocomplete="off" autocapitalize="off" spellcheck="false" required pattern="[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})" aria-describedby="check-note">
+    <button type="submit">Go</button>
+  </form>
+  <p class="note rv" id="check-note" style="--i:2">This uses GitHub's public API from your browser, so your username stays between you and GitHub. Counts are estimates. Your profile's Achievements tab is the final word.</p>
+  <div class="result" id="result" hidden aria-live="polite">
+    <div class="ui" data-ui>
+      <div class="s">Pull Shark · merged pull requests</div>
+      <div class="big" id="prs">–</div>
+      <div class="s" id="prs-next"></div>
+      <div class="bar" aria-hidden="true"><i id="prs-bar"></i></div>
+    </div>
+    <div class="ui" data-ui>
+      <div class="s">Starstruck · stars on your top repo</div>
+      <div class="big" id="stars">–</div>
+      <div class="s" id="stars-next"></div>
+      <div class="bar" aria-hidden="true"><i id="stars-bar"></i></div>
+    </div>
+    <p class="msg" id="msg"></p>
+  </div>
+</section>
+</main>
+
+<footer class="footer" aria-labelledby="foot-h">
+  <h2 id="foot-h" class="vh">GitHub Achievements Academy links</h2>
+  <div class="cols">
+    <div><h2>The course</h2><ul>
+      <li><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/00-setup.md">Lesson 0: Setup</a></li>
+      <li><a href="https://github.com/CptNope/github-achievements-academy#%EF%B8%8F-the-curriculum">All lessons</a></li>
+      <li><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/troubleshooting.md">Troubleshooting</a></li></ul></div>
+    <div><h2>Community</h2><ul>
+      <li><a href="https://github.com/CptNope/github-achievements-academy/discussions">Discussions</a></li>
+      <li><a href="https://github.com/CptNope/github-achievements-academy/tree/main/learners">Learners Wall</a></li>
+      <li><a href="https://github.com/CptNope/github-achievements-academy/blob/main/CONTRIBUTING.md">Contribute</a></li></ul></div>
+    <div><h2>Playing fair</h2><ul>
+      <li><a href="https://github.com/CptNope/github-achievements-academy/blob/main/FAIR-PLAY.md">Fair-play guide</a></li>
+      <li><a href="https://docs.github.com/en/site-policy/acceptable-use-policies/github-acceptable-use-policies">GitHub Acceptable Use</a></li>
+      <li><a href="https://github.com/CptNope/github-achievements-academy/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li></ul></div>
+    <div><h2>Made by</h2><ul>
+      <li><a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></li>
+      <li><a href="mailto:info@jeremyanderson.tech">info@jeremyanderson.tech</a></li>
+      <li><a href="https://github.com/CptNope">@CptNope</a></li></ul></div>
+  </div>
+  <p class="footer-invite">Fork it, finish lesson 0, and put your name on the wall.</p>
+  <div>
+    <div class="footer-mark"><svg viewBox="0 0 470 82" aria-hidden="true" focusable="false"><text x="0" y="78" font-size="108" textLength="470" lengthAdjust="spacingAndGlyphs" fill="#0c0a08">EARN IT</text></svg></div>
+    <p class="legal"><span>© 2026 Jeremy Anderson Tech LLC · MIT License</span><span>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</span></p>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+
+(function(){
+  var form=document.getElementById('checker'), input=document.getElementById('user'), out=document.getElementById('result'), msg=document.getElementById('msg');
+  var SHARK=[2,16,128,1024], STAR=[16,128,512,4096], NAMES=['Base','Bronze','Silver','Gold'];
+  function next(n,tiers){for(var i=0;i<tiers.length;i++){if(n<tiers[i])return {tier:NAMES[i],at:tiers[i],prev:i?tiers[i-1]:0};}return null;}
+  function paint(id,n,tiers,unit){
+    document.getElementById(id).textContent=n.toLocaleString();
+    var nx=next(n,tiers), line=document.getElementById(id+'-next'), bar=document.getElementById(id+'-bar');
+    if(!nx){line.textContent='Gold tier reached. Remarkable.';bar.style.width='100%';return;}
+    line.textContent=(nx.at-n).toLocaleString()+' more '+unit+' to '+nx.tier+' ('+nx.at.toLocaleString()+')';
+    bar.style.width=Math.max(3,Math.min(100,(n-nx.prev)/(nx.at-nx.prev)*100))+'%';
+  }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var u=input.value.trim().replace(/^@/,'');
+    if(!/^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$/.test(u)){input.focus();input.setAttribute('aria-invalid','true');return;}
+    input.removeAttribute('aria-invalid');
+    out.hidden=false; msg.textContent='Checking @'+u+'…';
+    var gh='https://api.github.com/';
+    Promise.all([
+      fetch(gh+'search/issues?q='+encodeURIComponent('author:'+u+' type:pr is:merged')+'&per_page=1').then(function(r){if(!r.ok)throw r;return r.json()}),
+      fetch(gh+'users/'+encodeURIComponent(u)+'/repos?per_page=100&type=owner').then(function(r){if(!r.ok)throw r;return r.json()})
+    ]).then(function(res){
+      paint('prs',res[0].total_count||0,SHARK,'merged pull requests');
+      var top=0; res[1].forEach(function(r){if(!r.fork&&r.stargazers_count>top)top=r.stargazers_count});
+      paint('stars',top,STAR,'stars');
+      msg.innerHTML='';
+      msg.append('Estimates from public data. ');
+      var a=document.createElement('a'); a.href='https://github.com/'+encodeURIComponent(u)+'?tab=achievements'; a.textContent='See @'+u+'’s real Achievements tab'; a.className='link';
+      msg.append(a);
+    }).catch(function(r){
+      var s=r&&r.status;
+      msg.textContent = s===404||s===422 ? 'No GitHub user called @'+u+' was found.' : s===403 ? 'GitHub’s public API limit was reached. Try again in a minute.' : 'Couldn’t reach GitHub right now. Try again shortly.';
+    });
+  });
+})();
+</script>
+</body>
+</html>
