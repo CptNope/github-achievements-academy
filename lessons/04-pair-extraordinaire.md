@@ -28,7 +28,7 @@ Rules for the trailer:
 
 ## Exercise: pair for real
 
-1. Find a partner: a coworker, a friend, or someone from this repo's **Discussions → Find a pair** thread.
+1. Find a partner: a coworker, a friend, or someone from this repo's [Discussions](https://github.com/CptNope/github-achievements-academy/discussions). Post in **General** with the title `Looking for a pair` and say which repo or task you'd like to work on.
 2. Pick a small, real task in either of your repos, like a feature, a test or a doc page.
 3. Work on it **together** over a screen share. Take turns driving.
 4. Commit with the trailer:
