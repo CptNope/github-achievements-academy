@@ -14,11 +14,12 @@ const REPO = "https://github.com/CptNope/github-achievements-academy";
 
 // Pages, in reading order. `src` is relative to the repo root.
 const numbered = (dir) => readdirSync(join(ROOT, dir)).filter((f) => /^\d\d-.+\.md$/.test(f)).sort();
-const GROUPS = ["Badges", "Git fundamentals", "GitHub skills", "Guides"];
+const GROUPS = ["Badges", "Git fundamentals", "GitHub skills", "Repo recipes", "Guides"];
 const pages = [
   ...numbered("lessons").map((f) => ({ src: `lessons/${f}`, out: f.replace(/\.md$/, ".html"), group: "Badges", label: "Lesson" })),
   ...numbered("lessons/git").map((f) => ({ src: `lessons/git/${f}`, out: "git-" + f.replace(/\.md$/, ".html"), group: "Git fundamentals", label: "Git" })),
   ...numbered("lessons/github").map((f) => ({ src: `lessons/github/${f}`, out: "github-" + f.replace(/\.md$/, ".html"), group: "GitHub skills", label: "GitHub" })),
+  ...numbered("lessons/repos").map((f) => ({ src: `lessons/repos/${f}`, out: "repo-" + f.replace(/\.md$/, ".html"), group: "Repo recipes", label: "Repo" })),
   { src: "lessons/oh-no.md", out: "oh-no.html", group: "Guides", detail: "Undo any Git mistake" },
   { src: "lessons/cheat-sheet.md", out: "cheat-sheet.html", group: "Guides", detail: "Print it, pin it", cls: "cheat" },
   { src: "lessons/troubleshooting.md", out: "troubleshooting.html", group: "Guides", detail: "When a badge won't show" },
@@ -38,7 +39,7 @@ for (const p of pages) {
   p.md = readFileSync(join(ROOT, p.src), "utf8");
   const h1 = (p.md.match(/^#\s+(.+)$/m) || [, p.out])[1];
   p.title = clean(h1);
-  const m = p.title.match(/^(?:Lesson|Git|GitHub)\s+(\d+):\s*(.+)$/i);
+  const m = p.title.match(/^(?:Lesson|Git|GitHub|Repo)\s+(\d+):\s*(.+)$/i);
   p.num = m ? Number(m[1]) : null;
   p.short = m ? m[2] : p.title;
   if (p.src === "FAIR-PLAY.md") p.short = "Fair play";
@@ -209,6 +210,7 @@ const INTRO = {
   "Badges": "Earn every obtainable GitHub achievement, and learn the real skill behind each one.",
   "Git fundamentals": "Master Git itself: how it works, branching, rebasing, remotes and the power tools.",
   "GitHub skills": "Work the way professional teams do: profiles, Issues and Projects, code review, Actions, releases, security and open source.",
+  "Repo recipes": "Set up the right repo for the job, from portfolio pieces, packages and websites to client projects, WordPress plugins and courses, then keep it healthy for years.",
   "Guides": "Keep these open in a tab. Everyone needs them eventually.",
 };
 const list = GROUPS.map((g) => {
@@ -233,7 +235,7 @@ writeFileSync(
     current: "index",
     body: `<main id="content" class="index">
   <h1>All lessons</h1>
-  <p class="lead">Three tracks and four guides. Start with the badges, master Git itself, then learn to work like a professional team on GitHub. Each track runs in order, top to bottom. Practice anything in the <a href="../sandbox/">Git sandbox</a>.</p>
+  <p class="lead">Four tracks and four guides. Start with the badges, master Git itself, learn to work like a professional team on GitHub, then set up and maintain repos for any purpose. Each track runs in order, top to bottom. Practice anything in the <a href="../sandbox/">Git sandbox</a>.</p>
   ${list}
   <p class="reset-row">Your progress is saved in this browser only. <button type="button" id="reset-progress" class="link-btn">Reset my progress</button></p>
 </main>`,

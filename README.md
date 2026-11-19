@@ -53,6 +53,19 @@ Each badge here is treated as a **lesson**. You'll learn the real-world skill be
 | 6 | [Security basics](lessons/github/06-security.md) | 2FA and passkeys, tokens, signed commits, Dependabot, push protection |
 | 7 | [Contributing to open source](lessons/github/07-open-source.md) | Finding projects, etiquette, handling reviews and rejection |
 
+### Track 4: Repo recipes
+
+| # | Lesson | What you'll learn |
+|---|--------|-------------------|
+| 1 | [Foundations every repo needs](lessons/repos/01-foundations.md) | README, license, `.gitignore`, settings, the community profile |
+| 2 | [Personal projects and portfolio pieces](lessons/repos/02-personal-projects.md) | A README that works as a portfolio piece, solo habits, archiving |
+| 3 | [Open source libraries and packages](lessons/repos/03-open-source-packages.md) | Test matrices, trusted publishing, safe releases, sustainability |
+| 4 | [Websites and documentation sites](lessons/repos/04-websites-and-docs.md) | Pages setups, build-and-deploy, custom domains done safely |
+| 5 | [Team and client projects](lessons/repos/05-team-and-client-projects.md) | Orgs and teams, rulesets, environments, client handover |
+| 6 | [WordPress plugins and themes](lessons/repos/06-wordpress-plugins.md) | Repo layout, coding standards CI, review checklist, deploy to WordPress.org |
+| 7 | [Courses, workshops and templates](lessons/repos/07-courses-and-templates.md) | Template repos, workshop steps, GitHub Classroom, licensing lessons |
+| 8 | [Maintaining a repo over time](lessons/repos/08-maintaining.md) | A weekly-to-yearly routine, triage, automation, stepping back kindly |
+
 📦 **[Starter templates](templates/)**: copy-ready CI workflow, issue forms, PR template, CODEOWNERS, Dependabot and security policy.
 
 **Lessons 1 and 2** can be done in an afternoon in your own sandbox repo.

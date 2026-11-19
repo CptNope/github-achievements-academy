@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repo 4: Websites and documentation sites · GitHub Achievements Academy</title>
+<meta name="description" content="GitHub Pages hosts static websites for free, straight from a repository: portfolios, project sites, documentation, landing pages. This very site is one. Th">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body data-page="repo-04-websites-and-docs">
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../sandbox/">Sandbox</a>
+    <a href="cheat-sheet.html">Cheat sheet</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Repo 4: Websites and documentation sites</h1>
+    <nav class="jump" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#three-ways-to-publish">Three ways to publish</a></li>
+        <li><a href="#a-build-and-deploy-workflow">A build-and-deploy workflow</a></li>
+        <li><a href="#custom-domains-safely">Custom domains, safely</a></li>
+        <li><a href="#documentation-sites">Documentation sites</a></li>
+        <li><a href="#what-pages-isnt-for">What Pages isn&#39;t for</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+        <li><a href="#what-you-learned">What you learned</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+<p>GitHub Pages hosts static websites for free, straight from a repository: portfolios, project sites, documentation, landing pages. This very site is one. This lesson covers the setups that work and the one security step most people miss.</p>
+<h2 id="three-ways-to-publish">Three ways to publish</h2>
+<div class="table"><table><thead><tr><th>Setup</th><th>Use it when</th><th>Settings → Pages</th></tr></thead><tbody><tr><td><strong>Branch + folder</strong></td><td>Plain HTML/CSS/JS with no build step</td><td>Source: <em>Deploy from a branch</em>, then <code>main</code> and <code>/</code> (root) or <code>/docs</code></td></tr>
+<tr><td><strong>GitHub Actions</strong></td><td>The site needs building (Astro, Vite, Next.js static export, Hugo, a docs generator)</td><td>Source: <em>GitHub Actions</em>, then pick or write a workflow</td></tr>
+<tr><td><strong>Jekyll</strong> (built in)</td><td>Markdown blogs, without your own build</td><td>Branch-based. Pages runs Jekyll automatically</td></tr></tbody></table></div>
+<blockquote>
+<p>If you publish plain HTML and don&#39;t use Jekyll, add an empty <code>.nojekyll</code> file to the published
+folder. It stops Pages from processing your files, which can otherwise hide folders starting with <code>_</code>.</p>
+</blockquote>
+<h3 id="repo-name-decides-the-address">Repo name decides the address</h3>
+<div class="table"><table><thead><tr><th>Repo name</th><th>URL</th></tr></thead><tbody><tr><td><code>yourname.github.io</code></td><td><code>https://yourname.github.io/</code> (your main site, only one per account)</td></tr>
+<tr><td>anything else, e.g. <code>portfolio</code></td><td><code>https://yourname.github.io/portfolio/</code></td></tr></tbody></table></div>
+<p>Because project sites live in a subfolder, use <strong>relative links</strong> (<code>assets/style.css</code>, not <code>/assets/style.css</code>), or set your build tool&#39;s base path.</p>
+<h2 id="a-build-and-deploy-workflow">A build-and-deploy workflow</h2>
+<p>For sites with a build step, choose <strong>Source: GitHub Actions</strong>:</p>
+<pre><code class="language-yaml">name: Deploy site
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run build             # outputs to dist/
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
+</code></pre>
+<p>Action versions change, and Dependabot will keep them current (<a href="github-06-security.html#dependabot">GitHub 6</a>). GitHub&#39;s <strong>Pages → GitHub Actions</strong> setup screen also suggests ready-made workflows for popular tools.</p>
+<h2 id="custom-domains-safely">Custom domains, safely</h2>
+<ol>
+<li><strong>Verify the domain first:</strong> profile <strong>Settings → Pages → Add a domain</strong>, then add the TXT record it gives you at your DNS provider. Verification stops other GitHub users from claiming your domain or its subdomains if your site is ever unpublished.</li>
+<li><strong>Add the domain in the repo</strong> (<strong>Settings → Pages → Custom domain</strong>) <strong>before</strong> changing DNS.</li>
+<li>At your DNS provider:<ul>
+<li>For <code>www.example.com</code>, add a <strong>CNAME</strong> record pointing to <code>yourname.github.io</code></li>
+<li>For the apex <code>example.com</code>, add <strong>A</strong> records to <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code> and <code>185.199.111.153</code></li>
+</ul>
+</li>
+<li>Wait for DNS (up to 24 hours), then tick <strong>Enforce HTTPS</strong>.</li>
+</ol>
+<p><strong>Never use wildcard DNS records</strong> (<code>*.example.com</code>) pointing at GitHub Pages. They invite subdomain takeovers. Always check GitHub&#39;s <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site" rel="noopener">custom domain docs</a> for the current addresses.</p>
+<h2 id="documentation-sites">Documentation sites</h2>
+<ul>
+<li><strong>Keep docs in the same repo as the code</strong> (usually <code>docs/</code>), so a PR that changes behavior also changes the docs.</li>
+<li><strong>Write for tasks</strong>, not file structure: &quot;How to export a report&quot; beats &quot;The ExportService class&quot;.</li>
+<li><strong>Add an &quot;Edit this page&quot; link</strong> to each page, pointing at the source file on GitHub. Every lesson on this site does this, and it turns readers into contributors.</li>
+<li><strong>Check links in CI</strong>, for example with a link-checker action, so docs don&#39;t rot.</li>
+<li>Popular generators include Docusaurus, MkDocs (Material), Astro Starlight and VitePress.</li>
+</ul>
+<h2 id="what-pages-isnt-for">What Pages isn&#39;t for</h2>
+<p>Pages serves <strong>static files only</strong>: no server code, no database, no secrets. Anything in the repo is public on a public site. For server code, deploy elsewhere and keep this repo for the front end. Check GitHub&#39;s terms of service for usage limits too.</p>
+<h2 id="exercise">Exercise</h2>
+<ol>
+<li>Create a repo with an <code>index.html</code> and publish it with <strong>Deploy from a branch</strong>.</li>
+<li>Add a second page and link between them with relative links.</li>
+<li>If you own a domain: verify it, add a <code>www</code> CNAME, and enforce HTTPS.</li>
+</ol>
+<h2 id="what-you-learned">What you learned</h2>
+<ul>
+<li>Branch, Actions and Jekyll publishing, and how repo names map to URLs</li>
+<li>A build-and-deploy workflow</li>
+<li>Custom domains with verification and HTTPS, and good docs habits</li>
+</ul>
+<p>Next: <a href="repo-05-team-and-client-projects.html">Repo 5: Team and client projects</a></p>
+
+    </article>
+    <section class="quiz" aria-labelledby="quiz-h">
+    <h2 id="quiz-h">Check what you learned</h2>
+    <form id="quiz-form">
+      <fieldset data-answer="1">
+        <legend><span class="qn">1.</span> Your repo is named portfolio. Where does its Pages site live?</legend>
+        <label><input type="radio" name="q0" value="0"> <span>https://portfolio.github.io/</span></label>
+        <label><input type="radio" name="q0" value="1"> <span>https://yourname.github.io/portfolio/</span></label>
+        <label><input type="radio" name="q0" value="2"> <span>https://github.com/portfolio</span></label>
+        <label><input type="radio" name="q0" value="3"> <span>https://pages.github.com/portfolio</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> Project sites live in a subfolder of your github.io address, so use relative links.</p>
+      </fieldset>
+      <fieldset data-answer="1">
+        <legend><span class="qn">2.</span> Setting up a custom domain, what should you do BEFORE changing DNS?</legend>
+        <label><input type="radio" name="q1" value="0"> <span>Delete the repo</span></label>
+        <label><input type="radio" name="q1" value="1"> <span>Verify the domain and add it in the repo's Pages settings</span></label>
+        <label><input type="radio" name="q1" value="2"> <span>Create a wildcard *.example.com record</span></label>
+        <label><input type="radio" name="q1" value="3"> <span>Disable HTTPS</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> Doing it in this order prevents someone else from claiming your domain or subdomains.</p>
+      </fieldset>
+      <fieldset data-answer="1">
+        <legend><span class="qn">3.</span> Your site needs npm run build. Which Pages source fits?</legend>
+        <label><input type="radio" name="q2" value="0"> <span>Deploy from a branch, root</span></label>
+        <label><input type="radio" name="q2" value="1"> <span>GitHub Actions</span></label>
+        <label><input type="radio" name="q2" value="2"> <span>Jekyll</span></label>
+        <label><input type="radio" name="q2" value="3"> <span>None: Pages can't build</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> An Actions workflow builds the site and deploys the output.</p>
+      </fieldset>
+      <div class="quiz-actions"><button type="submit" class="mark-btn">Check my answers</button><button type="reset" class="link-btn">Start over</button></div>
+      <p id="quiz-result" class="quiz-result" tabindex="-1" aria-live="polite"></p>
+    </form>
+    <details class="quiz-answers"><summary>Show the answers</summary><ol><li>https://yourname.github.io/portfolio/: Project sites live in a subfolder of your github.io address, so use relative links.</li><li>Verify the domain and add it in the repo's Pages settings: Doing it in this order prevents someone else from claiming your domain or subdomains.</li><li>GitHub Actions: An Actions workflow builds the site and deploys the output.</li></ol></details>
+  </section>
+    <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/repos/04-websites-and-docs.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="repo-03-open-source-packages.html"><span>Previous</span>Repo 3: Open source libraries and packages</a>
+    <a class="next" href="repo-05-team-and-client-projects.html"><span>Next</span>Repo 5: Team and client projects</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Badges</h2>
+    <ol>
+        <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html" data-page="02-yolo"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html" data-page="03-pull-shark"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html" data-page="04-pair-extraordinaire"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html" data-page="05-galaxy-brain"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+    </ol>
+    <h2>Git fundamentals</h2>
+    <ol>
+        <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html" data-page="git-03-branching-and-merging"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
+    </ol>
+    <h2>GitHub skills</h2>
+    <ol>
+        <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
+        <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
+        <li><a href="github-03-code-review.html" data-page="github-03-code-review"><span class="n">3</span>Code review</a></li>
+        <li><a href="github-04-actions.html" data-page="github-04-actions"><span class="n">4</span>Automate with Actions</a></li>
+        <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
+        <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
+        <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
+    </ol>
+    <h2>Repo recipes</h2>
+    <ol>
+        <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations every repo needs</a></li>
+        <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects and portfolio pieces</a></li>
+        <li><a href="repo-03-open-source-packages.html" data-page="repo-03-open-source-packages"><span class="n">3</span>Open source libraries and packages</a></li>
+        <li><a href="repo-04-websites-and-docs.html" data-page="repo-04-websites-and-docs" aria-current="page"><span class="n">4</span>Websites and documentation sites</a></li>
+        <li><a href="repo-05-team-and-client-projects.html" data-page="repo-05-team-and-client-projects"><span class="n">5</span>Team and client projects</a></li>
+        <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress plugins and themes</a></li>
+        <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses, workshops and templates</a></li>
+        <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining a repo over time</a></li>
+    </ol>
+    <h2>Guides</h2>
+    <ol>
+        <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
+        <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
+        <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+<script src="../assets/learn.js" defer></script>
+</body>
+</html>

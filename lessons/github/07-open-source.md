@@ -66,4 +66,6 @@ All of these burn out maintainers, and they're noticed. See [FAIR-PLAY.md](../..
 
 ## 🎓 You've finished GitHub skills
 
-Between the three tracks, you now know how to use Git confidently, work the way professional teams do on GitHub, and contribute to open source with good manners. Consider giving back: answer a question in our [Discussions](https://github.com/CptNope/github-achievements-academy/discussions), or improve a lesson that confused you.
+Between the three tracks so far, you now know how to use Git confidently, work the way professional teams do on GitHub, and contribute to open source with good manners. Consider giving back: answer a question in our [Discussions](https://github.com/CptNope/github-achievements-academy/discussions), or improve a lesson that confused you.
+
+➡️ Next: put it all together in the Repo recipes track, starting with [Repo 1: Foundations every repo needs](../repos/01-foundations.md)

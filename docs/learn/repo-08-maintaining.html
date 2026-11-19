@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repo 8: Maintaining a repo over time · GitHub Achievements Academy</title>
+<meta name="description" content="Creating a repo takes an afternoon. Keeping it healthy takes a little time, regularly. This lesson is a maintenance routine you can actually stick to, and ">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body data-page="repo-08-maintaining">
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../sandbox/">Sandbox</a>
+    <a href="cheat-sheet.html">Cheat sheet</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Repo 8: Maintaining a repo over time</h1>
+    <nav class="jump" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#a-routine-that-fits-in-your-week">A routine that fits in your week</a></li>
+        <li><a href="#triage-like-a-pro">Triage like a pro</a></li>
+        <li><a href="#keep-dependencies-and-ci-healthy">Keep dependencies and CI healthy</a></li>
+        <li><a href="#use-insights-to-see-whats-happening">Use Insights to see what&#39;s happening</a></li>
+        <li><a href="#big-changes-without-breaking-people">Big changes without breaking people</a></li>
+        <li><a href="#stepping-back-kindly">Stepping back, kindly</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+        <li><a href="#youve-finished-repo-recipes">You&#39;ve finished Repo recipes</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+<p>Creating a repo takes an afternoon. Keeping it healthy takes a little time, regularly. This lesson is a maintenance routine you can actually stick to, and a kind way to step back when it&#39;s time.</p>
+<h2 id="a-routine-that-fits-in-your-week">A routine that fits in your week</h2>
+<div class="table"><table><thead><tr><th>How often</th><th>What to do</th><th>Time</th></tr></thead><tbody><tr><td><strong>Weekly</strong></td><td>Triage new issues and PRs: label, answer, close duplicates (<a href="01-quickdraw.html">Lesson 1</a>). Merge Dependabot PRs whose checks pass</td><td>15–30 min</td></tr>
+<tr><td><strong>Monthly</strong></td><td>Cut a release if anything merged. Read Dependabot and code scanning alerts. Close stale branches</td><td>30–60 min</td></tr>
+<tr><td><strong>Every few months</strong></td><td>Update docs and screenshots, review who has access, check that CI action versions and runtimes are still supported</td><td>1–2 hours</td></tr>
+<tr><td><strong>Yearly</strong></td><td>Ask whether the project still has a purpose. Update the license year if you like, and refresh the roadmap</td><td>1 hour</td></tr></tbody></table></div>
+<p>Put the routine in your calendar, or have a scheduled workflow open a reminder issue each month.</p>
+<h2 id="triage-like-a-pro">Triage like a pro</h2>
+<ul>
+<li><strong>Label everything</strong> with a small set: <code>bug</code>, <code>enhancement</code>, <code>docs</code>, <code>question</code>, <code>good first issue</code>, <code>needs info</code>.</li>
+<li><strong>Saved replies</strong> (profile <strong>Settings → Saved replies</strong>) for common answers: &quot;Can you share steps to reproduce?&quot;, &quot;Thanks! This is out of scope because…&quot;</li>
+<li><strong>Move questions to Discussions</strong> (the issue&#39;s <strong>Convert to discussion</strong> option), so issues stay actionable.</li>
+<li><strong>Close kindly and clearly.</strong> &quot;Closing because X. Happy to reopen if Y&quot; is better than leaving things open forever.</li>
+</ul>
+<h3 id="automate-the-boring-parts">Automate the boring parts</h3>
+<pre><code class="language-yaml"># .github/workflows/stale.yml: nudges, then closes, inactive issues that are waiting on the reporter
+name: Stale
+on:
+  schedule:
+    - cron: &quot;30 4 * * 1&quot;     # Mondays at 04:30 UTC
+permissions:
+  issues: write
+  pull-requests: write
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v10
+        with:
+          only-labels: &quot;needs info&quot;
+          days-before-stale: 14
+          days-before-close: 7
+          stale-issue-message: &quot;Is this still happening? Without more information we&#39;ll close this in a week. Reply any time to keep it open.&quot;
+</code></pre>
+<p>Limiting it to <code>needs info</code> avoids the bad pattern of auto-closing real bugs that nobody has had time to look at. Dependabot will keep the action version current.</p>
+<h2 id="keep-dependencies-and-ci-healthy">Keep dependencies and CI healthy</h2>
+<ul>
+<li>Let <strong>Dependabot</strong> open grouped updates weekly (<a href="github-06-security.html#dependabot">GitHub 6</a>). Merge green ones quickly, so small updates don&#39;t pile up into a scary big one.</li>
+<li><strong>Read major-version release notes</strong> before merging. Test locally if it touches your build.</li>
+<li>Keep a <strong>required CI check</strong> on <code>main</code>, so broken updates can&#39;t merge unnoticed.</li>
+<li>Watch for <strong>deprecated runtimes</strong> (old Node, PHP or Python versions) in your workflows and <code>engines</code> fields.</li>
+</ul>
+<h2 id="use-insights-to-see-whats-happening">Use Insights to see what&#39;s happening</h2>
+<p><strong>Insights</strong> shows contributors, traffic (views, clones, popular pages and referrers), commit activity, the dependency graph, and community standards. A quick monthly look tells you which docs people read and where they came from.</p>
+<h2 id="big-changes-without-breaking-people">Big changes without breaking people</h2>
+<ul>
+<li><strong>Renaming a repo:</strong> GitHub redirects the old URL, but update links you control. Don&#39;t create a new repo with the old name, or the redirect breaks.</li>
+<li><strong>Renaming <code>master</code> to <code>main</code>:</strong> <strong>Settings → General → Default branch</strong>. GitHub retargets open PRs and shows a notice to people who visit.</li>
+<li><strong>Moving to an organization:</strong> <strong>Transfer ownership</strong>. Issues, PRs, stars and redirects come along.</li>
+<li><strong>Breaking changes:</strong> announce them in release notes, deprecate first if you can, and bump the major version (<a href="github-05-releases.html">GitHub 5</a>).</li>
+</ul>
+<h2 id="stepping-back-kindly">Stepping back, kindly</h2>
+<p>Projects end, and that&#39;s healthy. Choose the clearest option:</p>
+<div class="table"><table><thead><tr><th>Situation</th><th>What to do</th></tr></thead><tbody><tr><td>You&#39;ll check in rarely</td><td>Add a <strong>maintenance status</strong> at the top of the README (&quot;Maintained, slowly&quot;, or &quot;Security fixes only&quot;)</td></tr>
+<tr><td>Someone wants to take over</td><td>Add them as a maintainer, or <strong>transfer</strong> the repo to them or to an org. Say so in the README</td></tr>
+<tr><td>It&#39;s done, or replaced by something better</td><td><strong>Archive</strong> it (<strong>Settings → General → Archive this repository</strong>). It becomes read-only and clearly labeled, and links keep working. Point to any successor in the README</td></tr>
+<tr><td>It must disappear</td><td><strong>Delete</strong> it only if necessary. It breaks every link and anything that depends on it</td></tr></tbody></table></div>
+<p>Archiving is almost always better than deleting.</p>
+<h2 id="exercise">Exercise</h2>
+<ol>
+<li>Pick a repo you own and do a &quot;monthly&quot; pass: triage open issues, merge or close stale PRs, and delete merged branches.</li>
+<li>Add a maintenance-status line to its README.</li>
+<li>Optional: add the stale workflow, limited to a <code>needs info</code> label.</li>
+</ol>
+<h2 id="youve-finished-repo-recipes">You&#39;ve finished Repo recipes</h2>
+<p>You can now set up the right kind of repo for any purpose, from a portfolio piece to a published package, a client project, a WordPress plugin or a course, and keep it healthy for years.</p>
+<p><strong>Learners Wall:</strong> add a line about which repo you upgraded during this track.</p>
+
+    </article>
+    <section class="quiz" aria-labelledby="quiz-h">
+    <h2 id="quiz-h">Check what you learned</h2>
+    <form id="quiz-form">
+      <fieldset data-answer="1">
+        <legend><span class="qn">1.</span> You're done with a project for good. What's usually best?</legend>
+        <label><input type="radio" name="q0" value="0"> <span>Delete it</span></label>
+        <label><input type="radio" name="q0" value="1"> <span>Archive it and point to any successor in the README</span></label>
+        <label><input type="radio" name="q0" value="2"> <span>Leave it with no note</span></label>
+        <label><input type="radio" name="q0" value="3"> <span>Make it private silently</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> Archiving keeps links and history while clearly marking the project as finished.</p>
+      </fieldset>
+      <fieldset data-answer="1">
+        <legend><span class="qn">2.</span> Why limit a stale-issue workflow to a needs info label?</legend>
+        <label><input type="radio" name="q1" value="0"> <span>It's required by GitHub</span></label>
+        <label><input type="radio" name="q1" value="1"> <span>So real bugs nobody has looked at yet don't get auto-closed</span></label>
+        <label><input type="radio" name="q1" value="2"> <span>It runs faster</span></label>
+        <label><input type="radio" name="q1" value="3"> <span>Labels are free</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> Auto-closing unreviewed bugs frustrates users. Only close issues waiting on the reporter.</p>
+      </fieldset>
+      <fieldset data-answer="1">
+        <legend><span class="qn">3.</span> What's the risk of letting Dependabot PRs pile up for months?</legend>
+        <label><input type="radio" name="q2" value="0"> <span>None</span></label>
+        <label><input type="radio" name="q2" value="1"> <span>Small safe updates turn into a big, scary batch</span></label>
+        <label><input type="radio" name="q2" value="2"> <span>GitHub deletes the repo</span></label>
+        <label><input type="radio" name="q2" value="3"> <span>Your stars reset</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> Merging green updates weekly keeps each change small and easy to review.</p>
+      </fieldset>
+      <div class="quiz-actions"><button type="submit" class="mark-btn">Check my answers</button><button type="reset" class="link-btn">Start over</button></div>
+      <p id="quiz-result" class="quiz-result" tabindex="-1" aria-live="polite"></p>
+    </form>
+    <details class="quiz-answers"><summary>Show the answers</summary><ol><li>Archive it and point to any successor in the README: Archiving keeps links and history while clearly marking the project as finished.</li><li>So real bugs nobody has looked at yet don't get auto-closed: Auto-closing unreviewed bugs frustrates users. Only close issues waiting on the reporter.</li><li>Small safe updates turn into a big, scary batch: Merging green updates weekly keeps each change small and easy to review.</li></ol></details>
+  </section>
+    <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/repos/08-maintaining.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="repo-07-courses-and-templates.html"><span>Previous</span>Repo 7: Courses, workshops and templates</a>
+    <a class="next" href="oh-no.html"><span>Next</span>Oh no! Undoing Git mistakes</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Badges</h2>
+    <ol>
+        <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html" data-page="02-yolo"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html" data-page="03-pull-shark"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html" data-page="04-pair-extraordinaire"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html" data-page="05-galaxy-brain"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+    </ol>
+    <h2>Git fundamentals</h2>
+    <ol>
+        <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html" data-page="git-03-branching-and-merging"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
+    </ol>
+    <h2>GitHub skills</h2>
+    <ol>
+        <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
+        <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
+        <li><a href="github-03-code-review.html" data-page="github-03-code-review"><span class="n">3</span>Code review</a></li>
+        <li><a href="github-04-actions.html" data-page="github-04-actions"><span class="n">4</span>Automate with Actions</a></li>
+        <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
+        <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
+        <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
+    </ol>
+    <h2>Repo recipes</h2>
+    <ol>
+        <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations every repo needs</a></li>
+        <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects and portfolio pieces</a></li>
+        <li><a href="repo-03-open-source-packages.html" data-page="repo-03-open-source-packages"><span class="n">3</span>Open source libraries and packages</a></li>
+        <li><a href="repo-04-websites-and-docs.html" data-page="repo-04-websites-and-docs"><span class="n">4</span>Websites and documentation sites</a></li>
+        <li><a href="repo-05-team-and-client-projects.html" data-page="repo-05-team-and-client-projects"><span class="n">5</span>Team and client projects</a></li>
+        <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress plugins and themes</a></li>
+        <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses, workshops and templates</a></li>
+        <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining" aria-current="page"><span class="n">8</span>Maintaining a repo over time</a></li>
+    </ol>
+    <h2>Guides</h2>
+    <ol>
+        <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
+        <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
+        <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+<script src="../assets/learn.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repo 3: Open source libraries and packages · GitHub Achievements Academy</title>
+<meta name="description" content="A library is code other people install and build on: an npm package, a Python module, a PHP library. Your users depend on it not breaking, so the setup foc">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body data-page="repo-03-open-source-packages">
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../sandbox/">Sandbox</a>
+    <a href="cheat-sheet.html">Cheat sheet</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Repo 3: Open source libraries and packages</h1>
+    <nav class="jump" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#whats-different-from-a-personal-project">What&#39;s different from a personal project</a></li>
+        <li><a href="#test-against-what-your-users-run">Test against what your users run</a></li>
+        <li><a href="#publish-from-ci-with-trusted-publishing">Publish from CI with trusted publishing</a></li>
+        <li><a href="#files-a-library-needs-on-top-of-the-foundations">Files a library needs on top of the foundations</a></li>
+        <li><a href="#releasing-safely">Releasing safely</a></li>
+        <li><a href="#sustainability">Sustainability</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+        <li><a href="#what-you-learned">What you learned</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+<p>A library is code other people install and build on: an npm package, a Python module, a PHP library. Your users depend on it not breaking, so the setup focuses on <strong>stability, clear releases and safe publishing</strong>.</p>
+<h2 id="whats-different-from-a-personal-project">What&#39;s different from a personal project</h2>
+<div class="table"><table><thead><tr><th>Concern</th><th>What to set up</th></tr></thead><tbody><tr><td>People depend on your API</td><td>Semantic versioning, a changelog, and loud warnings about breaking changes (<a href="github-05-releases.html">GitHub 5</a>)</td></tr>
+<tr><td>Contributors you&#39;ve never met</td><td>CONTRIBUTING.md, CODE_OF_CONDUCT.md, issue forms, a PR template</td></tr>
+<tr><td>It must work everywhere users run it</td><td>CI that tests several versions of your language and runtime</td></tr>
+<tr><td>Publishing is a target for attackers</td><td>Publish from CI with <strong>trusted publishing</strong>, not a token on your laptop</td></tr>
+<tr><td>Support questions</td><td>Discussions for Q&amp;A, so issues stay for bugs</td></tr></tbody></table></div>
+<h2 id="test-against-what-your-users-run">Test against what your users run</h2>
+<p>Use a <strong>matrix</strong> in your CI workflow to test several versions in parallel:</p>
+<pre><code class="language-yaml">jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm test
+</code></pre>
+<p>Then make the tests a <strong>required status check</strong> in your ruleset, so nothing merges red.</p>
+<h2 id="publish-from-ci-with-trusted-publishing">Publish from CI with trusted publishing</h2>
+<p>The old way was to store a long-lived registry token as a secret. If it leaks, anyone can publish a malicious version of your package. <strong>Trusted publishing</strong> replaces the token: the registry trusts one specific workflow in one specific repo, using short-lived OIDC credentials.</p>
+<p>npm, PyPI, RubyGems and crates.io all support it. For <strong>npm</strong>:</p>
+<ol>
+<li>On npmjs.com, open your package → <strong>Settings → Trusted publishing</strong>, and add your GitHub user or org, repo and workflow file name.</li>
+<li>Publish from a workflow like this, triggered when you publish a GitHub release:</li>
+</ol>
+<pre><code class="language-yaml">name: Publish
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write          # lets the workflow prove its identity to npm
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm       # optional: add required reviewers to this environment
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24   # trusted publishing needs npm 11.5.1+ (Node 22.14+)
+      - run: npm ci
+      - run: npm test
+      - run: npm publish
+</code></pre>
+<p>Check the registry&#39;s current docs when you set this up (<a href="https://docs.npmjs.com/trusted-publishers" rel="noopener">npm</a>, <a href="https://docs.pypi.org/trusted-publishers/" rel="noopener">PyPI</a>), because details like minimum versions change. Packages published this way also get <strong>provenance</strong>, a public record that links each version to the exact commit and workflow that built it.</p>
+<h2 id="files-a-library-needs-on-top-of-the-foundations">Files a library needs on top of the foundations</h2>
+<div class="table"><table><thead><tr><th>File</th><th>Purpose</th></tr></thead><tbody><tr><td><code>CHANGELOG.md</code></td><td>Every version, newest first, with breaking changes called out</td></tr>
+<tr><td><code>CONTRIBUTING.md</code></td><td>How to set up the dev environment, run tests, and what PRs you want</td></tr>
+<tr><td><code>CODE_OF_CONDUCT.md</code></td><td>Expected behavior, and how to report problems</td></tr>
+<tr><td><code>SECURITY.md</code> + private vulnerability reporting</td><td>So vulnerabilities aren&#39;t disclosed in public issues</td></tr>
+<tr><td><code>.github/FUNDING.yml</code></td><td>A Sponsor button, if you&#39;d like support</td></tr></tbody></table></div>
+<h2 id="releasing-safely">Releasing safely</h2>
+<ol>
+<li>Merge PRs labeled <code>bug</code>, <code>enhancement</code> and so on into <code>main</code>.</li>
+<li>Decide the version: patch, minor or major.</li>
+<li>Update <code>CHANGELOG.md</code> and the version number in a PR.</li>
+<li>Draft a GitHub release with <strong>Generate release notes</strong>, edit the highlights, and publish.</li>
+<li>The publish workflow runs and pushes the package to the registry.</li>
+</ol>
+<h2 id="sustainability">Sustainability</h2>
+<ul>
+<li><strong>Say what&#39;s in scope</strong> in the README, and close out-of-scope requests kindly.</li>
+<li><strong>Use <code>good first issue</code> labels</strong> to grow contributors who can share the load.</li>
+<li><strong>Write down decisions</strong> in issues or a <code>docs/decisions/</code> folder, so you don&#39;t re-argue them.</li>
+<li><strong>It&#39;s fine to step back.</strong> Add a maintenance status to the README, find co-maintainers, or archive. A clear &quot;unmaintained&quot; notice is kinder than silence.</li>
+</ul>
+<h2 id="exercise">Exercise</h2>
+<p>For a library you maintain, or a tiny one you create for practice:</p>
+<ol>
+<li>Add a test matrix with at least two versions.</li>
+<li>Make the tests a required status check.</li>
+<li>Write a <code>CHANGELOG.md</code> entry and publish a <code>v0.1.0</code> release.</li>
+<li>Optional: set up trusted publishing for your registry.</li>
+</ol>
+<h2 id="what-you-learned">What you learned</h2>
+<ul>
+<li>What changes when other people depend on your code</li>
+<li>Test matrices and required checks</li>
+<li>Trusted publishing instead of long-lived tokens, and a safe release routine</li>
+</ul>
+<p>Next: <a href="repo-04-websites-and-docs.html">Repo 4: Websites and documentation sites</a></p>
+
+    </article>
+    <section class="quiz" aria-labelledby="quiz-h">
+    <h2 id="quiz-h">Check what you learned</h2>
+    <form id="quiz-form">
+      <fieldset data-answer="1">
+        <legend><span class="qn">1.</span> What does trusted publishing replace?</legend>
+        <label><input type="radio" name="q0" value="0"> <span>Code review</span></label>
+        <label><input type="radio" name="q0" value="1"> <span>A long-lived registry token stored as a secret</span></label>
+        <label><input type="radio" name="q0" value="2"> <span>Semantic versioning</span></label>
+        <label><input type="radio" name="q0" value="3"> <span>Unit tests</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> The registry trusts one specific workflow using short-lived OIDC credentials, so there's no token to leak.</p>
+      </fieldset>
+      <fieldset data-answer="1">
+        <legend><span class="qn">2.</span> Which workflow permission lets a job use trusted publishing?</legend>
+        <label><input type="radio" name="q1" value="0"> <span>contents: write</span></label>
+        <label><input type="radio" name="q1" value="1"> <span>id-token: write</span></label>
+        <label><input type="radio" name="q1" value="2"> <span>packages: read</span></label>
+        <label><input type="radio" name="q1" value="3"> <span>issues: write</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> id-token: write lets GitHub Actions issue the OIDC token the registry verifies.</p>
+      </fieldset>
+      <fieldset data-answer="0">
+        <legend><span class="qn">3.</span> What does a CI test matrix do?</legend>
+        <label><input type="radio" name="q2" value="0"> <span>Runs tests across several versions or operating systems in parallel</span></label>
+        <label><input type="radio" name="q2" value="1"> <span>Encrypts test results</span></label>
+        <label><input type="radio" name="q2" value="2"> <span>Picks a random test</span></label>
+        <label><input type="radio" name="q2" value="3"> <span>Only runs on Fridays</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> Your users run different versions, so test the ones you support.</p>
+      </fieldset>
+      <div class="quiz-actions"><button type="submit" class="mark-btn">Check my answers</button><button type="reset" class="link-btn">Start over</button></div>
+      <p id="quiz-result" class="quiz-result" tabindex="-1" aria-live="polite"></p>
+    </form>
+    <details class="quiz-answers"><summary>Show the answers</summary><ol><li>A long-lived registry token stored as a secret: The registry trusts one specific workflow using short-lived OIDC credentials, so there's no token to leak.</li><li>id-token: write: id-token: write lets GitHub Actions issue the OIDC token the registry verifies.</li><li>Runs tests across several versions or operating systems in parallel: Your users run different versions, so test the ones you support.</li></ol></details>
+  </section>
+    <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/repos/03-open-source-packages.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="repo-02-personal-projects.html"><span>Previous</span>Repo 2: Personal projects and portfolio pieces</a>
+    <a class="next" href="repo-04-websites-and-docs.html"><span>Next</span>Repo 4: Websites and documentation sites</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Badges</h2>
+    <ol>
+        <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html" data-page="02-yolo"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html" data-page="03-pull-shark"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html" data-page="04-pair-extraordinaire"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html" data-page="05-galaxy-brain"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+    </ol>
+    <h2>Git fundamentals</h2>
+    <ol>
+        <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html" data-page="git-03-branching-and-merging"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
+    </ol>
+    <h2>GitHub skills</h2>
+    <ol>
+        <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
+        <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
+        <li><a href="github-03-code-review.html" data-page="github-03-code-review"><span class="n">3</span>Code review</a></li>
+        <li><a href="github-04-actions.html" data-page="github-04-actions"><span class="n">4</span>Automate with Actions</a></li>
+        <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
+        <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
+        <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
+    </ol>
+    <h2>Repo recipes</h2>
+    <ol>
+        <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations every repo needs</a></li>
+        <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects and portfolio pieces</a></li>
+        <li><a href="repo-03-open-source-packages.html" data-page="repo-03-open-source-packages" aria-current="page"><span class="n">3</span>Open source libraries and packages</a></li>
+        <li><a href="repo-04-websites-and-docs.html" data-page="repo-04-websites-and-docs"><span class="n">4</span>Websites and documentation sites</a></li>
+        <li><a href="repo-05-team-and-client-projects.html" data-page="repo-05-team-and-client-projects"><span class="n">5</span>Team and client projects</a></li>
+        <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress plugins and themes</a></li>
+        <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses, workshops and templates</a></li>
+        <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining a repo over time</a></li>
+    </ol>
+    <h2>Guides</h2>
+    <ol>
+        <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
+        <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
+        <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+<script src="../assets/learn.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repo 2: Personal projects and portfolio pieces · GitHub Achievements Academy</title>
+<meta name="description" content="Most repos start as personal projects: a game, a tool you needed, something you built to learn. Set up well, the same repo doubles as a portfolio piece tha">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body data-page="repo-02-personal-projects">
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../sandbox/">Sandbox</a>
+    <a href="cheat-sheet.html">Cheat sheet</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Repo 2: Personal projects and portfolio pieces</h1>
+    <nav class="jump" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#goal-someone-understands-it-in-60-seconds">Goal: someone understands it in 60 seconds</a></li>
+        <li><a href="#the-setup">The setup</a></li>
+        <li><a href="#habits-that-help-even-solo">Habits that help (even solo)</a></li>
+        <li><a href="#pin-it-then-let-it-be-finished">Pin it, then let it be finished</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+        <li><a href="#what-you-learned">What you learned</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+<p>Most repos start as personal projects: a game, a tool you needed, something you built to learn. Set up well, the same repo doubles as a portfolio piece that shows clients and employers how you work.</p>
+<h2 id="goal-someone-understands-it-in-60-seconds">Goal: someone understands it in 60 seconds</h2>
+<p>A visitor should be able to see <strong>what it is</strong>, <strong>that it works</strong>, and <strong>how it&#39;s built</strong>, without cloning anything.</p>
+<h2 id="the-setup">The setup</h2>
+<div class="table"><table><thead><tr><th>Item</th><th>Why</th></tr></thead><tbody><tr><td><strong>A demo link</strong> in the <em>About</em> website field and at the top of the README</td><td>Proof it works. Use GitHub Pages for anything that runs in a browser (<a href="repo-04-websites-and-docs.html">Repo 4</a>)</td></tr>
+<tr><td><strong>A screenshot or short GIF</strong> in the README</td><td>Most visitors never click through. Show them</td></tr>
+<tr><td><strong>A &quot;How it&#39;s built&quot; section</strong></td><td>Lists the stack and one or two interesting decisions. This is what hiring managers look for</td></tr>
+<tr><td><strong>A license</strong></td><td>MIT is a common choice for personal projects. Without one, nobody can reuse your code</td></tr>
+<tr><td><strong>Topics</strong></td><td><code>threejs</code>, <code>game</code>, <code>pwa</code>… These help people find it</td></tr>
+<tr><td><strong>A short roadmap</strong> or a few open issues</td><td>Shows the project is alive and you think ahead</td></tr></tbody></table></div>
+<h3 id="a-readme-that-works-as-a-portfolio-piece">A README that works as a portfolio piece</h3>
+<pre><code class="language-markdown"># Hearthdeep
+
+A cozy browser dungeon crawler built with three.js. **[Play it →](https://example.github.io/hearthdeep/)**
+
+![Gameplay: exploring the first floor](docs/screenshot.png)
+
+## Features
+- Procedurally generated floors
+- Saves progress in your browser
+- Plays with keyboard, mouse or touch
+
+## How it&#39;s built
+- three.js for rendering, with a custom grid-based dungeon generator
+- No framework: plain ES modules, under 60 KB gzipped
+- Deployed to GitHub Pages by an Actions workflow on every push to main
+
+## Run it locally
+    npm install
+    npm run dev
+
+## License
+MIT
+</code></pre>
+<h2 id="habits-that-help-even-solo">Habits that help (even solo)</h2>
+<ul>
+<li><strong>Use branches and pull requests anyway.</strong> A PR per feature gives you a readable history and a place for notes. Every merged one counts toward <a href="03-pull-shark.html">Pull Shark</a>.</li>
+<li><strong>Write issues for your own to-do list.</strong> Future you will thank present you. Label a few <code>good first issue</code> if you&#39;d welcome help.</li>
+<li><strong>Commit messages that explain why</strong> (<a href="git-02-everyday-loop.html">Git 2</a>). Your history becomes a story of decisions.</li>
+<li><strong>Tag versions</strong> when you reach milestones (<a href="github-05-releases.html">GitHub 5</a>), even <code>v0.1.0</code>.</li>
+</ul>
+<h2 id="pin-it-then-let-it-be-finished">Pin it, then let it be finished</h2>
+<p>Pin your best 3 to 6 projects to your profile (<a href="github-01-profile.html">GitHub 1</a>). Projects can be <strong>finished</strong>. When you stop working on one, say so in the README (&quot;This project is complete and no longer maintained&quot;) or archive it (<strong>Settings → General → Archive this repository</strong>). Archived repos are read-only, clearly labeled, and still count as portfolio pieces.</p>
+<h2 id="exercise">Exercise</h2>
+<p>Choose your best personal project and give it:</p>
+<ol>
+<li>A one-sentence description and a demo link at the top of the README</li>
+<li>A screenshot</li>
+<li>A &quot;How it&#39;s built&quot; section with two or three bullets</li>
+<li>A pin on your profile</li>
+</ol>
+<h2 id="what-you-learned">What you learned</h2>
+<ul>
+<li>What visitors need to see in the first minute</li>
+<li>A README structure that works as a portfolio piece</li>
+<li>Branch, PR and issue habits that pay off even when you work alone</li>
+</ul>
+<p>Next: <a href="repo-03-open-source-packages.html">Repo 3: Open source libraries and packages</a></p>
+
+    </article>
+    <section class="quiz" aria-labelledby="quiz-h">
+    <h2 id="quiz-h">Check what you learned</h2>
+    <form id="quiz-form">
+      <fieldset data-answer="1">
+        <legend><span class="qn">1.</span> What should a visitor see first in a portfolio project's README?</legend>
+        <label><input type="radio" name="q0" value="0"> <span>The full file tree</span></label>
+        <label><input type="radio" name="q0" value="1"> <span>A one-sentence description with a demo link and screenshot</span></label>
+        <label><input type="radio" name="q0" value="2"> <span>The license text</span></label>
+        <label><input type="radio" name="q0" value="3"> <span>A list of every commit</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> Most visitors decide in seconds. Show what it is and that it works.</p>
+      </fieldset>
+      <fieldset data-answer="1">
+        <legend><span class="qn">2.</span> You've stopped working on a project. What's the clearest option?</legend>
+        <label><input type="radio" name="q1" value="0"> <span>Delete it</span></label>
+        <label><input type="radio" name="q1" value="1"> <span>Archive it, or add a maintenance note to the README</span></label>
+        <label><input type="radio" name="q1" value="2"> <span>Make it private without saying anything</span></label>
+        <label><input type="radio" name="q1" value="3"> <span>Rename it to old-project</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> Archived repos are read-only, clearly labeled and still count as portfolio pieces. Deleting breaks links.</p>
+      </fieldset>
+      <fieldset data-answer="1">
+        <legend><span class="qn">3.</span> Why use pull requests even on a solo project?</legend>
+        <label><input type="radio" name="q2" value="0"> <span>GitHub requires it</span></label>
+        <label><input type="radio" name="q2" value="1"> <span>They give you a readable history and a place for notes, and merged PRs count toward Pull Shark</span></label>
+        <label><input type="radio" name="q2" value="2"> <span>They make the repo private</span></label>
+        <label><input type="radio" name="q2" value="3"> <span>They're faster than committing</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> PRs document decisions, even when you're the only reviewer.</p>
+      </fieldset>
+      <div class="quiz-actions"><button type="submit" class="mark-btn">Check my answers</button><button type="reset" class="link-btn">Start over</button></div>
+      <p id="quiz-result" class="quiz-result" tabindex="-1" aria-live="polite"></p>
+    </form>
+    <details class="quiz-answers"><summary>Show the answers</summary><ol><li>A one-sentence description with a demo link and screenshot: Most visitors decide in seconds. Show what it is and that it works.</li><li>Archive it, or add a maintenance note to the README: Archived repos are read-only, clearly labeled and still count as portfolio pieces. Deleting breaks links.</li><li>They give you a readable history and a place for notes, and merged PRs count toward Pull Shark: PRs document decisions, even when you're the only reviewer.</li></ol></details>
+  </section>
+    <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/repos/02-personal-projects.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="repo-01-foundations.html"><span>Previous</span>Repo 1: Foundations every repo needs</a>
+    <a class="next" href="repo-03-open-source-packages.html"><span>Next</span>Repo 3: Open source libraries and packages</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Badges</h2>
+    <ol>
+        <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html" data-page="02-yolo"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html" data-page="03-pull-shark"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html" data-page="04-pair-extraordinaire"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html" data-page="05-galaxy-brain"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+    </ol>
+    <h2>Git fundamentals</h2>
+    <ol>
+        <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html" data-page="git-03-branching-and-merging"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
+    </ol>
+    <h2>GitHub skills</h2>
+    <ol>
+        <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
+        <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
+        <li><a href="github-03-code-review.html" data-page="github-03-code-review"><span class="n">3</span>Code review</a></li>
+        <li><a href="github-04-actions.html" data-page="github-04-actions"><span class="n">4</span>Automate with Actions</a></li>
+        <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
+        <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
+        <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
+    </ol>
+    <h2>Repo recipes</h2>
+    <ol>
+        <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations every repo needs</a></li>
+        <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects" aria-current="page"><span class="n">2</span>Personal projects and portfolio pieces</a></li>
+        <li><a href="repo-03-open-source-packages.html" data-page="repo-03-open-source-packages"><span class="n">3</span>Open source libraries and packages</a></li>
+        <li><a href="repo-04-websites-and-docs.html" data-page="repo-04-websites-and-docs"><span class="n">4</span>Websites and documentation sites</a></li>
+        <li><a href="repo-05-team-and-client-projects.html" data-page="repo-05-team-and-client-projects"><span class="n">5</span>Team and client projects</a></li>
+        <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress plugins and themes</a></li>
+        <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses, workshops and templates</a></li>
+        <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining a repo over time</a></li>
+    </ol>
+    <h2>Guides</h2>
+    <ol>
+        <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
+        <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
+        <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+<script src="../assets/learn.js" defer></script>
+</body>
+</html>

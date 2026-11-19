@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repo 5: Team and client projects · GitHub Achievements Academy</title>
+<meta name="description" content="When several people, or a paying client, depend on a repo, the setup shifts from &quot;easy to share&quot; to &quot;hard to break, clear who owns what, and safe to hand o">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body data-page="repo-05-team-and-client-projects">
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../sandbox/">Sandbox</a>
+    <a href="cheat-sheet.html">Cheat sheet</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Repo 5: Team and client projects</h1>
+    <nav class="jump" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#put-it-in-an-organization">Put it in an organization</a></li>
+        <li><a href="#access-least-privilege">Access: least privilege</a></li>
+        <li><a href="#protect-the-branches-that-matter">Protect the branches that matter</a></li>
+        <li><a href="#environments-control-deployments">Environments: control deployments</a></li>
+        <li><a href="#a-branching-strategy-everyone-understands">A branching strategy everyone understands</a></li>
+        <li><a href="#write-down-how-the-project-works">Write down how the project works</a></li>
+        <li><a href="#handover-checklist-client-projects">Handover checklist (client projects)</a></li>
+        <li><a href="#exercise">Exercise</a></li>
+        <li><a href="#what-you-learned">What you learned</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+<p>When several people, or a paying client, depend on a repo, the setup shifts from &quot;easy to share&quot; to <strong>&quot;hard to break, clear who owns what, and safe to hand over.&quot;</strong> This applies to company apps, agency client sites and freelance projects alike.</p>
+<h2 id="put-it-in-an-organization">Put it in an organization</h2>
+<p>Create a free <strong>organization</strong> (your profile menu → <strong>Your organizations → New organization</strong>) for your team, agency or client, rather than a personal account.</p>
+<ul>
+<li>The repo survives people leaving</li>
+<li>You give access by <strong>team</strong> (&quot;Developers: write&quot;, &quot;Client: read&quot;) instead of person by person</li>
+<li>Handing a project to a client is a clean <strong>ownership transfer</strong> of the repo or the whole org</li>
+</ul>
+<p><strong>Freelancers and agencies:</strong> decide in your contract who owns the repo and when it transfers. A common pattern is to build in your agency&#39;s org, then transfer the repo to the client&#39;s org at handover (<strong>Settings → General → Transfer ownership</strong>). Issues, PRs, stars and history move with it.</p>
+<h2 id="access-least-privilege">Access: least privilege</h2>
+<div class="table"><table><thead><tr><th>Role</th><th>Can</th><th>Give it to</th></tr></thead><tbody><tr><td>Read</td><td>View and clone, open issues</td><td>Clients who want visibility, auditors</td></tr>
+<tr><td>Triage</td><td>Manage issues and PRs, no code</td><td>Project managers</td></tr>
+<tr><td>Write</td><td>Push branches, merge where rules allow</td><td>Developers</td></tr>
+<tr><td>Maintain</td><td>Manage the repo without destructive settings</td><td>Tech leads</td></tr>
+<tr><td>Admin</td><td>Everything, including deleting</td><td>As few people as possible</td></tr></tbody></table></div>
+<p>Review access every few months, and when someone leaves the project.</p>
+<h2 id="protect-the-branches-that-matter">Protect the branches that matter</h2>
+<p>A ruleset on <code>main</code> (and any <code>release/*</code> branches):</p>
+<ul>
+<li>Require a pull request with <strong>at least 1 approval</strong> (2 for critical systems)</li>
+<li><strong>Require review from Code Owners</strong> (<a href="github-03-code-review.html#codeowners-automatic-reviewers">CODEOWNERS</a>)</li>
+<li><strong>Require status checks</strong>: tests, lint and build</li>
+<li><strong>Block force pushes</strong> and deletions</li>
+<li>Optionally <strong>require signed commits</strong> or <strong>linear history</strong></li>
+</ul>
+<p>Rulesets for private repositories need a paid plan, while public repositories get them free. Check GitHub&#39;s current plans for your situation.</p>
+<h2 id="environments-control-deployments">Environments: control deployments</h2>
+<p>Under <strong>Settings → Environments</strong>, create <code>staging</code> and <code>production</code>:</p>
+<ul>
+<li><strong>Required reviewers:</strong> a named person must approve before a job deploys to production</li>
+<li><strong>Environment secrets:</strong> production credentials are only available to jobs that target <code>production</code></li>
+<li><strong>Deployment branches:</strong> only <code>main</code> may deploy to production</li>
+</ul>
+<pre><code class="language-yaml">jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production    # waits for approval, then gets production secrets
+    steps:
+      - uses: actions/checkout@v7
+      - run: ./deploy.sh
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+</code></pre>
+<p>Prefer <strong>OIDC</strong> (short-lived credentials) over long-lived keys when your host supports it. Most major clouds do.</p>
+<h2 id="a-branching-strategy-everyone-understands">A branching strategy everyone understands</h2>
+<div class="table"><table><thead><tr><th>Strategy</th><th>How it works</th><th>Good for</th></tr></thead><tbody><tr><td><strong>GitHub Flow</strong></td><td>Short branches off <code>main</code>, PR, review, merge, deploy</td><td>Most teams and websites</td></tr>
+<tr><td><strong>Trunk-based</strong></td><td>Very small PRs merged many times a day, with feature flags for unfinished work</td><td>Fast-moving product teams</td></tr>
+<tr><td><strong>Release branches</strong></td><td><code>release/2.4</code> branches for maintaining old versions</td><td>Software with several supported versions</td></tr></tbody></table></div>
+<p>Pick one, write it in <code>CONTRIBUTING.md</code>, and enforce it with rulesets.</p>
+<h2 id="write-down-how-the-project-works">Write down how the project works</h2>
+<p>Clients and new teammates shouldn&#39;t have to ask:</p>
+<ul>
+<li><strong>README:</strong> what it is, how to run it locally, where it&#39;s deployed</li>
+<li><strong><code>docs/deploy.md</code>:</strong> how releases happen, and how to roll back</li>
+<li><strong><code>.env.example</code>:</strong> every environment variable with a fake value (never real ones)</li>
+<li><strong>Issue labels and a project board</strong> (<a href="github-02-issues-and-projects.html">GitHub 2</a>) so the client can see progress</li>
+</ul>
+<h2 id="handover-checklist-client-projects">Handover checklist (client projects)</h2>
+<ul>
+<li><input disabled="" type="checkbox"> README and deploy docs are current</li>
+<li><input disabled="" type="checkbox"> Secrets rotated and moved to the client&#39;s accounts</li>
+<li><input disabled="" type="checkbox"> Repo transferred to the client&#39;s org, or the client given admin</li>
+<li><input disabled="" type="checkbox"> Your access reduced to what the support agreement covers</li>
+<li><input disabled="" type="checkbox"> A final release tagged, such as <code>v1.0.0-handover</code></li>
+</ul>
+<h2 id="exercise">Exercise</h2>
+<ol>
+<li>Create a free organization and move (or create) a practice repo in it.</li>
+<li>Make a team with <strong>Write</strong> access and add yourself.</li>
+<li>Add a ruleset requiring a PR and one passing check on <code>main</code>.</li>
+<li>Create a <code>production</code> environment with yourself as the required reviewer.</li>
+</ol>
+<h2 id="what-you-learned">What you learned</h2>
+<ul>
+<li>Organizations, teams and least-privilege access</li>
+<li>Rulesets and environments that keep production safe</li>
+<li>Branching strategies, project docs and a clean client handover</li>
+</ul>
+<p>Next: <a href="repo-06-wordpress-plugins.html">Repo 6: WordPress plugins and themes</a></p>
+
+    </article>
+    <section class="quiz" aria-labelledby="quiz-h">
+    <h2 id="quiz-h">Check what you learned</h2>
+    <form id="quiz-form">
+      <fieldset data-answer="1">
+        <legend><span class="qn">1.</span> Why put client or team work in an organization instead of a personal account?</legend>
+        <label><input type="radio" name="q0" value="0"> <span>Organizations are faster</span></label>
+        <label><input type="radio" name="q0" value="1"> <span>Access is managed by teams, and the repo survives people leaving or can be transferred cleanly</span></label>
+        <label><input type="radio" name="q0" value="2"> <span>Personal repos can't be private</span></label>
+        <label><input type="radio" name="q0" value="3"> <span>Organizations get unlimited Actions minutes</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> Ownership and access shouldn't depend on one person's account.</p>
+      </fieldset>
+      <fieldset data-answer="0">
+        <legend><span class="qn">2.</span> What can a GitHub environment named production enforce?</legend>
+        <label><input type="radio" name="q1" value="0"> <span>Required reviewers before deploying, and its own secrets</span></label>
+        <label><input type="radio" name="q1" value="1"> <span>Faster builds</span></label>
+        <label><input type="radio" name="q1" value="2"> <span>A different programming language</span></label>
+        <label><input type="radio" name="q1" value="3"> <span>Automatic merging</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> Jobs targeting the environment wait for approval and only then get its secrets.</p>
+      </fieldset>
+      <fieldset data-answer="1">
+        <legend><span class="qn">3.</span> Which role should most developers get?</legend>
+        <label><input type="radio" name="q2" value="0"> <span>Admin</span></label>
+        <label><input type="radio" name="q2" value="1"> <span>Write</span></label>
+        <label><input type="radio" name="q2" value="2"> <span>Owner</span></label>
+        <label><input type="radio" name="q2" value="3"> <span>None</span></label>
+        <p class="why" hidden><strong class="verdict"></strong> Least privilege: give admin to as few people as possible.</p>
+      </fieldset>
+      <div class="quiz-actions"><button type="submit" class="mark-btn">Check my answers</button><button type="reset" class="link-btn">Start over</button></div>
+      <p id="quiz-result" class="quiz-result" tabindex="-1" aria-live="polite"></p>
+    </form>
+    <details class="quiz-answers"><summary>Show the answers</summary><ol><li>Access is managed by teams, and the repo survives people leaving or can be transferred cleanly: Ownership and access shouldn't depend on one person's account.</li><li>Required reviewers before deploying, and its own secrets: Jobs targeting the environment wait for approval and only then get its secrets.</li><li>Write: Least privilege: give admin to as few people as possible.</li></ol></details>
+  </section>
+    <div class="complete"><button type="button" id="mark-done" class="mark-btn" aria-pressed="false">Mark this lesson complete</button><p>Your progress is saved in this browser only.</p></div>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/repos/05-team-and-client-projects.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="repo-04-websites-and-docs.html"><span>Previous</span>Repo 4: Websites and documentation sites</a>
+    <a class="next" href="repo-06-wordpress-plugins.html"><span>Next</span>Repo 6: WordPress plugins and themes</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Badges</h2>
+    <ol>
+        <li><a href="00-setup.html" data-page="00-setup"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html" data-page="01-quickdraw"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html" data-page="02-yolo"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html" data-page="03-pull-shark"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html" data-page="04-pair-extraordinaire"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html" data-page="05-galaxy-brain"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html" data-page="06-starstruck"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html" data-page="07-public-sponsor"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html" data-page="08-highlights-and-retired"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+    </ol>
+    <h2>Git fundamentals</h2>
+    <ol>
+        <li><a href="git-01-how-git-works.html" data-page="git-01-how-git-works"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html" data-page="git-02-everyday-loop"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html" data-page="git-03-branching-and-merging"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html" data-page="git-04-rebase"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html" data-page="git-05-remotes"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html" data-page="git-06-power-tools"><span class="n">6</span>Power tools</a></li>
+    </ol>
+    <h2>GitHub skills</h2>
+    <ol>
+        <li><a href="github-01-profile.html" data-page="github-01-profile"><span class="n">1</span>Your profile as a portfolio</a></li>
+        <li><a href="github-02-issues-and-projects.html" data-page="github-02-issues-and-projects"><span class="n">2</span>Issues and Projects</a></li>
+        <li><a href="github-03-code-review.html" data-page="github-03-code-review"><span class="n">3</span>Code review</a></li>
+        <li><a href="github-04-actions.html" data-page="github-04-actions"><span class="n">4</span>Automate with Actions</a></li>
+        <li><a href="github-05-releases.html" data-page="github-05-releases"><span class="n">5</span>Releases and versioning</a></li>
+        <li><a href="github-06-security.html" data-page="github-06-security"><span class="n">6</span>Security basics</a></li>
+        <li><a href="github-07-open-source.html" data-page="github-07-open-source"><span class="n">7</span>Contributing to open source</a></li>
+    </ol>
+    <h2>Repo recipes</h2>
+    <ol>
+        <li><a href="repo-01-foundations.html" data-page="repo-01-foundations"><span class="n">1</span>Foundations every repo needs</a></li>
+        <li><a href="repo-02-personal-projects.html" data-page="repo-02-personal-projects"><span class="n">2</span>Personal projects and portfolio pieces</a></li>
+        <li><a href="repo-03-open-source-packages.html" data-page="repo-03-open-source-packages"><span class="n">3</span>Open source libraries and packages</a></li>
+        <li><a href="repo-04-websites-and-docs.html" data-page="repo-04-websites-and-docs"><span class="n">4</span>Websites and documentation sites</a></li>
+        <li><a href="repo-05-team-and-client-projects.html" data-page="repo-05-team-and-client-projects" aria-current="page"><span class="n">5</span>Team and client projects</a></li>
+        <li><a href="repo-06-wordpress-plugins.html" data-page="repo-06-wordpress-plugins"><span class="n">6</span>WordPress plugins and themes</a></li>
+        <li><a href="repo-07-courses-and-templates.html" data-page="repo-07-courses-and-templates"><span class="n">7</span>Courses, workshops and templates</a></li>
+        <li><a href="repo-08-maintaining.html" data-page="repo-08-maintaining"><span class="n">8</span>Maintaining a repo over time</a></li>
+    </ol>
+    <h2>Guides</h2>
+    <ol>
+        <li><a href="oh-no.html" data-page="oh-no">Oh no! Undo mistakes</a></li>
+        <li><a href="cheat-sheet.html" data-page="cheat-sheet">Cheat sheet</a></li>
+        <li><a href="troubleshooting.html" data-page="troubleshooting">Troubleshooting</a></li>
+        <li><a href="fair-play.html" data-page="fair-play">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+<script src="../assets/learn.js" defer></script>
+</body>
+</html>
