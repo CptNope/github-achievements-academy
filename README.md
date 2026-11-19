@@ -14,6 +14,8 @@ Each badge here is treated as a **lesson**. You'll learn the real-world skill be
 
 ## 🗺️ The curriculum
 
+### Track 1: Badges
+
 | # | Lesson | Badge | Skill you'll actually learn | Tiers |
 |---|--------|-------|-----------------------------|-------|
 | 0 | [Setup](lessons/00-setup.md) | none | Git identity, verified email, the `gh` CLI | none |
@@ -26,6 +28,18 @@ Each badge here is treated as a **lesson**. You'll learn the real-world skill be
 | 7 | [Public Sponsor](lessons/07-public-sponsor.md) | 💖 Public Sponsor | Funding the open source you depend on | One-time |
 | 8 | [Highlights & retired badges](lessons/08-highlights-and-retired.md) | 🏅 | What you can't (or no longer can) earn | none |
 | ? | [Troubleshooting](lessons/troubleshooting.md) | 🔧 | "I did it but no badge appeared!" | none |
+
+### Track 2: Git fundamentals
+
+| # | Lesson | What you'll learn |
+|---|--------|-------------------|
+| 1 | [How Git actually works](lessons/git/01-how-git-works.md) | Snapshots, branches as labels, HEAD, the staging area |
+| 2 | [The everyday loop](lessons/git/02-everyday-loop.md) | `status`, `diff`, `add -p`, commit messages people can use |
+| 3 | [Branching and merging](lessons/git/03-branching-and-merging.md) | Fast-forward vs. merge commits, resolving conflicts (with a practice repo) |
+| 4 | [Rebase without fear](lessons/git/04-rebase.md) | The golden rule, interactive rebase, `--force-with-lease` |
+| 5 | [Fetch, pull and push](lessons/git/05-remotes.md) | Remotes, tracking branches, rejected pushes, syncing forks |
+| 6 | [Power tools](lessons/git/06-power-tools.md) | Stash, cherry-pick, bisect, blame, tags, `.gitignore`, aliases |
+| 🆘 | [Oh no! Undo any mistake](lessons/oh-no.md) | Copy-and-paste fixes for the common Git disasters |
 
 **Lessons 1 and 2** can be done in an afternoon in your own sandbox repo.
 **Lesson 3** starts right here: your first two merged PRs to this repo earn you the first Pull Shark tier.

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Git 2: The everyday loop · GitHub Achievements Academy</title>
+<meta name="description" content="Ninety percent of your Git life is one loop: look, choose, save, check. Get fast and careful at this, and everything else is the occasional extra.">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../#check">Check a profile</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Git 2: The everyday loop</h1>
+    <nav class="jump" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#1-look-what-changed">1. Look: what changed?</a></li>
+        <li><a href="#2-choose-stage-what-belongs-together">2. Choose: stage what belongs together</a></li>
+        <li><a href="#3-save-write-a-commit-message-people-can-use">3. Save: write a commit message people can use</a></li>
+        <li><a href="#4-check-did-it-do-what-you-meant">4. Check: did it do what you meant?</a></li>
+        <li><a href="#exercise-in-your-sandbox-repo">Exercise (in your sandbox repo)</a></li>
+        <li><a href="#what-you-learned">What you learned</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+<p>Ninety percent of your Git life is one loop: <strong>look, choose, save, check.</strong> Get fast and careful at this, and everything else is the occasional extra.</p>
+<h2 id="1-look-what-changed">1. Look: what changed?</h2>
+<pre><code class="language-bash">git status            # which files changed, and which are staged
+git diff              # the exact lines changed, not yet staged
+git diff --staged     # the exact lines that WILL go in the next commit
+</code></pre>
+<p>Make <code>git status</code> a reflex. Run it before and after everything. It also tells you what to do next, for example how to unstage a file.</p>
+<h2 id="2-choose-stage-what-belongs-together">2. Choose: stage what belongs together</h2>
+<pre><code class="language-bash">git add path/to/file.js     # stage one file
+git add .                   # stage everything in this folder (check git status first!)
+git add -p                  # go through your changes piece by piece
+</code></pre>
+<p><code>git add -p</code> is the habit that separates beginners from pros. Git shows each change (&quot;hunk&quot;) and asks what to do:</p>
+<div class="table"><table><thead><tr><th>Key</th><th>Meaning</th></tr></thead><tbody><tr><td><code>y</code></td><td>stage this hunk</td></tr>
+<tr><td><code>n</code></td><td>skip it</td></tr>
+<tr><td><code>s</code></td><td>split it into smaller hunks</td></tr>
+<tr><td><code>q</code></td><td>quit</td></tr>
+<tr><td><code>?</code></td><td>help</td></tr></tbody></table></div>
+<p>You&#39;ll often catch a stray debug line or a forgotten <code>console.log</code> this way.</p>
+<p>Changed your mind?</p>
+<pre><code class="language-bash">git restore --staged path/to/file.js   # unstage, but keep your edits
+</code></pre>
+<h2 id="3-save-write-a-commit-message-people-can-use">3. Save: write a commit message people can use</h2>
+<pre><code class="language-bash">git commit -m &quot;Fix crash when the cart is empty&quot;
+</code></pre>
+<p>For anything bigger, leave out <code>-m</code> and Git opens your editor so you can write a subject and a body:</p>
+<pre><code>Fix crash when the cart is empty
+
+The total() function divided by the item count, which is zero for an
+empty cart. Return 0 early instead, and add a test for it.
+
+Closes #42
+</code></pre>
+<p><strong>Good commit messages:</strong></p>
+<ul>
+<li>Keep the subject around <strong>50 characters</strong>, with no full stop at the end</li>
+<li>Use the <strong>imperative mood</strong>: &quot;Fix crash&quot;, not &quot;Fixed crash&quot; or &quot;Fixes crash&quot;. Read it as &quot;This commit will… fix crash&quot;</li>
+<li>Leave a blank line, then explain <strong>why</strong> in the body. The diff already shows what changed</li>
+<li>Mention issues: <code>Closes #42</code> closes the issue automatically when merged to the default branch on GitHub</li>
+</ul>
+<p>Some teams use <a href="https://www.conventionalcommits.org/" rel="noopener">Conventional Commits</a> prefixes like <code>feat:</code>, <code>fix:</code> and <code>docs:</code>. This repo uses them too.</p>
+<p><strong>Commit size:</strong> one logical change per commit. &quot;Add login form&quot; is good. &quot;Add login form, rename utils, update deps&quot; should be three commits.</p>
+<h2 id="4-check-did-it-do-what-you-meant">4. Check: did it do what you meant?</h2>
+<pre><code class="language-bash">git log --oneline -5        # the last 5 commits, one line each
+git show                    # the latest commit in full
+git show HEAD~1             # the one before it
+</code></pre>
+<p><code>HEAD~1</code> means &quot;one commit before HEAD&quot;, and <code>HEAD~2</code> means two before. You&#39;ll use this notation a lot.</p>
+<h2 id="exercise-in-your-sandbox-repo">Exercise (in your sandbox repo)</h2>
+<ol>
+<li>Edit two different parts of your README: fix something, and add something new.</li>
+<li>Run <code>git diff</code> and read it.</li>
+<li>Use <code>git add -p</code> to stage <strong>only</strong> the fix.</li>
+<li>Run <code>git diff --staged</code> to confirm, then commit with a good message.</li>
+<li>Stage and commit the addition separately.</li>
+<li>Run <code>git log --oneline -3</code>. You should see two clean, separate commits.</li>
+</ol>
+<p><strong>Learners Wall:</strong> add a line to your page about your best commit message today.</p>
+<h2 id="what-you-learned">What you learned</h2>
+<ul>
+<li><code>status</code>, <code>diff</code> and <code>diff --staged</code> to see exactly what&#39;s going on</li>
+<li><code>add -p</code> to build focused commits</li>
+<li>How to write commit messages people can actually use</li>
+</ul>
+<p>Next: <a href="git-03-branching-and-merging.html">Git 3: Branching and merging</a></p>
+
+    </article>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/02-everyday-loop.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="git-01-how-git-works.html"><span>Previous</span>Git 1: How Git actually works</a>
+    <a class="next" href="git-03-branching-and-merging.html"><span>Next</span>Git 3: Branching and merging</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Badges</h2>
+    <ol>
+        <li><a href="00-setup.html"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+    </ol>
+    <h2>Git fundamentals</h2>
+    <ol>
+        <li><a href="git-01-how-git-works.html"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html" aria-current="page"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html"><span class="n">6</span>Power tools</a></li>
+    </ol>
+    <h2>Guides</h2>
+    <ol>
+        <li><a href="oh-no.html">Oh no! Undo mistakes</a></li>
+        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+        <li><a href="fair-play.html">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+</body>
+</html>

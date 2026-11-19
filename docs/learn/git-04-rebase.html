@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Git 4: Rebase without fear · GitHub Achievements Academy</title>
+<meta name="description" content="Rebasing has a scary reputation, but it does one simple thing: it replays your commits on top of a different starting point. Learn the one rule below and i">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../#check">Check a profile</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Git 4: Rebase without fear</h1>
+    <nav class="jump" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#what-rebase-does">What rebase does</a></li>
+        <li><a href="#merge-or-rebase">Merge or rebase?</a></li>
+        <li><a href="#the-golden-rule">The golden rule</a></li>
+        <li><a href="#conflicts-during-a-rebase">Conflicts during a rebase</a></li>
+        <li><a href="#interactive-rebase-tidy-up-before-you-share">Interactive rebase: tidy up before you share</a></li>
+        <li><a href="#keep-pull-from-making-messy-merges">Keep pull from making messy merges</a></li>
+        <li><a href="#exercise-in-your-sandbox">Exercise (in your sandbox)</a></li>
+        <li><a href="#what-you-learned">What you learned</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+<p>Rebasing has a scary reputation, but it does one simple thing: <strong>it replays your commits on top of a different starting point.</strong> Learn the one rule below and it becomes one of your favorite tools.</p>
+<h2 id="what-rebase-does">What rebase does</h2>
+<p>Your branch started from commit B, but <code>main</code> has moved on:</p>
+<pre><code>A ← B ← C ← D          ← main
+E ← F           ← my-feature
+</code></pre>
+<pre><code class="language-bash">git switch my-feature
+git rebase main
+</code></pre>
+<p>Git takes your commits E and F, sets them aside, moves your branch to the tip of <code>main</code>, then replays them one by one:</p>
+<pre><code>A ← B ← C ← D          ← main
+E&#39; ← F&#39; ← my-feature
+</code></pre>
+<p>E&#39; and F&#39; have the same changes as E and F, but they&#39;re <strong>new commits with new IDs</strong>, because their parent changed. Remember that, because it&#39;s why the golden rule exists.</p>
+<h2 id="merge-or-rebase">Merge or rebase?</h2>
+<div class="table"><table><thead><tr><th></th><th><code>git merge main</code></th><th><code>git rebase main</code></th></tr></thead><tbody><tr><td>History</td><td>Keeps exactly what happened, plus a merge commit</td><td>Straight line, as if you started today</td></tr>
+<tr><td>Rewrites commits?</td><td>No</td><td>Yes, so your commits get new IDs</td></tr>
+<tr><td>Conflicts</td><td>Resolved once</td><td>Resolved per commit, which can mean several times</td></tr>
+<tr><td>Safe on shared branches?</td><td>Yes</td><td><strong>Only if nobody else uses the branch</strong></td></tr></tbody></table></div>
+<p>Both are fine. Many teams merge on GitHub and rebase locally to stay current.</p>
+<h2 id="the-golden-rule">The golden rule</h2>
+<blockquote>
+<p><strong>Never rebase commits that other people have already based work on.</strong></p>
+</blockquote>
+<p>Rebasing creates new commits. If a teammate built on the old ones, their history and yours no longer match, and everyone has a bad afternoon. Rebasing your <em>own</em> feature branch, even after pushing it for a PR, is normal. Just update the remote safely:</p>
+<pre><code class="language-bash">git push --force-with-lease
+</code></pre>
+<p><code>--force-with-lease</code> refuses to overwrite the remote if someone else pushed in the meantime. <strong>Never use plain <code>--force</code> on shared branches.</strong></p>
+<h2 id="conflicts-during-a-rebase">Conflicts during a rebase</h2>
+<p>Conflicts appear one commit at a time. For each one:</p>
+<pre><code class="language-bash"># fix the file(s), then:
+git add &lt;file&gt;
+git rebase --continue
+</code></pre>
+<p>Other options:</p>
+<pre><code class="language-bash">git rebase --skip     # drop this commit entirely (rarely what you want)
+git rebase --abort    # cancel and go back to exactly where you started
+</code></pre>
+<h2 id="interactive-rebase-tidy-up-before-you-share">Interactive rebase: tidy up before you share</h2>
+<p>Before opening a PR, you can clean up messy local history (&quot;wip&quot;, &quot;fix typo&quot;, &quot;actually fix it&quot;):</p>
+<pre><code class="language-bash">git rebase -i main
+</code></pre>
+<p>Git opens a list of your commits, oldest first:</p>
+<pre><code>pick 1a2b3c4 Add search box
+pick 5d6e7f8 wip
+pick 9a8b7c6 fix typo in search
+</code></pre>
+<p>Change the word at the start of each line:</p>
+<div class="table"><table><thead><tr><th>Command</th><th>Effect</th></tr></thead><tbody><tr><td><code>pick</code></td><td>keep the commit as is</td></tr>
+<tr><td><code>reword</code></td><td>keep it, but edit the message</td></tr>
+<tr><td><code>squash</code></td><td>combine with the commit above, and edit the combined message</td></tr>
+<tr><td><code>fixup</code></td><td>combine with the commit above, keeping the message above</td></tr>
+<tr><td><code>drop</code></td><td>delete the commit</td></tr></tbody></table></div>
+<p>You can also reorder lines to reorder commits. Save and close, and Git does the rest. Mistake? <code>git rebase --abort</code>, or see the <a href="oh-no.html#i-messed-up-a-rebase">&quot;Oh no&quot; guide</a>.</p>
+<h3 id="the-pro-shortcut-fixup-commits">The pro shortcut: fixup commits</h3>
+<p>Noticed a bug in a commit from earlier on your branch?</p>
+<pre><code class="language-bash">git commit --fixup 1a2b3c4          # makes a commit titled &quot;fixup! Add search box&quot;
+git rebase -i --autosquash main     # it&#39;s already placed and marked as fixup, so just save
+</code></pre>
+<h2 id="keep-pull-from-making-messy-merges">Keep pull from making messy merges</h2>
+<p>By default <code>git pull</code> can create &quot;Merge branch &#39;main&#39; of github.com…&quot; commits when your local branch and GitHub&#39;s have both moved. Many people prefer:</p>
+<pre><code class="language-bash">git config --global pull.rebase true
+</code></pre>
+<p>Now <code>git pull</code> rebases your local commits on top of what you fetched.</p>
+<h2 id="exercise-in-your-sandbox">Exercise (in your sandbox)</h2>
+<ol>
+<li>Make a branch with three small commits, including one called <code>wip</code>.</li>
+<li>Run <code>git rebase -i main</code> and squash <code>wip</code> into the commit before it.</li>
+<li>Check with <code>git log --oneline</code>. You should see two clean commits.</li>
+</ol>
+<h2 id="what-you-learned">What you learned</h2>
+<ul>
+<li>Rebase replays your commits onto a new base, creating new commits</li>
+<li>The golden rule, and <code>--force-with-lease</code></li>
+<li>Interactive rebase and fixup commits to tidy history before review</li>
+</ul>
+<p>Next: <a href="git-05-remotes.html">Git 5: Remotes, fetch, pull and push</a></p>
+
+    </article>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/04-rebase.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="git-03-branching-and-merging.html"><span>Previous</span>Git 3: Branching and merging</a>
+    <a class="next" href="git-05-remotes.html"><span>Next</span>Git 5: Remotes, fetch, pull and push</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Badges</h2>
+    <ol>
+        <li><a href="00-setup.html"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+    </ol>
+    <h2>Git fundamentals</h2>
+    <ol>
+        <li><a href="git-01-how-git-works.html"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html" aria-current="page"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html"><span class="n">6</span>Power tools</a></li>
+    </ol>
+    <h2>Guides</h2>
+    <ol>
+        <li><a href="oh-no.html">Oh no! Undo mistakes</a></li>
+        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+        <li><a href="fair-play.html">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Git 3: Branching and merging · GitHub Achievements Academy</title>
+<meta name="description" content="Branches let you try things without risking main. Merging brings the work back. Merge conflicts are the part that scares people, so this lesson includes a ">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../#check">Check a profile</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Git 3: Branching and merging</h1>
+    <nav class="jump" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#make-switch-list-delete">Make, switch, list, delete</a></li>
+        <li><a href="#two-kinds-of-merge">Two kinds of merge</a></li>
+        <li><a href="#merge-conflicts-demystified">Merge conflicts, demystified</a></li>
+        <li><a href="#practice-a-conflict-made-just-for-you">Practice: a conflict made just for you</a></li>
+        <li><a href="#keep-branches-short-lived">Keep branches short-lived</a></li>
+        <li><a href="#what-you-learned">What you learned</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+<p>Branches let you try things without risking <code>main</code>. Merging brings the work back. Merge conflicts are the part that scares people, so this lesson includes a safe practice conflict you can solve on your own machine.</p>
+<h2 id="make-switch-list-delete">Make, switch, list, delete</h2>
+<pre><code class="language-bash">git switch -c add-search     # create a branch and switch to it
+git switch main              # go back to main
+git branch                   # list local branches (* marks where you are)
+git branch -d add-search     # delete a branch that&#39;s been merged
+</code></pre>
+<blockquote>
+<p>Older tutorials use <code>git checkout</code> for this. <code>git switch</code> (for branches) and <code>git restore</code>
+(for files) do the same jobs with clearer names. Both have existed since Git 2.23.</p>
+</blockquote>
+<p>Got uncommitted changes? <code>git switch</code> brings them with you if they don&#39;t clash. If they would be overwritten, Git refuses and asks you to commit or <a href="git-06-power-tools.html#stash-park-work-for-later">stash</a> first. It never throws away your work silently.</p>
+<h2 id="two-kinds-of-merge">Two kinds of merge</h2>
+<p><strong>Fast-forward.</strong> If <code>main</code> hasn&#39;t moved since you branched, Git just slides the <code>main</code> label forward to your latest commit. No new commit is needed:</p>
+<pre><code>before:  A ← B ← C  ← main
+D ← E  ← feature
+
+after:   A ← B ← C ← D ← E  ← main, feature
+</code></pre>
+<p><strong>Merge commit.</strong> If both branches have new commits, Git creates a new commit with <strong>two parents</strong> that joins them:</p>
+<pre><code>A ← B ← C ← F ← M   ← main
+D ← E ```
+
+```bash
+git switch main
+git merge feature            # fast-forward if possible, merge commit if not
+git merge --no-ff feature    # always make a merge commit (keeps a visible &quot;feature&quot; bump)
+</code></pre>
+<p>On GitHub, the <strong>Merge pull request</strong> button gives you three choices:</p>
+<div class="table"><table><thead><tr><th>Option</th><th>Result</th></tr></thead><tbody><tr><td>Create a merge commit</td><td>Keeps every commit, plus a merge commit</td></tr>
+<tr><td>Squash and merge</td><td>All the PR&#39;s commits become <strong>one</strong> commit on main</td></tr>
+<tr><td>Rebase and merge</td><td>Replays each commit on top of main, with no merge commit</td></tr></tbody></table></div>
+<h2 id="merge-conflicts-demystified">Merge conflicts, demystified</h2>
+<p>A conflict happens when both branches changed <strong>the same lines</strong> of the same file. Git can&#39;t guess which version is right, so it stops and asks you. Nothing is broken or lost.</p>
+<p>The file will contain markers like this:</p>
+<pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Welcome to the Blue Cafe!
+=======
+Welcome to the Green Cafe!
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; rename-cafe
+</code></pre>
+<ul>
+<li>Between <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> and <code>=======</code> is <strong>your current branch&#39;s</strong> version</li>
+<li>Between <code>=======</code> and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; rename-cafe</code> is the <strong>incoming</strong> version</li>
+</ul>
+<p><strong>To resolve:</strong></p>
+<ol>
+<li>Edit the file so it says what it <em>should</em> say. Keep one version, combine them, or write something new. <strong>Delete all three marker lines.</strong></li>
+<li>Stage it: <code>git add &lt;file&gt;</code></li>
+<li>Finish the merge: <code>git commit</code> (Git suggests a message)</li>
+</ol>
+<p>Changed your mind halfway? <code>git merge --abort</code> puts everything back the way it was before the merge.</p>
+<blockquote>
+<p>VS Code shows <strong>Accept Current / Accept Incoming / Accept Both</strong> buttons above each conflict,
+and a 3-way merge editor. Use them, but always read the result before committing.</p>
+</blockquote>
+<h2 id="practice-a-conflict-made-just-for-you">Practice: a conflict made just for you</h2>
+<p>This repo includes a <a href="https://github.com/CptNope/github-achievements-academy/blob/main/scripts/practice-conflict.sh" rel="noopener">script</a> that builds a tiny throwaway repo with a conflict waiting in it. It runs entirely on your computer and never touches GitHub. Run it from your clone of this repo (you made one in <a href="03-pull-shark.html">Lesson 3</a>). On Windows, use Git Bash:</p>
+<pre><code class="language-bash">./scripts/practice-conflict.sh
+cd /tmp/git-conflict-practice     # the script prints the exact path
+git merge rename-cafe             # → CONFLICT!
+</code></pre>
+<p>Now resolve it using the steps above. Check your work with <code>git log --oneline --graph</code>. You should see the two branches joined by a merge commit. Delete the folder when you&#39;re done.</p>
+<h2 id="keep-branches-short-lived">Keep branches short-lived</h2>
+<p>The longer a branch lives, the more <code>main</code> moves underneath it, and the bigger your conflicts get. Good habits:</p>
+<ul>
+<li>One branch per task, merged within days, not weeks</li>
+<li>Pull <code>main</code> into your branch (or <a href="git-04-rebase.html">rebase onto it</a>) regularly</li>
+<li>Delete branches once they&#39;re merged. GitHub can do this automatically: <strong>Settings → General → Automatically delete head branches</strong></li>
+</ul>
+<h2 id="what-you-learned">What you learned</h2>
+<ul>
+<li>Creating, switching and deleting branches</li>
+<li>Fast-forward merges vs. merge commits, and GitHub&#39;s three merge buttons</li>
+<li>Reading conflict markers and resolving conflicts calmly</li>
+</ul>
+<p>Next: <a href="git-04-rebase.html">Git 4: Rebase without fear</a></p>
+
+    </article>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/03-branching-and-merging.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="git-02-everyday-loop.html"><span>Previous</span>Git 2: The everyday loop</a>
+    <a class="next" href="git-04-rebase.html"><span>Next</span>Git 4: Rebase without fear</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Badges</h2>
+    <ol>
+        <li><a href="00-setup.html"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+    </ol>
+    <h2>Git fundamentals</h2>
+    <ol>
+        <li><a href="git-01-how-git-works.html"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html" aria-current="page"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html"><span class="n">6</span>Power tools</a></li>
+    </ol>
+    <h2>Guides</h2>
+    <ol>
+        <li><a href="oh-no.html">Oh no! Undo mistakes</a></li>
+        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+        <li><a href="fair-play.html">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+</body>
+</html>

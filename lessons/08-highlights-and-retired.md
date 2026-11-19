@@ -25,5 +25,7 @@ You can't earn these anymore, so don't let anyone sell you a "method":
 | **Heart On Your Sleeve** | Seen in GitHub's assets, but never released |
 | **Open Sourcerer** | Seen in GitHub's assets, but never released |
 
-🎓 **You've finished the curriculum!** Update your Learners Wall page and consider answering
-someone's question in Discussions. That's how you keep going.
+🎓 **You've finished the badges track!** Update your Learners Wall page and consider answering
+someone's question in Discussions.
+
+➡️ Ready for more? Start the Git fundamentals track: [Git 1: How Git actually works](git/01-how-git-works.md)

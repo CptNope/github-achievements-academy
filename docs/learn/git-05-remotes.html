@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Git 5: Remotes, fetch, pull and push · GitHub Achievements Academy</title>
+<meta name="description" content="A remote is another copy of your repository somewhere else, usually on GitHub. Understanding how your copy and the remote stay in sync clears up most &quot;why ">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../#check">Check a profile</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Git 5: Remotes, fetch, pull and push</h1>
+    <nav class="jump" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#see-your-remotes">See your remotes</a></li>
+        <li><a href="#fetch-vs-pull">Fetch vs. pull</a></li>
+        <li><a href="#push-and-tracking-branches">Push, and tracking branches</a></li>
+        <li><a href="#quotupdates-were-rejectedquot">&quot;Updates were rejected&quot;</a></li>
+        <li><a href="#keep-your-fork-in-sync">Keep your fork in sync</a></li>
+        <li><a href="#clean-up-stale-branches">Clean up stale branches</a></li>
+        <li><a href="#https-or-ssh">HTTPS or SSH?</a></li>
+        <li><a href="#what-you-learned">What you learned</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+<p>A <strong>remote</strong> is another copy of your repository somewhere else, usually on GitHub. Understanding how your copy and the remote stay in sync clears up most &quot;why won&#39;t it push?&quot; moments.</p>
+<h2 id="see-your-remotes">See your remotes</h2>
+<pre><code class="language-bash">git remote -v
+</code></pre>
+<pre><code>origin    https://github.com/you/project.git (fetch)
+origin    https://github.com/you/project.git (push)
+</code></pre>
+<p><code>origin</code> is just the default name for the place you cloned from. If you forked a project, you&#39;ll often add the original as <code>upstream</code>:</p>
+<pre><code class="language-bash">git remote add upstream https://github.com/original-owner/project.git
+</code></pre>
+<h2 id="fetch-vs-pull">Fetch vs. pull</h2>
+<div class="table"><table><thead><tr><th>Command</th><th>What it does</th><th>Changes your files?</th></tr></thead><tbody><tr><td><code>git fetch</code></td><td>Downloads new commits and updates <code>origin/main</code> and the other remote labels</td><td><strong>No</strong></td></tr>
+<tr><td><code>git pull</code></td><td><code>fetch</code>, then merges (or <a href="git-04-rebase.html#keep-pull-from-making-messy-merges">rebases</a>) into your current branch</td><td>Yes</td></tr></tbody></table></div>
+<p><code>git fetch</code> is always safe. Use it to look before you leap:</p>
+<pre><code class="language-bash">git fetch
+git log --oneline main..origin/main    # commits on GitHub you don&#39;t have yet
+git log --oneline origin/main..main    # your commits GitHub doesn&#39;t have yet
+</code></pre>
+<h2 id="push-and-tracking-branches">Push, and tracking branches</h2>
+<p>The first time you push a new branch, tell Git where it goes:</p>
+<pre><code class="language-bash">git push -u origin my-feature
+</code></pre>
+<p><code>-u</code> (short for <code>--set-upstream</code>) links your local branch to <code>origin/my-feature</code>. After that, plain <code>git push</code> and <code>git pull</code> know where to go, and <code>git status</code> tells you if you&#39;re ahead or behind:</p>
+<pre><code>Your branch is ahead of &#39;origin/my-feature&#39; by 2 commits.
+</code></pre>
+<p>See every branch&#39;s tracking info at once:</p>
+<pre><code class="language-bash">git branch -vv
+</code></pre>
+<h2 id="quotupdates-were-rejectedquot">&quot;Updates were rejected&quot;</h2>
+<pre><code>! [rejected]        main -&gt; main (fetch first)
+error: failed to push some refs
+</code></pre>
+<p>This means GitHub has commits you don&#39;t have, often because you merged a PR on the website. Git refuses to push because that would throw those commits away. The fix:</p>
+<pre><code class="language-bash">git pull          # bring them down (merge or rebase)
+git push          # now it works
+</code></pre>
+<p><strong>Don&#39;t</strong> reach for <code>--force</code> here. That&#39;s the command that deletes other people&#39;s work.</p>
+<h2 id="keep-your-fork-in-sync">Keep your fork in sync</h2>
+<p>When you&#39;ve forked a project (like in <a href="03-pull-shark.html">Lesson 3</a>), the original keeps moving. Bring your fork up to date:</p>
+<p><strong>On github.com:</strong> open your fork and click <strong>Sync fork → Update branch</strong>.</p>
+<p><strong>With the CLI:</strong></p>
+<pre><code class="language-bash">gh repo sync                   # updates your fork&#39;s default branch on GitHub
+git pull                       # then bring it down locally
+</code></pre>
+<p><strong>With plain Git:</strong></p>
+<pre><code class="language-bash">git switch main
+git fetch upstream
+git merge upstream/main        # or: git rebase upstream/main
+git push origin main
+</code></pre>
+<p>Then start new work from the fresh <code>main</code>: <code>git switch -c next-thing</code>.</p>
+<h2 id="clean-up-stale-branches">Clean up stale branches</h2>
+<p>Branches deleted on GitHub (for example after a PR merge) still show as <code>origin/…</code> labels locally until you prune them:</p>
+<pre><code class="language-bash">git fetch --prune
+git config --global fetch.prune true    # do it automatically on every fetch
+</code></pre>
+<h2 id="https-or-ssh">HTTPS or SSH?</h2>
+<p>Both work. HTTPS with the GitHub CLI (<code>gh auth login</code>) is the easiest setup. SSH keys are popular with people who push a lot. GitHub&#39;s docs walk through <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh" rel="noopener">connecting with SSH</a>. Either way, <strong>never paste a token or password into a repo file.</strong></p>
+<h2 id="what-you-learned">What you learned</h2>
+<ul>
+<li>What <code>origin</code> and <code>upstream</code> are</li>
+<li>Fetch vs. pull, and how to compare your branch with GitHub&#39;s</li>
+<li>Tracking branches, fixing rejected pushes, and keeping a fork in sync</li>
+</ul>
+<p>Next: <a href="git-06-power-tools.html">Git 6: Power tools</a></p>
+
+    </article>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/git/05-remotes.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="git-04-rebase.html"><span>Previous</span>Git 4: Rebase without fear</a>
+    <a class="next" href="git-06-power-tools.html"><span>Next</span>Git 6: Power tools</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Badges</h2>
+    <ol>
+        <li><a href="00-setup.html"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+    </ol>
+    <h2>Git fundamentals</h2>
+    <ol>
+        <li><a href="git-01-how-git-works.html"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html" aria-current="page"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html"><span class="n">6</span>Power tools</a></li>
+    </ol>
+    <h2>Guides</h2>
+    <ol>
+        <li><a href="oh-no.html">Oh no! Undo mistakes</a></li>
+        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+        <li><a href="fair-play.html">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+</body>
+</html>

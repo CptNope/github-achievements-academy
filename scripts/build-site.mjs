@@ -13,13 +13,14 @@ const OUT = join(ROOT, "docs", "learn");
 const REPO = "https://github.com/CptNope/github-achievements-academy";
 
 // Pages, in reading order. `src` is relative to the repo root.
-const lessonFiles = readdirSync(join(ROOT, "lessons"))
-  .filter((f) => /^\d\d-.+\.md$/.test(f))
-  .sort();
+const numbered = (dir) => readdirSync(join(ROOT, dir)).filter((f) => /^\d\d-.+\.md$/.test(f)).sort();
+const GROUPS = ["Badges", "Git fundamentals", "Guides"];
 const pages = [
-  ...lessonFiles.map((f) => ({ src: `lessons/${f}`, out: f.replace(/\.md$/, ".html"), kind: "lesson" })),
-  { src: "lessons/troubleshooting.md", out: "troubleshooting.html", kind: "guide" },
-  { src: "FAIR-PLAY.md", out: "fair-play.html", kind: "guide" },
+  ...numbered("lessons").map((f) => ({ src: `lessons/${f}`, out: f.replace(/\.md$/, ".html"), group: "Badges", label: "Lesson" })),
+  ...numbered("lessons/git").map((f) => ({ src: `lessons/git/${f}`, out: "git-" + f.replace(/\.md$/, ".html"), group: "Git fundamentals", label: "Git" })),
+  { src: "lessons/oh-no.md", out: "oh-no.html", group: "Guides", detail: "Undo any Git mistake" },
+  { src: "lessons/troubleshooting.md", out: "troubleshooting.html", group: "Guides", detail: "When a badge won't show" },
+  { src: "FAIR-PLAY.md", out: "fair-play.html", group: "Guides", detail: "Read before you start" },
 ];
 const bySrc = new Map(pages.map((p) => [p.src, p]));
 
@@ -33,10 +34,11 @@ for (const p of pages) {
   p.md = readFileSync(join(ROOT, p.src), "utf8");
   const h1 = (p.md.match(/^#\s+(.+)$/m) || [, p.out])[1];
   p.title = clean(h1);
-  const m = p.title.match(/^Lesson\s+(\d+):\s*(.+)$/i);
+  const m = p.title.match(/^(?:Lesson|Git)\s+(\d+):\s*(.+)$/i);
   p.num = m ? Number(m[1]) : null;
   p.short = m ? m[2] : p.title;
   if (p.src === "FAIR-PLAY.md") p.short = "Fair play";
+  if (p.src === "lessons/oh-no.md") p.short = "Oh no! Undo mistakes";
   // the template sets the h1; emoji are dropped so the pages match the site's type-only look
   p.md = p.md.replace(/^#\s+.+\n/m, "").replace(/^[ \t]*[\p{Extended_Pictographic}]\uFE0F?[ \t]*/gmu, "").replace(/(\*\*|\| |^|\s)[\p{Extended_Pictographic}]\uFE0F?\s*/gmu, "$1");
 }
@@ -79,12 +81,16 @@ function render(p) {
 }
 
 const nav = (current) =>
-  pages
-    .map((p) => {
-      const label = p.num !== null ? `<span class="n">${p.num}</span>${esc(p.short)}` : esc(p.short);
-      return `<li><a href="${p.out}"${p === current ? ' aria-current="page"' : ""}>${label}</a></li>`;
-    })
-    .join("\n        ");
+  GROUPS.map((g) => {
+    const items = pages
+      .filter((p) => p.group === g)
+      .map((p) => {
+        const label = p.num !== null ? `<span class="n">${p.num}</span>${esc(p.short)}` : esc(p.short);
+        return `<li><a href="${p.out}"${p === current ? ' aria-current="page"' : ""}>${label}</a></li>`;
+      })
+      .join("\n        ");
+    return `<h2>${esc(g)}</h2>\n    <ol>\n        ${items}\n    </ol>`;
+  }).join("\n    ");
 
 function layout({ title, description, body, current }) {
   return `<!doctype html>
@@ -130,7 +136,20 @@ function firstSentence(md) {
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 
+// Pages with many sections (like the "Oh no" guide) get a jump list so people can find their problem fast.
+function onThisPage(html) {
+  const heads = [...html.matchAll(/<h2 id="([^"]+)">(.+?)<\/h2>/g)];
+  if (heads.length < 6) return "";
+  return `<nav class="jump" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        ${heads.map(([, id, text]) => `<li><a href="#${id}">${text}</a></li>`).join("\n        ")}
+      </ul>
+    </nav>`;
+}
+
 pages.forEach((p, i) => {
+  const html = render(p);
   const prev = pages[i - 1];
   const next = pages[i + 1];
   const pager = `<nav class="pager" aria-label="Next and previous">
@@ -140,42 +159,49 @@ pages.forEach((p, i) => {
   const body = `<div class="page">
   <main id="content" class="lesson">
     <h1>${esc(p.title)}</h1>
+    ${onThisPage(html)}
     <article class="prose">
-${render(p)}
+${html}
     </article>
     <p class="edit"><a href="${REPO}/blob/main/${p.src}">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
     ${pager}
   </main>
   <aside class="toc" aria-label="All lessons">
-    <h2>Course</h2>
-    <ol>
-        ${nav(p)}
-    </ol>
+    ${nav(p)}
   </aside>
 </div>`;
   writeFileSync(join(OUT, p.out), layout({ title: p.title, description: firstSentence(p.md), body, current: p }));
 });
 
 // Index of all lessons
-const list = pages
-  .map(
-    (p) => `<li><a href="${p.out}"><span class="item">${esc(p.short)}</span><span class="detail">${
-      p.num !== null ? `Lesson ${p.num}` : p.out === "fair-play.html" ? "Read before you start" : "When a badge won't show"
-    }</span></a></li>`
-  )
-  .join("\n      ");
+const INTRO = {
+  "Badges": "Earn every obtainable GitHub achievement, and learn the real skill behind each one.",
+  "Git fundamentals": "Master Git itself: how it works, branching, rebasing, remotes and the power tools.",
+  "Guides": "Keep these open in a tab. Everyone needs them eventually.",
+};
+const list = GROUPS.map((g) => {
+  const items = pages
+    .filter((p) => p.group === g)
+    .map((p) => `<li><a href="${p.out}"><span class="item">${esc(p.short)}</span><span class="detail">${p.num !== null ? `${p.label} ${p.num}` : esc(p.detail)}</span></a></li>`)
+    .join("\n      ");
+  return `<section class="track" id="${slug(g)}" aria-labelledby="t-${slug(g)}">
+    <h2 id="t-${slug(g)}">${esc(g)}</h2>
+    <p>${esc(INTRO[g])}</p>
+    <ul class="poster">
+      ${items}
+    </ul>
+  </section>`;
+}).join("\n  ");
 writeFileSync(
   join(OUT, "index.html"),
   layout({
     title: "All lessons",
-    description: "Every lesson in GitHub Achievements Academy, from setup to Starstruck.",
+    description: "Every lesson in GitHub Achievements Academy: the GitHub badges track, Git fundamentals, and guides for undoing mistakes.",
     current: "index",
     body: `<main id="content" class="index">
   <h1>All lessons</h1>
-  <p class="lead">Nine short lessons, from setup to the last badge, in the order that builds the skills. Start at 0 and work down.</p>
-  <ul class="poster">
-      ${list}
-  </ul>
+  <p class="lead">Two tracks and three guides. Start with the badges to learn GitHub, then master Git itself. Each track runs in order, top to bottom.</p>
+  ${list}
 </main>`,
   })
 );

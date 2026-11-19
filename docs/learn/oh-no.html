@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oh no! Undoing Git mistakes · GitHub Achievements Academy</title>
+<meta name="description" content="Everyone breaks something in Git eventually. The good news: Git almost never truly loses committed work. Find your situation below, copy the fix, and breat">
+<meta name="theme-color" content="#0c0a08">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0a08'/%3E%3Cpath d='M16 5l3.2 7 7.6.7-5.7 5 1.7 7.5L16 21.3 9.2 25.2l1.7-7.5-5.7-5 7.6-.7z' fill='%23c9a45a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/learn.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <a class="mark" href="../">Earn it<span class="vh">: GitHub Achievements Academy home</span></a>
+  <nav aria-label="Site">
+    <a href="index.html">Lessons</a>
+    <a href="../#check">Check a profile</a>
+    <a href="https://github.com/CptNope/github-achievements-academy">GitHub</a>
+  </nav>
+</header>
+<div class="page">
+  <main id="content" class="lesson">
+    <h1>Oh no! Undoing Git mistakes</h1>
+    <nav class="jump" aria-label="On this page">
+      <h2>On this page</h2>
+      <ul>
+        <li><a href="#i-made-a-typo-in-my-last-commit-message">I made a typo in my last commit message</a></li>
+        <li><a href="#i-forgot-to-add-a-file-to-my-last-commit">I forgot to add a file to my last commit</a></li>
+        <li><a href="#i-staged-a-file-i-didn39t-mean-to">I staged a file I didn&#39;t mean to</a></li>
+        <li><a href="#i-want-to-throw-away-my-uncommitted-changes-to-a-file">I want to throw away my uncommitted changes to a file</a></li>
+        <li><a href="#i-want-to-undo-my-last-commit-but-keep-the-changes">I want to undo my last commit, but keep the changes</a></li>
+        <li><a href="#i-need-to-undo-a-commit-that39s-already-pushed">I need to undo a commit that&#39;s already pushed</a></li>
+        <li><a href="#i-committed-to-main-instead-of-a-branch">I committed to main instead of a branch</a></li>
+        <li><a href="#i-committed-to-the-wrong-branch-not-main">I committed to the wrong branch (not main)</a></li>
+        <li><a href="#i-deleted-a-branch-i-needed">I deleted a branch I needed</a></li>
+        <li><a href="#i-ran-git-reset---hard-and-lost-commits">I ran <code>git reset --hard</code> and lost commits</a></li>
+        <li><a href="#i-messed-up-a-rebase">I messed up a rebase</a></li>
+        <li><a href="#i39m-stuck-in-a-merge-with-conflicts-and-want-out">I&#39;m stuck in a merge with conflicts and want out</a></li>
+        <li><a href="#i-am-in-detached-head-state">I am in detached HEAD state</a></li>
+        <li><a href="#i-committed-a-password-or-api-key">I committed a password or API key</a></li>
+        <li><a href="#github-rejected-my-push-quotfile-is-too-largequot">GitHub rejected my push: &quot;file is too large&quot;</a></li>
+        <li><a href="#i-dropped-a-stash-i-needed">I dropped a stash I needed</a></li>
+        <li><a href="#i-force-pushed-and-overwrote-someone39s-work">I force-pushed and overwrote someone&#39;s work</a></li>
+        <li><a href="#still-stuck">Still stuck?</a></li>
+      </ul>
+    </nav>
+    <article class="prose">
+<p>Everyone breaks something in Git eventually. The good news: <strong>Git almost never truly loses committed work.</strong> Find your situation below, copy the fix, and breathe.</p>
+<blockquote>
+<p><strong>First, a safety net.</strong> Before trying a fix you&#39;re unsure about, make a backup label:
+<code>git branch backup-before-fix</code>
+If the fix goes wrong, <code>git switch backup-before-fix</code> takes you back. Delete it when you&#39;re done.</p>
+</blockquote>
+<p><strong>Has it been pushed?</strong> Many fixes depend on this. If a commit is only on your computer, you can rewrite it freely. If it&#39;s on GitHub and others might have pulled it, prefer fixes that <strong>add</strong> a new commit (like <code>git revert</code>) over ones that rewrite history.</p>
+<h2 id="i-made-a-typo-in-my-last-commit-message">I made a typo in my last commit message</h2>
+<p>Not pushed yet:</p>
+<pre><code class="language-bash">git commit --amend -m &quot;The corrected message&quot;
+</code></pre>
+<p>Already pushed to your own branch (a PR branch only you use):</p>
+<pre><code class="language-bash">git commit --amend -m &quot;The corrected message&quot;
+git push --force-with-lease
+</code></pre>
+<p>On <code>main</code> or a shared branch, leave it. A typo isn&#39;t worth rewriting shared history.</p>
+<h2 id="i-forgot-to-add-a-file-to-my-last-commit">I forgot to add a file to my last commit</h2>
+<pre><code class="language-bash">git add forgotten-file.js
+git commit --amend --no-edit
+</code></pre>
+<p>Same pushed/not-pushed rules as above.</p>
+<h2 id="i-staged-a-file-i-didn39t-mean-to">I staged a file I didn&#39;t mean to</h2>
+<pre><code class="language-bash">git restore --staged wrong-file.js
+</code></pre>
+<p>Your edits stay in the file. They&#39;re just not staged anymore.</p>
+<h2 id="i-want-to-throw-away-my-uncommitted-changes-to-a-file">I want to throw away my uncommitted changes to a file</h2>
+<pre><code class="language-bash">git restore path/to/file.js
+</code></pre>
+<p>This one really is permanent. Uncommitted changes were never saved by Git, so they can&#39;t be recovered. Not sure? Run <code>git stash</code> instead, and you can bring them back later.</p>
+<h2 id="i-want-to-undo-my-last-commit-but-keep-the-changes">I want to undo my last commit, but keep the changes</h2>
+<pre><code class="language-bash">git reset --soft HEAD~1      # the commit is gone, and its changes are staged
+git reset HEAD~1             # the commit is gone, and its changes are unstaged
+</code></pre>
+<p>Use this only if the commit <strong>hasn&#39;t been pushed</strong>.</p>
+<h2 id="i-need-to-undo-a-commit-that39s-already-pushed">I need to undo a commit that&#39;s already pushed</h2>
+<pre><code class="language-bash">git revert &lt;commit-id&gt;
+git push
+</code></pre>
+<p><code>revert</code> makes a <strong>new</strong> commit that does the exact opposite of the old one. History stays intact, so it&#39;s safe on <code>main</code> and shared branches. To find the ID, run <code>git log --oneline</code>.</p>
+<p>Reverting a merge commit needs one extra flag that says which side to keep. Usually that&#39;s <code>-m 1</code> (the branch you merged into):</p>
+<pre><code class="language-bash">git revert -m 1 &lt;merge-commit-id&gt;
+</code></pre>
+<h2 id="i-committed-to-main-instead-of-a-branch">I committed to main instead of a branch</h2>
+<p>Not pushed yet:</p>
+<pre><code class="language-bash">git branch my-feature        # 1. put a label on your work so it&#39;s safe
+git reset --hard HEAD~1      # 2. move main back one commit (use ~2, ~3… for more)
+git switch my-feature        # 3. carry on, on the right branch
+</code></pre>
+<p>Check with <code>git log --oneline --graph --all</code> before step 2. If <code>main</code> was in sync with GitHub before your commits, <code>git reset --hard origin/main</code> works too.</p>
+<h2 id="i-committed-to-the-wrong-branch-not-main">I committed to the wrong branch (not main)</h2>
+<pre><code class="language-bash">git switch right-branch
+git cherry-pick &lt;commit-id&gt;      # copy the commit over
+git switch wrong-branch
+git reset --hard HEAD~1          # remove it from the wrong branch (only if not pushed)
+</code></pre>
+<h2 id="i-deleted-a-branch-i-needed">I deleted a branch I needed</h2>
+<p>When you delete a branch, Git prints its last commit:</p>
+<pre><code>Deleted branch my-feature (was 3f9c2a1).
+</code></pre>
+<p>Bring it back:</p>
+<pre><code class="language-bash">git branch my-feature 3f9c2a1
+</code></pre>
+<p>Lost that message? Look in the <strong>reflog</strong>, Git&#39;s diary of everywhere <code>HEAD</code> has been:</p>
+<pre><code class="language-bash">git reflog
+</code></pre>
+<p>Find the last commit from that branch (the messages help) and run the same <code>git branch</code> command with its ID.</p>
+<h2 id="i-ran-git-reset---hard-and-lost-commits">I ran <code>git reset --hard</code> and lost commits</h2>
+<p>The commits still exist, and the reflog remembers them:</p>
+<pre><code class="language-bash">git reflog
+# a1b2c3d HEAD@{0}: reset: moving to HEAD~3
+# 9f8e7d6 HEAD@{1}: commit: The work I thought I lost   ← this one
+git reset --hard 9f8e7d6
+</code></pre>
+<p>Reflog entries usually stick around for at least 30 days. They only exist on <strong>your</strong> computer, though, so the sooner you look, the better.</p>
+<h2 id="i-messed-up-a-rebase">I messed up a rebase</h2>
+<p>Still in the middle of it?</p>
+<pre><code class="language-bash">git rebase --abort
+</code></pre>
+<p>Already finished, and the result is wrong? The reflog has the commit from just before you started:</p>
+<pre><code class="language-bash">git reflog
+# look for the line just before &quot;rebase (start)&quot;, then:
+git reset --hard &lt;that-id&gt;
+</code></pre>
+<p>Shortcut: <code>git reset --hard ORIG_HEAD</code> usually takes you back to just before your last rebase, merge or reset.</p>
+<h2 id="i39m-stuck-in-a-merge-with-conflicts-and-want-out">I&#39;m stuck in a merge with conflicts and want out</h2>
+<pre><code class="language-bash">git merge --abort
+</code></pre>
+<p>Everything goes back to how it was before you ran <code>git merge</code>. See <a href="git-03-branching-and-merging.html#merge-conflicts-demystified">Git 3</a> for how to resolve conflicts instead.</p>
+<h2 id="i-am-in-detached-head-state">I am in detached HEAD state</h2>
+<p>You checked out a commit or tag directly, so you&#39;re not on any branch. Just looking? Go back:</p>
+<pre><code class="language-bash">git switch main
+</code></pre>
+<p>Made commits you want to keep? Give them a branch <strong>before</strong> switching away:</p>
+<pre><code class="language-bash">git switch -c rescued-work
+</code></pre>
+<p>Already switched away and lost them? The reflog has them. See &quot;I deleted a branch I needed&quot; above.</p>
+<h2 id="i-committed-a-password-or-api-key">I committed a password or API key</h2>
+<p>Do these <strong>in this order</strong>:</p>
+<ol>
+<li><strong>Revoke or rotate the secret right now</strong>, wherever it was issued (AWS, Stripe, your database, etc.). Assume it&#39;s already been copied. Bots scan public GitHub for keys within minutes. Deleting the commit doesn&#39;t un-leak it.</li>
+<li><strong>Remove it from your code</strong>, move it to an environment variable or a secrets manager, and add the file to <code>.gitignore</code>.</li>
+<li><strong>Remove it from history</strong> if the repo is public or shared. GitHub recommends <a href="https://github.com/newren/git-filter-repo" rel="noopener">git filter-repo</a> for this. Their guide, <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository" rel="noopener">Removing sensitive data from a repository</a>, walks through it, including how to ask GitHub to clear cached views.</li>
+<li><strong>Prevent it next time.</strong> Turn on <strong>Secret scanning</strong> and <strong>Push protection</strong>. Push protection blocks pushes that contain known key formats before they ever reach GitHub.</li>
+</ol>
+<p>Step 1 is the one that actually protects you. Steps 2 to 4 just tidy up.</p>
+<h2 id="github-rejected-my-push-quotfile-is-too-largequot">GitHub rejected my push: &quot;file is too large&quot;</h2>
+<p>GitHub blocks files over 100 MB. Removing the file in a new commit isn&#39;t enough, because it&#39;s still in an earlier commit you&#39;re trying to push.</p>
+<p>If it&#39;s only in your last commit and not pushed:</p>
+<pre><code class="language-bash">git rm --cached huge-file.zip
+echo &quot;huge-file.zip&quot; &gt;&gt; .gitignore
+git add .gitignore
+git commit --amend --no-edit
+git push
+</code></pre>
+<p>If it&#39;s further back in history, use <code>git filter-repo</code> (see above). For files you really do need to version, use <a href="https://git-lfs.com/" rel="noopener">Git LFS</a>.</p>
+<h2 id="i-dropped-a-stash-i-needed">I dropped a stash I needed</h2>
+<pre><code class="language-bash">git fsck --unreachable | grep commit
+</code></pre>
+<p>Each line is a lost commit, and stashes are among them. Inspect them with <code>git show &lt;id&gt;</code>, then:</p>
+<pre><code class="language-bash">git stash apply &lt;id&gt;
+</code></pre>
+<h2 id="i-force-pushed-and-overwrote-someone39s-work">I force-pushed and overwrote someone&#39;s work</h2>
+<ol>
+<li><strong>Tell your team right away.</strong> Ask anyone who pulled the old version not to push yet.</li>
+<li>Anyone who still has the old commits locally (check <code>git reflog</code>, or their <code>origin/branch</code> label before fetching) can restore them:<pre><code class="language-bash">git push --force-with-lease origin &lt;old-commit-id&gt;:branch-name
+</code></pre>
+</li>
+<li>If a pull request was involved, its page on GitHub often shows the old commits, which can help you find the right ID.</li>
+</ol>
+<p>Next time, use <code>git push --force-with-lease</code>. It refuses to overwrite commits you haven&#39;t seen.</p>
+<h2 id="still-stuck">Still stuck?</h2>
+<ul>
+<li>Run <code>git status</code>. It often tells you exactly what state you&#39;re in and what to do next.</li>
+<li>Ask in our <a href="https://github.com/CptNope/github-achievements-academy/discussions/categories/q-a" rel="noopener">Discussions Q&amp;A</a>. Include what you ran and the full error message.</li>
+<li><a href="https://ohshitgit.com/" rel="noopener">Oh Shit, Git!?!</a> and the free <a href="https://git-scm.com/book/en/v2" rel="noopener">Pro Git book</a> are excellent references.</li>
+</ul>
+
+    </article>
+    <p class="edit"><a href="https://github.com/CptNope/github-achievements-academy/blob/main/lessons/oh-no.md">Improve this page on GitHub</a>. Every fix you send counts toward Pull Shark.</p>
+    <nav class="pager" aria-label="Next and previous">
+    <a class="prev" href="git-06-power-tools.html"><span>Previous</span>Git 6: Power tools</a>
+    <a class="next" href="troubleshooting.html"><span>Next</span>Troubleshooting</a>
+  </nav>
+  </main>
+  <aside class="toc" aria-label="All lessons">
+    <h2>Badges</h2>
+    <ol>
+        <li><a href="00-setup.html"><span class="n">0</span>Setup</a></li>
+        <li><a href="01-quickdraw.html"><span class="n">1</span>Quickdraw</a></li>
+        <li><a href="02-yolo.html"><span class="n">2</span>YOLO</a></li>
+        <li><a href="03-pull-shark.html"><span class="n">3</span>Pull Shark</a></li>
+        <li><a href="04-pair-extraordinaire.html"><span class="n">4</span>Pair Extraordinaire</a></li>
+        <li><a href="05-galaxy-brain.html"><span class="n">5</span>Galaxy Brain</a></li>
+        <li><a href="06-starstruck.html"><span class="n">6</span>Starstruck</a></li>
+        <li><a href="07-public-sponsor.html"><span class="n">7</span>Public Sponsor</a></li>
+        <li><a href="08-highlights-and-retired.html"><span class="n">8</span>Highlights &amp; retired badges</a></li>
+    </ol>
+    <h2>Git fundamentals</h2>
+    <ol>
+        <li><a href="git-01-how-git-works.html"><span class="n">1</span>How Git actually works</a></li>
+        <li><a href="git-02-everyday-loop.html"><span class="n">2</span>The everyday loop</a></li>
+        <li><a href="git-03-branching-and-merging.html"><span class="n">3</span>Branching and merging</a></li>
+        <li><a href="git-04-rebase.html"><span class="n">4</span>Rebase without fear</a></li>
+        <li><a href="git-05-remotes.html"><span class="n">5</span>Remotes, fetch, pull and push</a></li>
+        <li><a href="git-06-power-tools.html"><span class="n">6</span>Power tools</a></li>
+    </ol>
+    <h2>Guides</h2>
+    <ol>
+        <li><a href="oh-no.html" aria-current="page">Oh no! Undo mistakes</a></li>
+        <li><a href="troubleshooting.html">Troubleshooting</a></li>
+        <li><a href="fair-play.html">Fair play</a></li>
+    </ol>
+  </aside>
+</div>
+<footer class="foot">
+  <p>GitHub Achievements Academy · free and MIT licensed · by <a href="https://jeremyanderson.tech">Jeremy Anderson Tech</a></p>
+  <p>Not affiliated with GitHub. GitHub is a trademark of GitHub, Inc.</p>
+</footer>
+<!-- Generated by scripts/build-site.mjs from the Markdown sources. Do not edit by hand. -->
+</body>
+</html>
